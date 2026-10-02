@@ -1,6 +1,6 @@
 # Frontend integration contract v1
 
-Base `/api/v1`, JSON UTF-8, no cookies. `POST /sessions` issues `{playerId,token,expires}` (server 256-bit IDs/tokens, 24 hours). Store token locally; never send it over the P2P channel or put it in URLs. All other endpoints use `Authorization: Bearer <token>`. Each browser gets a separate anonymous session. This is not a login or durable human identity. UI must state when results cannot be saved; never show local wins as backend-confirmed.
+Production base `https://api.dotapk.lol/api/v1`, JSON UTF-8, no cookies. CORS origin is exactly `https://dotapk.lol`. `POST /sessions` issues `{playerId,token,expires}` (server 256-bit IDs/tokens, 24 hours). Store token locally; never send it over the P2P channel or put it in URLs. All other endpoints use `Authorization: Bearer <token>`. Each browser gets a separate anonymous session. This is not a login or durable human identity. UI must state when results cannot be saved; never show local wins as backend-confirmed.
 
 Room invitation `code` is **exactly six ASCII digits as a string** (including `000007`). It is a short invitation, not strong authentication. Internal room/match IDs are independent 64-character hex strings. Anonymous player identity is bound to the session hash and occupied seat; results do not accept arbitrary player IDs or heroes.
 
@@ -49,7 +49,7 @@ Match responses include id, roomId, version, players[{id,hero}], mode, aiDifficu
 
 400 invalid/missing JSON fields, 401 invalid/expired session, 403 membership/origin, 404 unavailable, 409 seat/request/version/state conflict, 413 >45KB, 415 media type, 429 limit (+Retry-After), 503 storage/service unavailable. Strict input decoding rejects extra fields, missing fields, nulls, wrong score length. GET `/healthz` probes MySQL, no auth.
 
-All signaling/results move from Worker+D1 to this API. No combat frames go to Go. No TURN, new DNS, public route, leaderboard, login or admin UI is created. The existing Sites private UI requires an approved HTTPS API route or a narrow same-origin Worker proxy at deployment time; a loopback-only service is not browser-accessible remotely. Do not silently fall back to D1 or label a failed server write as saved.
+All signaling/results move from Worker+D1 to this API. No combat frames go to Go. No TURN, leaderboard, login or admin UI is created. Approved api.dotapk.lol DNS and dedicated TLS now route the public API through existing Nginx443 to loopback Go18082; frontend root dotapk.lol is on Cloudflare. The older private Sites origin is not on the production CORS allowlist. Do not silently fall back to D1 or label a failed server write as saved.
 
 ## Local and BroadcastChannel PVP extension (v2 candidate)
 

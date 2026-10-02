@@ -1,0 +1,30 @@
+{
+  "base": "https://api.dotapk.lol",
+  "origin": "https://dotapk.lol",
+  "health": {
+    "capabilities": [
+      "pvp_peer_agreement",
+      "pve_client_reported",
+      "local_pvp_client_reported"
+    ],
+    "contractVersion": "v1.2-abort-reconciliation",
+    "ok": true,
+    "service": "dota-duel",
+    "transport": "webrtc",
+    "turn": false
+  },
+  "corsExactOrigin": true,
+  "preflightPassed": true,
+  "foreignOriginRejected": true,
+  "httpsCertificateVerification": "system trust and hostname validation enabled",
+  "matchId": "80e24121728f4f955b38224fd3457cfea19f328eee1be39af020d9186a590744",
+  "mode": "pve",
+  "status": "recorded",
+  "trust": "client_reported",
+  "score": [
+    2,
+    0
+  ],
+  "idempotentReplay": true,
+  "readAfterWrite": true
+}

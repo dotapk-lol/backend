@@ -1,6 +1,6 @@
 # DotaPK production deployment
 
-Current state (2026-10-02): private repository pushed; Go v1.2 and isolated MySQL schema deployed on AgentSquared; loopback acceptance passed. **Public API TLS/domain activation waits for api.dotapk.lol DNS.** Frontend/DNS are owned by the separate frontend task; this backend task does not modify Cloudflare DNS.
+Current state (2026-10-02): private repository pushed; Go v1.2 and isolated MySQL schema deployed on AgentSquared; **https://api.dotapk.lol is live and external HTTPS/CORS/result-write acceptance passed.** Frontend/DNS are owned by the separate frontend task; this backend task does not modify Cloudflare DNS.
 
 ## Repository and runtime
 
@@ -23,15 +23,17 @@ A32-byte CSPRNG secret was generated only on the server, never displayed or comm
 
 Existing Nginx1.26.3, Certbot2.8 webroot `/var/www/certbot`, and existing `/etc/cron.d/agentsquared-certbot-renew` are reused. That existing cron renews daily at03:17 and reloads nginx through a deploy hook. No new renewal service/timer is required.
 
-`api.dotapk.lol` requires its own certificate/key; AgentSquared/Pikoo certificates are not valid substitutes. HTTP-only challenge vhost is installed and nginx-tested/reloaded; root routing proof passed using an explicit Host. Public certificate issuance waits for DNS-only A=43.162.87.40, no AAAA. Once DNS actually resolves and the HTTP challenge is reachable, use existing ACME account to issue api.dotapk.lol certificate, then install the prepared443 vhost. Its only proxied routes are `/api/v1/` and `/healthz` to127.0.0.1:18082; no new public port is opened. Root frontend remains on Cloudflare.
+`api.dotapk.lol` requires its own certificate/key; AgentSquared/Pikoo certificates are not valid substitutes. DNS-only A=43.162.87.40 was verified publicly and on the host, with no AAAA. HTTP-01 succeeded over the real domain. Existing ACME account issued a dedicated api.dotapk.lol certificate (Let's Encrypt YE2, expires2026-12-31); its private key is root:root0600 and never leaves the server. The443 vhost is installed after backup and nginx -t, followed by reload. Its only proxied routes are `/api/v1/` and `/healthz` to127.0.0.1:18082; no new public port is opened. Root frontend remains on Cloudflare.
 
-Before changes, existing Nginx conf.d was copied to `/var/backups/dota-duel/initial-20261002/nginx-conf.d`; baseline hashes are in existing-nginx.sha256. A2/Pikoo files remain byte-for-byte unchanged after HTTP-stage reload. Existing A2 healthz returnedok; nginx/A2/MySQL/Redis stayedactive. A pre-existing unrelated tat_agent unit warning was observed, not modified.
+Before changes, existing Nginx conf.d was copied to `/var/backups/dota-duel/initial-20261002/nginx-conf.d`; baseline hashes are in existing-nginx.sha256. A2/Pikoo files remain byte-for-byte unchanged after HTTP-stage and final443 reloads. Existing A2 healthz and Pikoo /health/live plus /health/ready returnedok; nginx/A2/MySQL/Redis stayedactive. A pre-existing unrelated tat_agent unit warning was observed, not modified.
 
 ## Validation performed
 
 Actual target MySQL8.4.8 accepted all migrations and views. Running Go with the restricted user passed loopback HTTP tests for PVP two-report confirmation/idempotency, PVE recording, local/BC single-reporter recording, normal abort merge, conflicting outcomes/wins, and successful matching completion. Eight QA matches were stored with qa-* versions; integrity view reportedzero errors. A Go-only restart retained all8 rows and restored health. Evidence: production-loopback-smoke.json, production-local-pvp-smoke.json, production-abort-smoke.json, production-pre-tls-validation.txt. No gameplay data was deleted and no tests reset production tables.
 
-Pending: API DNS/TLS and external HTTPS/CORS acceptance, then real-browser frontend domain battle/result tests coordinated by the parent task. The existence of a healthy loopback process does not imply public release completion.
+External HTTPS acceptance passed with system certificate/hostname verification enabled: exact Origin https://dotapk.lol and OPTIONS succeed, foreign Origin rejected403 without ACAO; public anonymous PVE completion persisted and GET/replay matched. The same match was independently verified in MySQL. Evidence: production-public-https-smoke.json, production-tls-validation.txt, production-existing-services-check.txt. A first probe issued immediately after nginx reload briefly hit the old certificate; subsequent actual SNI and external TLS probes both verified the dedicated certificate, without bypassing TLS checks. The existing Certbot cron is unchanged; no additional timer/service was added.
+
+Remaining product acceptance: real-browser frontend domain PVP/gameplay tests coordinated by the parent task. Backend HTTPS/API acceptance alone does not claim completion of those browser tests.
 
 ## Rollback and operations
 

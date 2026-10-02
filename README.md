@@ -1,6 +1,6 @@
 # DOTA DUEL Go/MySQL backend
 
-Independent backend for six-digit room invitations, WebRTC signaling, anonymous sessions, immutable P2P report reconciliation and clearly labeled PVE, same-screen and BroadcastChannel PVP self-reports. Combat remains in browsers. Source does not modify the frontend or AgentSquared application. Production Go+isolated schema now run on the existing host; public API DNS/TLS is pending. See DEPLOYMENT.md for current state.
+Independent backend for six-digit room invitations, WebRTC signaling, anonymous sessions, immutable P2P report reconciliation and clearly labeled PVE, same-screen and BroadcastChannel PVP self-reports. Combat remains in browsers. Source does not modify the frontend or AgentSquared application. Production Go+isolated schema run on the existing host; https://api.dotapk.lol is live with strict HTTPS/CORS and persistent-results checks passed. See DEPLOYMENT.md for current state.
 
 - [Frontend API contract](docs/API.md)
 - [AgentSquared inspection, isolation and deferred approvals](docs/DEPLOYMENT.md)

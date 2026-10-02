@@ -1,0 +1,31 @@
+DNS A
+43.162.87.40
+DNS AAAA (must be empty)
+{"capabilities":["pvp_peer_agreement","pve_client_reported","local_pvp_client_reported"],"contractVersion":"v1.2-abort-reconciliation","ok":true,"service":"dota-duel","transport":"webrtc","turn":false}
+
+/etc/nginx/conf.d/api.agentsquared.net.conf: OK
+/etc/nginx/conf.d/api.pikoo.lol.conf: OK
+ok
+Pikoo existing endpoint HTTP 404
+active
+active
+active
+active
+active
+Certbot timers
+Existing certbot cron
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+17 3 * * * root certbot renew --quiet --deploy-hook "systemctl reload nginx" >> /var/log/letsencrypt/renew-cron.log 2>&1
+agentsquared-certbot-renew
+subject=CN = api.dotapk.lol
+issuer=C = US, O = Let's Encrypt, CN = YE2
+notBefore=Oct  2 01:47:15 2026 GMT
+notAfter=Dec 31 01:47:14 2026 GMT
+X509v3 Subject Alternative Name: 
+    DNS:api.dotapk.lol
+root:root 600 /etc/letsencrypt/live/api.dotapk.lol/privkey.pem
+authenticator = webroot
+webroot_path = /var/www/certbot,
+server = https://acme-v02.api.letsencrypt.org/directory
+80e24121728f4f955b38224fd3457cfea19f328eee1be39af020d9186a590744	pve	recorded	0	[2, 0]
