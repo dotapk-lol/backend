@@ -16,7 +16,7 @@ func TestMySQLIntegration(t *testing.T) {
 		t.Skip("set DUEL_TEST_DSN to an isolated Unix-socket test database")
 	}
 	c, e := mysql.ParseDSN(dsn)
-	if e != nil || c.Addr == "/tmp/duel-mysql-test-20261002/mysql.sock" || c.Net != "unix" || (!strings.Contains(c.Addr, "duel-mysql-test-") && !strings.Contains(c.Addr, ".mysql-integration")) || c.DBName != "dota_duel" {
+	if e != nil || c.Addr == "/tmp/duel-mysql-test-20261002/mysql.sock" || c.Addr == "/tmp/duel-mysql-test-registry-b0-20261002/mysql.sock" || c.Net != "unix" || (!strings.Contains(c.Addr, "duel-mysql-test-") && !strings.Contains(c.Addr, ".mysql-integration")) || c.DBName != "dota_duel" {
 		t.Fatal("test reset allowed only on explicit task-owned temporary Unix socket")
 	}
 	store, e := OpenMySQL(dsn)
