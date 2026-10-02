@@ -1,0 +1,63 @@
+?   	dota-duel-backend/cmd/dueld	[no test files]
+=== RUN   TestLocalMemorySuite
+=== RUN   TestLocalMemorySuite/local-pvp-local
+=== RUN   TestLocalMemorySuite/local-pvp-broadcastchannel
+=== RUN   TestLocalMemorySuite/local-pvp-abort-and-timeout
+=== RUN   TestLocalMemorySuite/local-pvp-invalid-transport-and-heroes
+--- PASS: TestLocalMemorySuite (0.01s)
+    --- PASS: TestLocalMemorySuite/local-pvp-local (0.00s)
+    --- PASS: TestLocalMemorySuite/local-pvp-broadcastchannel (0.00s)
+    --- PASS: TestLocalMemorySuite/local-pvp-abort-and-timeout (0.00s)
+    --- PASS: TestLocalMemorySuite/local-pvp-invalid-transport-and-heroes (0.00s)
+=== RUN   TestLocalHTTP
+--- PASS: TestLocalHTTP (0.00s)
+=== RUN   TestMemorySuite
+=== RUN   TestMemorySuite/code-leading-zero-collision-expiry
+=== RUN   TestMemorySuite/concurrent-guest-single-seat
+=== RUN   TestMemorySuite/room-idempotency-and-identity
+=== RUN   TestMemorySuite/confirmation-idempotency-and-rematch
+=== RUN   TestMemorySuite/dispute-and-outsider
+=== RUN   TestMemorySuite/pending-timeout-and-late-report
+=== RUN   TestMemorySuite/no-report-timeout
+=== RUN   TestMemorySuite/pve-no-ai-credential
+=== RUN   TestMemorySuite/abort-never-win
+=== RUN   TestMemorySuite/invalid-structure
+=== RUN   TestMemorySuite/rate-concurrency
+=== RUN   TestMemorySuite/expired-auth
+--- PASS: TestMemorySuite (0.02s)
+    --- PASS: TestMemorySuite/code-leading-zero-collision-expiry (0.00s)
+    --- PASS: TestMemorySuite/concurrent-guest-single-seat (0.00s)
+    --- PASS: TestMemorySuite/room-idempotency-and-identity (0.00s)
+    --- PASS: TestMemorySuite/confirmation-idempotency-and-rematch (0.01s)
+    --- PASS: TestMemorySuite/dispute-and-outsider (0.00s)
+    --- PASS: TestMemorySuite/pending-timeout-and-late-report (0.00s)
+    --- PASS: TestMemorySuite/no-report-timeout (0.00s)
+    --- PASS: TestMemorySuite/pve-no-ai-credential (0.00s)
+    --- PASS: TestMemorySuite/abort-never-win (0.00s)
+    --- PASS: TestMemorySuite/invalid-structure (0.00s)
+    --- PASS: TestMemorySuite/rate-concurrency (0.00s)
+    --- PASS: TestMemorySuite/expired-auth (0.00s)
+=== RUN   TestHTTPBoundaries
+=== RUN   TestHTTPBoundaries/ok
+=== RUN   TestHTTPBoundaries/origin
+=== RUN   TestHTTPBoundaries/missing
+=== RUN   TestHTTPBoundaries/null
+=== RUN   TestHTTPBoundaries/unknown
+=== RUN   TestHTTPBoundaries/large
+=== RUN   TestHTTPBoundaries/trailing
+--- PASS: TestHTTPBoundaries (0.00s)
+    --- PASS: TestHTTPBoundaries/ok (0.00s)
+    --- PASS: TestHTTPBoundaries/origin (0.00s)
+    --- PASS: TestHTTPBoundaries/missing (0.00s)
+    --- PASS: TestHTTPBoundaries/null (0.00s)
+    --- PASS: TestHTTPBoundaries/unknown (0.00s)
+    --- PASS: TestHTTPBoundaries/large (0.00s)
+    --- PASS: TestHTTPBoundaries/trailing (0.00s)
+=== RUN   TestNoResultLeak
+--- PASS: TestNoResultLeak (0.00s)
+=== RUN   TestRandomCodes
+--- PASS: TestRandomCodes (0.00s)
+=== RUN   TestStoreRollback
+--- PASS: TestStoreRollback (0.00s)
+PASS
+ok  	dota-duel-backend/internal/duel	2.242s

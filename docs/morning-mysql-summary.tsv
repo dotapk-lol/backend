@@ -1,0 +1,11 @@
+mode	status	matches
+pve	recorded	8
+pvp	aborted	19
+pvp	confirmed	9
+pvp	disputed	4
+pvp	recorded	8
+id	status	winner	reason
+0922be647f2d390ecf06ad1fb9313c78d70ccd341b8393a7c5bee812096df853	aborted	-1	interrupted
+95d284635dcf3c264a10e7ccc1ca23fa48c80621514155c803e23ddb4fb66ada	disputed	-1	outcome_conflict
+855804cb22b0ed166437ad3910e6672616e8f2cb085c1074c634cc05557d8ee4	disputed	-1	conflicting_reports
+3c4e985058f3b862171fda19ae458a3149ad1bf9a4b5c9d647dca31fc8473775	confirmed	0	

@@ -1,0 +1,169 @@
+?   	dota-duel-backend/cmd/dueld	[no test files]
+=== RUN   TestLocalMemorySuite
+=== RUN   TestLocalMemorySuite/local-pvp-local
+=== RUN   TestLocalMemorySuite/local-pvp-broadcastchannel
+=== RUN   TestLocalMemorySuite/local-pvp-abort-and-timeout
+=== RUN   TestLocalMemorySuite/local-pvp-invalid-transport-and-heroes
+--- PASS: TestLocalMemorySuite (0.01s)
+    --- PASS: TestLocalMemorySuite/local-pvp-local (0.00s)
+    --- PASS: TestLocalMemorySuite/local-pvp-broadcastchannel (0.00s)
+    --- PASS: TestLocalMemorySuite/local-pvp-abort-and-timeout (0.00s)
+    --- PASS: TestLocalMemorySuite/local-pvp-invalid-transport-and-heroes (0.00s)
+=== RUN   TestLocalHTTP
+--- PASS: TestLocalHTTP (0.00s)
+=== RUN   TestMySQLIntegration
+=== RUN   TestMySQLIntegration/code-leading-zero-collision-expiry
+=== RUN   TestMySQLIntegration/concurrent-guest-single-seat
+=== RUN   TestMySQLIntegration/room-idempotency-and-identity
+=== RUN   TestMySQLIntegration/confirmation-idempotency-and-rematch
+=== RUN   TestMySQLIntegration/dispute-and-outsider
+=== RUN   TestMySQLIntegration/pending-timeout-and-late-report
+=== RUN   TestMySQLIntegration/no-report-timeout
+=== RUN   TestMySQLIntegration/pve-no-ai-credential
+=== RUN   TestMySQLIntegration/abort-never-win
+=== RUN   TestMySQLIntegration/invalid-structure
+=== RUN   TestMySQLIntegration/rate-concurrency
+=== RUN   TestMySQLIntegration/expired-auth
+=== RUN   TestMySQLIntegration/local-pvp-local
+=== RUN   TestMySQLIntegration/local-pvp-broadcastchannel
+=== RUN   TestMySQLIntegration/local-pvp-abort-and-timeout
+=== RUN   TestMySQLIntegration/local-pvp-invalid-transport-and-heroes
+=== RUN   TestMySQLIntegration/both-aborted-same
+=== RUN   TestMySQLIntegration/both-aborted-same-reverse-arrival
+=== RUN   TestMySQLIntegration/left-disconnect
+=== RUN   TestMySQLIntegration/left-disconnect-reverse-arrival
+=== RUN   TestMySQLIntegration/partial-round-views
+=== RUN   TestMySQLIntegration/partial-round-views-reverse-arrival
+=== RUN   TestMySQLIntegration/different-partial-scores
+=== RUN   TestMySQLIntegration/different-partial-scores-reverse-arrival
+=== RUN   TestMySQLIntegration/completed-vs-aborted
+=== RUN   TestMySQLIntegration/completed-vs-aborted-reverse-arrival
+=== RUN   TestMySQLIntegration/completed-winner-conflict
+=== RUN   TestMySQLIntegration/completed-winner-conflict-reverse-arrival
+=== RUN   TestMySQLIntegration/completed-round-conflict
+=== RUN   TestMySQLIntegration/completed-round-conflict-reverse-arrival
+=== RUN   TestMySQLIntegration/completed-agree
+=== RUN   TestMySQLIntegration/completed-agree-reverse-arrival
+=== RUN   TestMySQLIntegration/aborted-report-timeout-is-immutable
+=== RUN   TestMySQLIntegration/sql-cleanup-and-analysis
+--- PASS: TestMySQLIntegration (0.55s)
+    --- PASS: TestMySQLIntegration/code-leading-zero-collision-expiry (0.02s)
+    --- PASS: TestMySQLIntegration/concurrent-guest-single-seat (0.01s)
+    --- PASS: TestMySQLIntegration/room-idempotency-and-identity (0.01s)
+    --- PASS: TestMySQLIntegration/confirmation-idempotency-and-rematch (0.02s)
+    --- PASS: TestMySQLIntegration/dispute-and-outsider (0.01s)
+    --- PASS: TestMySQLIntegration/pending-timeout-and-late-report (0.01s)
+    --- PASS: TestMySQLIntegration/no-report-timeout (0.01s)
+    --- PASS: TestMySQLIntegration/pve-no-ai-credential (0.01s)
+    --- PASS: TestMySQLIntegration/abort-never-win (0.01s)
+    --- PASS: TestMySQLIntegration/invalid-structure (0.01s)
+    --- PASS: TestMySQLIntegration/rate-concurrency (0.17s)
+    --- PASS: TestMySQLIntegration/expired-auth (0.00s)
+    --- PASS: TestMySQLIntegration/local-pvp-local (0.01s)
+    --- PASS: TestMySQLIntegration/local-pvp-broadcastchannel (0.01s)
+    --- PASS: TestMySQLIntegration/local-pvp-abort-and-timeout (0.00s)
+    --- PASS: TestMySQLIntegration/local-pvp-invalid-transport-and-heroes (0.00s)
+    --- PASS: TestMySQLIntegration/both-aborted-same (0.01s)
+    --- PASS: TestMySQLIntegration/both-aborted-same-reverse-arrival (0.01s)
+    --- PASS: TestMySQLIntegration/left-disconnect (0.01s)
+    --- PASS: TestMySQLIntegration/left-disconnect-reverse-arrival (0.01s)
+    --- PASS: TestMySQLIntegration/partial-round-views (0.01s)
+    --- PASS: TestMySQLIntegration/partial-round-views-reverse-arrival (0.01s)
+    --- PASS: TestMySQLIntegration/different-partial-scores (0.01s)
+    --- PASS: TestMySQLIntegration/different-partial-scores-reverse-arrival (0.01s)
+    --- PASS: TestMySQLIntegration/completed-vs-aborted (0.01s)
+    --- PASS: TestMySQLIntegration/completed-vs-aborted-reverse-arrival (0.01s)
+    --- PASS: TestMySQLIntegration/completed-winner-conflict (0.01s)
+    --- PASS: TestMySQLIntegration/completed-winner-conflict-reverse-arrival (0.01s)
+    --- PASS: TestMySQLIntegration/completed-round-conflict (0.01s)
+    --- PASS: TestMySQLIntegration/completed-round-conflict-reverse-arrival (0.01s)
+    --- PASS: TestMySQLIntegration/completed-agree (0.01s)
+    --- PASS: TestMySQLIntegration/completed-agree-reverse-arrival (0.01s)
+    --- PASS: TestMySQLIntegration/aborted-report-timeout-is-immutable (0.01s)
+    --- PASS: TestMySQLIntegration/sql-cleanup-and-analysis (0.03s)
+=== RUN   TestReconciliationMemory
+=== RUN   TestReconciliationMemory/both-aborted-same
+=== RUN   TestReconciliationMemory/both-aborted-same-reverse-arrival
+=== RUN   TestReconciliationMemory/left-disconnect
+=== RUN   TestReconciliationMemory/left-disconnect-reverse-arrival
+=== RUN   TestReconciliationMemory/partial-round-views
+=== RUN   TestReconciliationMemory/partial-round-views-reverse-arrival
+=== RUN   TestReconciliationMemory/different-partial-scores
+=== RUN   TestReconciliationMemory/different-partial-scores-reverse-arrival
+=== RUN   TestReconciliationMemory/completed-vs-aborted
+=== RUN   TestReconciliationMemory/completed-vs-aborted-reverse-arrival
+=== RUN   TestReconciliationMemory/completed-winner-conflict
+=== RUN   TestReconciliationMemory/completed-winner-conflict-reverse-arrival
+=== RUN   TestReconciliationMemory/completed-round-conflict
+=== RUN   TestReconciliationMemory/completed-round-conflict-reverse-arrival
+=== RUN   TestReconciliationMemory/completed-agree
+=== RUN   TestReconciliationMemory/completed-agree-reverse-arrival
+=== RUN   TestReconciliationMemory/aborted-report-timeout-is-immutable
+--- PASS: TestReconciliationMemory (0.04s)
+    --- PASS: TestReconciliationMemory/both-aborted-same (0.00s)
+    --- PASS: TestReconciliationMemory/both-aborted-same-reverse-arrival (0.00s)
+    --- PASS: TestReconciliationMemory/left-disconnect (0.00s)
+    --- PASS: TestReconciliationMemory/left-disconnect-reverse-arrival (0.00s)
+    --- PASS: TestReconciliationMemory/partial-round-views (0.00s)
+    --- PASS: TestReconciliationMemory/partial-round-views-reverse-arrival (0.00s)
+    --- PASS: TestReconciliationMemory/different-partial-scores (0.00s)
+    --- PASS: TestReconciliationMemory/different-partial-scores-reverse-arrival (0.00s)
+    --- PASS: TestReconciliationMemory/completed-vs-aborted (0.00s)
+    --- PASS: TestReconciliationMemory/completed-vs-aborted-reverse-arrival (0.00s)
+    --- PASS: TestReconciliationMemory/completed-winner-conflict (0.00s)
+    --- PASS: TestReconciliationMemory/completed-winner-conflict-reverse-arrival (0.00s)
+    --- PASS: TestReconciliationMemory/completed-round-conflict (0.00s)
+    --- PASS: TestReconciliationMemory/completed-round-conflict-reverse-arrival (0.00s)
+    --- PASS: TestReconciliationMemory/completed-agree (0.00s)
+    --- PASS: TestReconciliationMemory/completed-agree-reverse-arrival (0.00s)
+    --- PASS: TestReconciliationMemory/aborted-report-timeout-is-immutable (0.00s)
+=== RUN   TestMemorySuite
+=== RUN   TestMemorySuite/code-leading-zero-collision-expiry
+=== RUN   TestMemorySuite/concurrent-guest-single-seat
+=== RUN   TestMemorySuite/room-idempotency-and-identity
+=== RUN   TestMemorySuite/confirmation-idempotency-and-rematch
+=== RUN   TestMemorySuite/dispute-and-outsider
+=== RUN   TestMemorySuite/pending-timeout-and-late-report
+=== RUN   TestMemorySuite/no-report-timeout
+=== RUN   TestMemorySuite/pve-no-ai-credential
+=== RUN   TestMemorySuite/abort-never-win
+=== RUN   TestMemorySuite/invalid-structure
+=== RUN   TestMemorySuite/rate-concurrency
+=== RUN   TestMemorySuite/expired-auth
+--- PASS: TestMemorySuite (0.02s)
+    --- PASS: TestMemorySuite/code-leading-zero-collision-expiry (0.00s)
+    --- PASS: TestMemorySuite/concurrent-guest-single-seat (0.00s)
+    --- PASS: TestMemorySuite/room-idempotency-and-identity (0.00s)
+    --- PASS: TestMemorySuite/confirmation-idempotency-and-rematch (0.01s)
+    --- PASS: TestMemorySuite/dispute-and-outsider (0.00s)
+    --- PASS: TestMemorySuite/pending-timeout-and-late-report (0.00s)
+    --- PASS: TestMemorySuite/no-report-timeout (0.00s)
+    --- PASS: TestMemorySuite/pve-no-ai-credential (0.00s)
+    --- PASS: TestMemorySuite/abort-never-win (0.00s)
+    --- PASS: TestMemorySuite/invalid-structure (0.00s)
+    --- PASS: TestMemorySuite/rate-concurrency (0.00s)
+    --- PASS: TestMemorySuite/expired-auth (0.00s)
+=== RUN   TestHTTPBoundaries
+=== RUN   TestHTTPBoundaries/ok
+=== RUN   TestHTTPBoundaries/origin
+=== RUN   TestHTTPBoundaries/missing
+=== RUN   TestHTTPBoundaries/null
+=== RUN   TestHTTPBoundaries/unknown
+=== RUN   TestHTTPBoundaries/large
+=== RUN   TestHTTPBoundaries/trailing
+--- PASS: TestHTTPBoundaries (0.00s)
+    --- PASS: TestHTTPBoundaries/ok (0.00s)
+    --- PASS: TestHTTPBoundaries/origin (0.00s)
+    --- PASS: TestHTTPBoundaries/missing (0.00s)
+    --- PASS: TestHTTPBoundaries/null (0.00s)
+    --- PASS: TestHTTPBoundaries/unknown (0.00s)
+    --- PASS: TestHTTPBoundaries/large (0.00s)
+    --- PASS: TestHTTPBoundaries/trailing (0.00s)
+=== RUN   TestNoResultLeak
+--- PASS: TestNoResultLeak (0.00s)
+=== RUN   TestRandomCodes
+--- PASS: TestRandomCodes (0.00s)
+=== RUN   TestStoreRollback
+--- PASS: TestStoreRollback (0.00s)
+PASS
+ok  	dota-duel-backend/internal/duel	2.657s

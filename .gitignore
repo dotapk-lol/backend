@@ -1,0 +1,8 @@
+/bin/
+/secrets/
+.env
+*.log
+coverage.out
+
+__pycache__/
+*.pyc

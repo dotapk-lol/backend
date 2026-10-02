@@ -1,0 +1,54 @@
+# Optional isolated local/staging stack. Production prefers existing loopback MySQL
+# with the dedicated schema/user approved separately. Does not touch existing services.
+name: dota-duel
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: dota_duel
+      MYSQL_USER: duel_app
+      MYSQL_PASSWORD_FILE: /run/secrets/mysql_app_password
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+    secrets: [mysql_app_password, mysql_root_password]
+    volumes:
+      - duel_mysql:/var/lib/mysql
+      - ./migrations:/docker-entrypoint-initdb.d:ro
+    command: ["--innodb-buffer-pool-size=128M", "--max-connections=20", "--mysqlx=OFF"]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    mem_limit: 512m
+    cpus: 0.50
+    restart: unless-stopped
+  api:
+    build: .
+    environment:
+      DUEL_LISTEN: 0.0.0.0:8080
+      DUEL_MYSQL_DSN_FILE: /run/secrets/mysql_dsn
+      DUEL_ALLOWED_ORIGIN: ${DUEL_ALLOWED_ORIGIN:?set exact frontend origin}
+    secrets: [mysql_dsn]
+    ports: ["127.0.0.1:18082:8080"]
+    depends_on:
+      mysql:
+        condition: service_healthy
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 128m
+    cpus: 0.25
+    pids_limit: 32
+    restart: unless-stopped
+volumes:
+  duel_mysql:
+networks:
+  default:
+    internal: true
+secrets:
+  mysql_root_password:
+    file: ./secrets/mysql_root_password
+  mysql_app_password:
+    file: ./secrets/mysql_app_password
+  mysql_dsn:
+    file: ./secrets/mysql_dsn

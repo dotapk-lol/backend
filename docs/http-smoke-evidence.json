@@ -1,0 +1,21 @@
+{
+  "health": {
+    "ok": true,
+    "service": "dota-duel",
+    "transport": "webrtc",
+    "turn": false
+  },
+  "version": "qa-smoke-go-mysql-v1",
+  "pvpMatchId": "43e9262245d57fa0d68c2f51a5f3308f282934a0885d3802ec882bc9322d0710",
+  "pvpStatus": "confirmed",
+  "pvpReported": [
+    true,
+    true
+  ],
+  "pveMatchId": "ca3f1eccc4543e7cc8afd3a9bd3c7bb170d3885fbfe84d756f0f28820ad9a346",
+  "pveStatus": "recorded",
+  "pveTrust": "client_reported",
+  "strictScoreLength": true,
+  "duplicateReportIdempotent": true,
+  "peerReportHidden": true
+}
