@@ -8,12 +8,15 @@ import (
 )
 
 type Service struct {
-	Store Store
-	Now   func() time.Time
-	Code  func() (string, error)
+	Store    Store
+	Now      func() time.Time
+	Code     func() (string, error)
+	registry *heroRegistry
 }
 
-func NewService(store Store) *Service { return &Service{store, time.Now, randomCode} }
+func NewService(store Store) *Service {
+	return &Service{Store: store, Now: time.Now, Code: randomCode, registry: mustRegistry()}
+}
 func (s *Service) NewSession(ctx context.Context) (c Credentials, err error) {
 	now := millis(s.Now())
 	c = Credentials{randomID(), randomID(), now + SessionTTL.Milliseconds()}
@@ -39,9 +42,14 @@ type requestRef struct {
 
 func reqKey(scope, token, key string) string { return hash(scope + ":" + token + ":" + key) }
 func (s *Service) CreateRoom(ctx context.Context, token string, in CreateRoom) (out RoomView, err error) {
-	if !keyPattern.MatchString(in.RequestID) || !versionPattern.MatchString(in.Version) || in.Hero < 0 || in.Hero >= 20 || !in.Offer.valid("offer") || !in.Policy.valid() {
+	if !keyPattern.MatchString(in.RequestID) || !versionPattern.MatchString(in.Version) || !in.Offer.valid("offer") || !in.Policy.valid() {
 		return out, bad("invalid room")
 	}
+	roster, err := s.registry.resolve(in.RosterID, in.Version, in.Hero)
+	if err != nil {
+		return out, err
+	}
+
 	err = s.Store.Run(ctx, func(t Tx) error {
 		session, e := s.auth(t, token)
 		if e != nil {
@@ -63,7 +71,7 @@ func (s *Service) CreateRoom(ctx context.Context, token string, in CreateRoom) (
 			return e
 		}
 		now := millis(s.Now())
-		r := Room{ID: randomID(), Version: in.Version, Policy: in.Policy, Offer: &in.Offer, CreatedAt: now, Expires: now + RoomTTL.Milliseconds()}
+		r := Room{ID: randomID(), Version: in.Version, RosterID: roster.ID, RegistryVersion: roster.RegistryVersion, Policy: in.Policy, Offer: &in.Offer, CreatedAt: now, Expires: now + RoomTTL.Milliseconds()}
 		r.Players[0] = Player{session.PlayerID, in.Hero}
 		r.Tokens[0] = hash(token)
 		for attempt := 0; attempt < 32; attempt++ {
@@ -105,9 +113,14 @@ func (s *Service) CreateRoom(ctx context.Context, token string, in CreateRoom) (
 	return
 }
 func (s *Service) JoinRoom(ctx context.Context, token string, in JoinRoom) (out RoomView, err error) {
-	if !codePattern.MatchString(in.Code) || in.Hero < 0 || in.Hero >= 20 {
+	if !codePattern.MatchString(in.Code) {
 		return out, bad("code must contain exactly six digits")
 	}
+	roster, err := s.registry.resolve(in.RosterID, in.Version, in.Hero)
+	if err != nil {
+		return out, err
+	}
+
 	err = s.Store.Run(ctx, func(t Tx) error {
 		session, e := s.auth(t, token)
 		if e != nil {
@@ -130,6 +143,9 @@ func (s *Service) JoinRoom(ctx context.Context, token string, in JoinRoom) (out 
 		}
 		if r.Version != in.Version {
 			return conflict("version mismatch")
+		}
+		if effectiveRoster(r.RosterID) != roster.ID {
+			return conflict("roster mismatch")
 		}
 		if r.Tokens[0] == hash(token) {
 			return conflict("cannot join your own room")
@@ -279,7 +295,7 @@ func (s *Service) CreateMatch(ctx context.Context, token, roomID string, in Crea
 				return conflict("previous match still active or pending")
 			}
 		}
-		out = Match{ID: randomID(), RoomID: roomID, RequestID: in.RequestID, Version: r.Version, Players: r.Players, Mode: "pvp", Transport: "webrtc", ParticipantKinds: [2]string{"anonymous_session", "anonymous_session"}, Trust: "peer_agreement", Status: "awaiting_ready", CreatedAt: now, Deadline: now + ReportTTL.Milliseconds(), Winner: -1}
+		out = Match{ID: randomID(), RoomID: roomID, RequestID: in.RequestID, Version: r.Version, RosterID: effectiveRoster(r.RosterID), RegistryVersion: effectiveRegistry(r.RegistryVersion), Players: r.Players, Mode: "pvp", Transport: "webrtc", ParticipantKinds: [2]string{"anonymous_session", "anonymous_session"}, Trust: "peer_agreement", Status: "awaiting_ready", CreatedAt: now, Deadline: now + ReportTTL.Milliseconds(), Winner: -1}
 		if e = t.Insert("match", out.ID, out, out.Deadline); e != nil {
 			return e
 		}
@@ -418,10 +434,11 @@ type PVERequest struct {
 	Hero         int    `json:"hero"`
 	OpponentHero int    `json:"opponentHero"`
 	AIDifficulty string `json:"aiDifficulty"`
+	RosterID     string `json:"rosterId,omitempty" wire:"optional-nonempty"`
 }
 
 func (s *Service) CreatePVE(ctx context.Context, token string, in PVERequest) (out Match, err error) {
-	if !keyPattern.MatchString(in.RequestID) || !versionPattern.MatchString(in.Version) || in.Hero < 0 || in.Hero >= 20 || in.OpponentHero < 0 || in.OpponentHero >= 20 {
+	if !keyPattern.MatchString(in.RequestID) || !versionPattern.MatchString(in.Version) {
 		return out, bad("invalid pve match")
 	}
 	switch in.AIDifficulty {
@@ -429,6 +446,11 @@ func (s *Service) CreatePVE(ctx context.Context, token string, in PVERequest) (o
 	default:
 		return out, bad("invalid AI difficulty")
 	}
+	roster, err := s.registry.resolve(in.RosterID, in.Version, in.Hero, in.OpponentHero)
+	if err != nil {
+		return out, err
+	}
+
 	err = s.Store.Run(ctx, func(t Tx) error {
 		sess, e := s.auth(t, token)
 		if e != nil {
@@ -445,8 +467,8 @@ func (s *Service) CreatePVE(ctx context.Context, token string, in PVERequest) (o
 			return e
 		}
 		now := millis(s.Now())
-		r := Room{ID: randomID(), Version: in.Version, CreatedAt: now, Expires: now + SessionTTL.Milliseconds(), Closed: true, Players: [2]Player{{sess.PlayerID, in.Hero}, {"ai", in.OpponentHero}}, Tokens: [2]string{hash(token), ""}}
-		out = Match{ID: randomID(), RoomID: r.ID, RequestID: in.RequestID, Version: in.Version, Players: r.Players, Mode: "pve", Transport: "local", ParticipantKinds: [2]string{"anonymous_session", "ai"}, AIDifficulty: in.AIDifficulty, Trust: "client_reported", Status: "in_progress", CreatedAt: now, StartedAt: now, Deadline: now + MatchTTL.Milliseconds(), Winner: -1}
+		r := Room{ID: randomID(), Version: in.Version, RosterID: roster.ID, RegistryVersion: roster.RegistryVersion, CreatedAt: now, Expires: now + SessionTTL.Milliseconds(), Closed: true, Players: [2]Player{{sess.PlayerID, in.Hero}, {"ai", in.OpponentHero}}, Tokens: [2]string{hash(token), ""}}
+		out = Match{ID: randomID(), RoomID: r.ID, RequestID: in.RequestID, Version: in.Version, RosterID: roster.ID, RegistryVersion: roster.RegistryVersion, Players: r.Players, Mode: "pve", Transport: "local", ParticipantKinds: [2]string{"anonymous_session", "ai"}, AIDifficulty: in.AIDifficulty, Trust: "client_reported", Status: "in_progress", CreatedAt: now, StartedAt: now, Deadline: now + MatchTTL.Milliseconds(), Winner: -1}
 		r.CurrentMatch = out.ID
 		if e = t.Insert("room", r.ID, r, r.Expires); e != nil {
 			return e

@@ -10,7 +10,7 @@ import (
 )
 
 func localInput(transport string) LocalRequest {
-	return LocalRequest{"local_request_0001", "duel-test", 1, 4, transport}
+	return LocalRequest{"local_request_0001", "duel-test", 1, 4, transport, ""}
 }
 func runLocalSuite(t *testing.T, factory func(*testing.T) Store) {
 	for _, transport := range []string{"local", "broadcastchannel"} {
@@ -92,7 +92,7 @@ func runLocalSuite(t *testing.T, factory func(*testing.T) Store) {
 	t.Run("local-pvp-invalid-transport-and-heroes", func(t *testing.T) {
 		s := NewService(factory(t))
 		a := creds(t, s)
-		for _, v := range []LocalRequest{{"local_request_0001", "duel-test", 0, 1, "webrtc"}, {"local_request_0001", "duel-test", 0, 20, "local"}, {"local_request_0001", "duel-test", -1, 1, "broadcastchannel"}} {
+		for _, v := range []LocalRequest{{"local_request_0001", "duel-test", 0, 1, "webrtc", ""}, {"local_request_0001", "duel-test", 0, 20, "local", ""}, {"local_request_0001", "duel-test", -1, 1, "broadcastchannel", ""}} {
 			if _, e := s.CreateLocal(ctx, a.Token, v); e == nil {
 				t.Fatal("invalid local request accepted")
 			}

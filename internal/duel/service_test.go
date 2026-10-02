@@ -70,7 +70,7 @@ func creds(t *testing.T, s *Service) Credentials {
 }
 func policy() Policy { return Policy{"above", 200, 30, 5, 24, 30, 3000} }
 func roomInput() CreateRoom {
-	return CreateRoom{"request_1234567890", "duel-test", 0, Description{"offer", "v=0\r\n"}, policy()}
+	return CreateRoom{"request_1234567890", "duel-test", 0, Description{"offer", "v=0\r\n"}, policy(), ""}
 }
 func completed() Result {
 	return Result{"duel-test", "completed", []Round{{1, 0, 1200}, {2, -1, 0}, {3, 0, 2000}}, [2]int{2, 0}, 0, ""}
@@ -79,7 +79,7 @@ func pair(t *testing.T, s *Service) (Credentials, Credentials, RoomView) {
 	a, b := creds(t, s), creds(t, s)
 	r, e := s.CreateRoom(ctx, a.Token, roomInput())
 	r = must(t, r, e)
-	_, e = s.JoinRoom(ctx, b.Token, JoinRoom{r.Code, "duel-test", 3})
+	_, e = s.JoinRoom(ctx, b.Token, JoinRoom{r.Code, "duel-test", 3, ""})
 	if e != nil {
 		t.Fatal(e)
 	}
@@ -125,7 +125,7 @@ func runSuite(t *testing.T, factory func(*testing.T) Store) {
 			t.Fatal(e)
 		}
 		c := creds(t, s)
-		if _, e = s.JoinRoom(ctx, c.Token, JoinRoom{r2.Code, "duel-test", 1}); e != nil {
+		if _, e = s.JoinRoom(ctx, c.Token, JoinRoom{r2.Code, "duel-test", 1, ""}); e != nil {
 			t.Fatal("old room close deleted recycled code", e)
 		}
 	})
@@ -142,7 +142,7 @@ func runSuite(t *testing.T, factory func(*testing.T) Store) {
 			wg.Add(1)
 			go func() {
 				defer wg.Done()
-				_, e := s.JoinRoom(ctx, b.Token, JoinRoom{r.Code, "duel-test", 3})
+				_, e := s.JoinRoom(ctx, b.Token, JoinRoom{r.Code, "duel-test", 3, ""})
 				if e == nil {
 					mu.Lock()
 					wins++
@@ -170,14 +170,14 @@ func runSuite(t *testing.T, factory func(*testing.T) Store) {
 		if _, e = s.CreateRoom(ctx, a.Token, in); e == nil {
 			t.Fatal("request body conflict accepted")
 		}
-		if _, e = s.JoinRoom(ctx, a.Token, JoinRoom{r.Code, "duel-test", 0}); e == nil {
+		if _, e = s.JoinRoom(ctx, a.Token, JoinRoom{r.Code, "duel-test", 0, ""}); e == nil {
 			t.Fatal("self-join accepted")
 		}
 		b := creds(t, s)
 		if _, e = s.GetRoom(ctx, b.Token, r.ID); e == nil {
 			t.Fatal("outsider read room")
 		}
-		if _, e = s.JoinRoom(ctx, b.Token, JoinRoom{r.Code, "other", 0}); e == nil {
+		if _, e = s.JoinRoom(ctx, b.Token, JoinRoom{r.Code, "other", 0, ""}); e == nil {
 			t.Fatal("wrong version")
 		}
 	})
@@ -281,7 +281,7 @@ func runSuite(t *testing.T, factory func(*testing.T) Store) {
 	t.Run("pve-no-ai-credential", func(t *testing.T) {
 		s := NewService(factory(t))
 		a := creds(t, s)
-		in := PVERequest{"pve_request_00001", "duel-test", 0, 3, "normal"}
+		in := PVERequest{"pve_request_00001", "duel-test", 0, 3, "normal", ""}
 		m, e := s.CreatePVE(ctx, a.Token, in)
 		m = must(t, m, e)
 		same, e := s.CreatePVE(ctx, a.Token, in)
@@ -367,7 +367,7 @@ func TestHTTPBoundaries(t *testing.T) {
 	s := NewService(newMemory())
 	h := &Handler{Service: s, Origin: "https://example.test"}
 	a := creds(t, s)
-	valid, _ := json.Marshal(PVERequest{"pve_request_00001", "duel-test", 0, 3, "normal"})
+	valid, _ := json.Marshal(PVERequest{"pve_request_00001", "duel-test", 0, 3, "normal", ""})
 	for _, tc := range []struct {
 		name, body, origin string
 		want               int

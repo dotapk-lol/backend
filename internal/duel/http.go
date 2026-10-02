@@ -46,7 +46,7 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			replyError(w, &Fault{503, "database unavailable"})
 			return
 		}
-		reply(w, 200, map[string]any{"ok": true, "service": "dota-duel", "contractVersion": "v1.2-abort-reconciliation", "transport": "webrtc", "capabilities": []string{"pvp_peer_agreement", "pve_client_reported", "local_pvp_client_reported"}, "turn": false})
+		reply(w, 200, map[string]any{"ok": true, "service": "dota-duel", "contractVersion": "v1.3-gameplay-rosters", "transport": "webrtc", "capabilities": []string{"pvp_peer_agreement", "pve_client_reported", "local_pvp_client_reported", "versioned_gameplay_rosters"}, "turn": false})
 		return
 	}
 	ip, _, e := net.SplitHostPort(r.RemoteAddr)
@@ -94,7 +94,9 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	var result any
 	status := 200
 	parts := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
-	if r.URL.Path == "/api/v1/sessions" && r.Method == "POST" {
+	if r.URL.Path == "/api/v1/registry" && r.Method == "GET" {
+		result = map[string]any{"registryVersion": RegistryVersion, "registrySha256": RegistrySHA256, "heroes": h.Service.registry.heroes, "gameplayRosters": h.Service.registry.rosters}
+	} else if r.URL.Path == "/api/v1/sessions" && r.Method == "POST" {
 		result, e = h.Service.NewSession(ctx)
 		status = 201
 	} else if r.URL.Path == "/api/v1/rooms" && r.Method == "POST" {
@@ -179,6 +181,8 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	reply(w, status, result)
 }
 func publicMatch(m Match) any {
+	m.RosterID = effectiveRoster(m.RosterID)
+	m.RegistryVersion = effectiveRegistry(m.RegistryVersion)
 	b, _ := json.Marshal(m)
 	var v map[string]any
 	_ = json.Unmarshal(b, &v)
@@ -225,7 +229,7 @@ func decode(w http.ResponseWriter, r *http.Request, out any) error {
 	return nil
 }
 
-// Require every declared input field and exact array lengths; encoding/json alone
+// Require every input field except explicitly marked optional-nonempty fields, and exact array lengths; encoding/json alone
 // accepts missing fields and silently truncates fixed-size arrays.
 func shape(b json.RawMessage, t reflect.Type) error {
 	if bytes.Equal(bytes.TrimSpace(b), []byte("null")) {
@@ -242,7 +246,16 @@ func shape(b json.RawMessage, t reflect.Type) error {
 			key := strings.Split(f.Tag.Get("json"), ",")[0]
 			v, ok := obj[key]
 			if !ok {
+				if f.Tag.Get("wire") == "optional-nonempty" {
+					continue
+				}
 				return bad("missing field: " + key)
+			}
+			if f.Tag.Get("wire") == "optional-nonempty" {
+				var value string
+				if json.Unmarshal(v, &value) != nil || value == "" {
+					return bad("invalid field: " + key)
+				}
 			}
 			if e := shape(v, f.Type); e != nil {
 				return e

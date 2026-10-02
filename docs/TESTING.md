@@ -1,5 +1,14 @@
 # Validation evidence — 2026-10-02 (Asia/Shanghai)
 
+## v1.3 registry candidate — local validation only
+
+- Frozen mapping verified against all20 historical hero names, indexes and Valve IDs. Catalog hash `5bca2bf8c43972583d1d58c876f5dcde039cabb0e662ac9536b0e7a53037f138` matches canonical heroes JSON; original manifest copied verbatim. 127 known identities, only `legacy-20-v1` gameplay enabled.
+- Full `go test -race -v ./...` passed105 test/subtest cases, including real MySQL9.6 over the new `/tmp/duel-mysql-test-registry-20261002/mysql.sock`. TCP disabled. `go vet ./...` and static Linux amd64 build passed. Complete evidence: [v13-registry-mysql-tests.txt](v13-registry-mysql-tests.txt), [v13-registry-evidence.json](v13-registry-evidence.json).
+- Verified original room/PVE/local/create-match/Result JSON byte sequences and digests; replayed a persisted v1.2 room and request record without metadata. Unknown/disabled heroes and invalid roster requests rejected across all four entrypoints. Fixture-only expanded gameplay subset enforces exact builds, inheritance on rematch, two-party confirmed and single-party recorded semantics. HTTP tests preserve required/null/unknown field validation and expose only public match metadata.
+- Applied migration004 twice on the independent database, verifying old full-payload hashes unchanged, v1/v2/v3 historical counts equal, no join fanout, and no dropped unmapped records. All127 SQL identity mappings match the manifest. Actual fixture subset IDs20/126 map to Valve3/155; fixture acceptance was removed afterward and is absent from the shipped manifest/migration. PVP/PVE/local/BC cohorts remain separated and pending/aborted excluded.
+- Read-only health confirmed the existing18082 QA service still reports `v1.2-abort-reconciliation`; neither its database nor its process was restarted/reset. Integration tests now explicitly reject the preserved QA socket even if mistakenly configured. The new registry test MySQL instance was shut down after testing.
+- Candidate binary: `bin/dueld-v13-registry-linux-amd64`, SHA256 `c04b30b17e06fb2a6d507c796c74b1ea80d2a9c920f96935a7398691e289b244`. This is not a deployment or frontend gameplay acceptance. Production remains v1.2. Target MySQL8.4 migration validation, accepted expanded gameplay roster/build bindings, coordinated frontend rollout and production release remain future work.
+
 Historical local validation below predates production deployment. Current production Go/MySQL loopback acceptance and remaining DNS/TLS boundary are documented in DEPLOYMENT.md and production-*-smoke evidence; no AgentSquared business data was modified.
 
 ## Passed

@@ -1,0 +1,1154 @@
+{
+  "schemaVersion": 1,
+  "registryVersion": "duel-heroes-127-v1",
+  "registrySha256": "5bca2bf8c43972583d1d58c876f5dcde039cabb0e662ac9536b0e7a53037f138",
+  "status": "frozen_handoff_not_deployed",
+  "legacyIndicesImmutable": true,
+  "nextRegistryNumericId": 127,
+  "allocationPolicy": "Load this manifest verbatim; future additions allocate nextRegistryNumericId append-only; never regenerate existing allocations from a sorted roster; tombstone removals; never reuse IDs",
+  "heroes": [
+    {
+      "valveHeroId": 1,
+      "valveHeroKey": "antimage",
+      "internalHeroId": "anti_mage",
+      "legacyIndex": 5,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 5
+    },
+    {
+      "valveHeroId": 2,
+      "valveHeroKey": "axe",
+      "internalHeroId": "axe",
+      "legacyIndex": 3,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 3
+    },
+    {
+      "valveHeroId": 3,
+      "valveHeroKey": "bane",
+      "internalHeroId": "valve_3",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 20
+    },
+    {
+      "valveHeroId": 4,
+      "valveHeroKey": "bloodseeker",
+      "internalHeroId": "valve_4",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 21
+    },
+    {
+      "valveHeroId": 5,
+      "valveHeroKey": "crystal_maiden",
+      "internalHeroId": "crystal_maiden",
+      "legacyIndex": 1,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 1
+    },
+    {
+      "valveHeroId": 6,
+      "valveHeroKey": "drow_ranger",
+      "internalHeroId": "drow_ranger",
+      "legacyIndex": 7,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 7
+    },
+    {
+      "valveHeroId": 7,
+      "valveHeroKey": "earthshaker",
+      "internalHeroId": "earthshaker",
+      "legacyIndex": 10,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 10
+    },
+    {
+      "valveHeroId": 8,
+      "valveHeroKey": "juggernaut",
+      "internalHeroId": "juggernaut",
+      "legacyIndex": 0,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 0
+    },
+    {
+      "valveHeroId": 9,
+      "valveHeroKey": "mirana",
+      "internalHeroId": "mirana",
+      "legacyIndex": 11,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 11
+    },
+    {
+      "valveHeroId": 10,
+      "valveHeroKey": "morphling",
+      "internalHeroId": "valve_10",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 22
+    },
+    {
+      "valveHeroId": 11,
+      "valveHeroKey": "nevermore",
+      "internalHeroId": "shadow_fiend",
+      "legacyIndex": 15,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 15
+    },
+    {
+      "valveHeroId": 12,
+      "valveHeroKey": "phantom_lancer",
+      "internalHeroId": "valve_12",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 23
+    },
+    {
+      "valveHeroId": 13,
+      "valveHeroKey": "puck",
+      "internalHeroId": "valve_13",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 24
+    },
+    {
+      "valveHeroId": 14,
+      "valveHeroKey": "pudge",
+      "internalHeroId": "pudge",
+      "legacyIndex": 2,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 2
+    },
+    {
+      "valveHeroId": 15,
+      "valveHeroKey": "razor",
+      "internalHeroId": "valve_15",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 25
+    },
+    {
+      "valveHeroId": 16,
+      "valveHeroKey": "sand_king",
+      "internalHeroId": "valve_16",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 26
+    },
+    {
+      "valveHeroId": 17,
+      "valveHeroKey": "storm_spirit",
+      "internalHeroId": "storm_spirit",
+      "legacyIndex": 16,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 16
+    },
+    {
+      "valveHeroId": 18,
+      "valveHeroKey": "sven",
+      "internalHeroId": "sven",
+      "legacyIndex": 12,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 12
+    },
+    {
+      "valveHeroId": 19,
+      "valveHeroKey": "tiny",
+      "internalHeroId": "valve_19",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 27
+    },
+    {
+      "valveHeroId": 20,
+      "valveHeroKey": "vengefulspirit",
+      "internalHeroId": "valve_20",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 28
+    },
+    {
+      "valveHeroId": 21,
+      "valveHeroKey": "windrunner",
+      "internalHeroId": "windranger",
+      "legacyIndex": 14,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 14
+    },
+    {
+      "valveHeroId": 22,
+      "valveHeroKey": "zuus",
+      "internalHeroId": "zeus",
+      "legacyIndex": 13,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 13
+    },
+    {
+      "valveHeroId": 23,
+      "valveHeroKey": "kunkka",
+      "internalHeroId": "valve_23",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 29
+    },
+    {
+      "valveHeroId": 25,
+      "valveHeroKey": "lina",
+      "internalHeroId": "lina",
+      "legacyIndex": 8,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 8
+    },
+    {
+      "valveHeroId": 26,
+      "valveHeroKey": "lion",
+      "internalHeroId": "lion",
+      "legacyIndex": 9,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 9
+    },
+    {
+      "valveHeroId": 27,
+      "valveHeroKey": "shadow_shaman",
+      "internalHeroId": "valve_27",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 30
+    },
+    {
+      "valveHeroId": 28,
+      "valveHeroKey": "slardar",
+      "internalHeroId": "valve_28",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 31
+    },
+    {
+      "valveHeroId": 29,
+      "valveHeroKey": "tidehunter",
+      "internalHeroId": "tidehunter",
+      "legacyIndex": 19,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 19
+    },
+    {
+      "valveHeroId": 30,
+      "valveHeroKey": "witch_doctor",
+      "internalHeroId": "witch_doctor",
+      "legacyIndex": 18,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 18
+    },
+    {
+      "valveHeroId": 31,
+      "valveHeroKey": "lich",
+      "internalHeroId": "valve_31",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 32
+    },
+    {
+      "valveHeroId": 32,
+      "valveHeroKey": "riki",
+      "internalHeroId": "valve_32",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 33
+    },
+    {
+      "valveHeroId": 33,
+      "valveHeroKey": "enigma",
+      "internalHeroId": "valve_33",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 34
+    },
+    {
+      "valveHeroId": 34,
+      "valveHeroKey": "tinker",
+      "internalHeroId": "valve_34",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 35
+    },
+    {
+      "valveHeroId": 35,
+      "valveHeroKey": "sniper",
+      "internalHeroId": "sniper",
+      "legacyIndex": 4,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 4
+    },
+    {
+      "valveHeroId": 36,
+      "valveHeroKey": "necrolyte",
+      "internalHeroId": "valve_36",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 36
+    },
+    {
+      "valveHeroId": 37,
+      "valveHeroKey": "warlock",
+      "internalHeroId": "valve_37",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 37
+    },
+    {
+      "valveHeroId": 38,
+      "valveHeroKey": "beastmaster",
+      "internalHeroId": "valve_38",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 38
+    },
+    {
+      "valveHeroId": 39,
+      "valveHeroKey": "queenofpain",
+      "internalHeroId": "queen_of_pain",
+      "legacyIndex": 17,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 17
+    },
+    {
+      "valveHeroId": 40,
+      "valveHeroKey": "venomancer",
+      "internalHeroId": "valve_40",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 39
+    },
+    {
+      "valveHeroId": 41,
+      "valveHeroKey": "faceless_void",
+      "internalHeroId": "valve_41",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 40
+    },
+    {
+      "valveHeroId": 42,
+      "valveHeroKey": "skeleton_king",
+      "internalHeroId": "valve_42",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 41
+    },
+    {
+      "valveHeroId": 43,
+      "valveHeroKey": "death_prophet",
+      "internalHeroId": "valve_43",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 42
+    },
+    {
+      "valveHeroId": 44,
+      "valveHeroKey": "phantom_assassin",
+      "internalHeroId": "phantom_assassin",
+      "legacyIndex": 6,
+      "newIdStatus": "frozen_existing",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 6
+    },
+    {
+      "valveHeroId": 45,
+      "valveHeroKey": "pugna",
+      "internalHeroId": "valve_45",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 43
+    },
+    {
+      "valveHeroId": 46,
+      "valveHeroKey": "templar_assassin",
+      "internalHeroId": "valve_46",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 44
+    },
+    {
+      "valveHeroId": 47,
+      "valveHeroKey": "viper",
+      "internalHeroId": "valve_47",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 45
+    },
+    {
+      "valveHeroId": 48,
+      "valveHeroKey": "luna",
+      "internalHeroId": "valve_48",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 46
+    },
+    {
+      "valveHeroId": 49,
+      "valveHeroKey": "dragon_knight",
+      "internalHeroId": "valve_49",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 47
+    },
+    {
+      "valveHeroId": 50,
+      "valveHeroKey": "dazzle",
+      "internalHeroId": "valve_50",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 48
+    },
+    {
+      "valveHeroId": 51,
+      "valveHeroKey": "rattletrap",
+      "internalHeroId": "valve_51",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 49
+    },
+    {
+      "valveHeroId": 52,
+      "valveHeroKey": "leshrac",
+      "internalHeroId": "valve_52",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 50
+    },
+    {
+      "valveHeroId": 53,
+      "valveHeroKey": "furion",
+      "internalHeroId": "valve_53",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 51
+    },
+    {
+      "valveHeroId": 54,
+      "valveHeroKey": "life_stealer",
+      "internalHeroId": "valve_54",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 52
+    },
+    {
+      "valveHeroId": 55,
+      "valveHeroKey": "dark_seer",
+      "internalHeroId": "valve_55",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 53
+    },
+    {
+      "valveHeroId": 56,
+      "valveHeroKey": "clinkz",
+      "internalHeroId": "valve_56",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 54
+    },
+    {
+      "valveHeroId": 57,
+      "valveHeroKey": "omniknight",
+      "internalHeroId": "valve_57",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 55
+    },
+    {
+      "valveHeroId": 58,
+      "valveHeroKey": "enchantress",
+      "internalHeroId": "valve_58",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 56
+    },
+    {
+      "valveHeroId": 59,
+      "valveHeroKey": "huskar",
+      "internalHeroId": "valve_59",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 57
+    },
+    {
+      "valveHeroId": 60,
+      "valveHeroKey": "night_stalker",
+      "internalHeroId": "valve_60",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 58
+    },
+    {
+      "valveHeroId": 61,
+      "valveHeroKey": "broodmother",
+      "internalHeroId": "valve_61",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 59
+    },
+    {
+      "valveHeroId": 62,
+      "valveHeroKey": "bounty_hunter",
+      "internalHeroId": "valve_62",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 60
+    },
+    {
+      "valveHeroId": 63,
+      "valveHeroKey": "weaver",
+      "internalHeroId": "valve_63",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 61
+    },
+    {
+      "valveHeroId": 64,
+      "valveHeroKey": "jakiro",
+      "internalHeroId": "valve_64",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 62
+    },
+    {
+      "valveHeroId": 65,
+      "valveHeroKey": "batrider",
+      "internalHeroId": "valve_65",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 63
+    },
+    {
+      "valveHeroId": 66,
+      "valveHeroKey": "chen",
+      "internalHeroId": "valve_66",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 64
+    },
+    {
+      "valveHeroId": 67,
+      "valveHeroKey": "spectre",
+      "internalHeroId": "valve_67",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 65
+    },
+    {
+      "valveHeroId": 68,
+      "valveHeroKey": "ancient_apparition",
+      "internalHeroId": "valve_68",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 66
+    },
+    {
+      "valveHeroId": 69,
+      "valveHeroKey": "doom_bringer",
+      "internalHeroId": "valve_69",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 67
+    },
+    {
+      "valveHeroId": 70,
+      "valveHeroKey": "ursa",
+      "internalHeroId": "valve_70",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 68
+    },
+    {
+      "valveHeroId": 71,
+      "valveHeroKey": "spirit_breaker",
+      "internalHeroId": "valve_71",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 69
+    },
+    {
+      "valveHeroId": 72,
+      "valveHeroKey": "gyrocopter",
+      "internalHeroId": "valve_72",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 70
+    },
+    {
+      "valveHeroId": 73,
+      "valveHeroKey": "alchemist",
+      "internalHeroId": "valve_73",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 71
+    },
+    {
+      "valveHeroId": 74,
+      "valveHeroKey": "invoker",
+      "internalHeroId": "valve_74",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 72
+    },
+    {
+      "valveHeroId": 75,
+      "valveHeroKey": "silencer",
+      "internalHeroId": "valve_75",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 73
+    },
+    {
+      "valveHeroId": 76,
+      "valveHeroKey": "obsidian_destroyer",
+      "internalHeroId": "valve_76",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 74
+    },
+    {
+      "valveHeroId": 77,
+      "valveHeroKey": "lycan",
+      "internalHeroId": "valve_77",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 75
+    },
+    {
+      "valveHeroId": 78,
+      "valveHeroKey": "brewmaster",
+      "internalHeroId": "valve_78",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 76
+    },
+    {
+      "valveHeroId": 79,
+      "valveHeroKey": "shadow_demon",
+      "internalHeroId": "valve_79",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 77
+    },
+    {
+      "valveHeroId": 80,
+      "valveHeroKey": "lone_druid",
+      "internalHeroId": "valve_80",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 78
+    },
+    {
+      "valveHeroId": 81,
+      "valveHeroKey": "chaos_knight",
+      "internalHeroId": "valve_81",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 79
+    },
+    {
+      "valveHeroId": 82,
+      "valveHeroKey": "meepo",
+      "internalHeroId": "valve_82",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 80
+    },
+    {
+      "valveHeroId": 83,
+      "valveHeroKey": "treant",
+      "internalHeroId": "valve_83",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 81
+    },
+    {
+      "valveHeroId": 84,
+      "valveHeroKey": "ogre_magi",
+      "internalHeroId": "valve_84",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 82
+    },
+    {
+      "valveHeroId": 85,
+      "valveHeroKey": "undying",
+      "internalHeroId": "valve_85",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 83
+    },
+    {
+      "valveHeroId": 86,
+      "valveHeroKey": "rubick",
+      "internalHeroId": "valve_86",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 84
+    },
+    {
+      "valveHeroId": 87,
+      "valveHeroKey": "disruptor",
+      "internalHeroId": "valve_87",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 85
+    },
+    {
+      "valveHeroId": 88,
+      "valveHeroKey": "nyx_assassin",
+      "internalHeroId": "valve_88",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 86
+    },
+    {
+      "valveHeroId": 89,
+      "valveHeroKey": "naga_siren",
+      "internalHeroId": "valve_89",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 87
+    },
+    {
+      "valveHeroId": 90,
+      "valveHeroKey": "keeper_of_the_light",
+      "internalHeroId": "valve_90",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 88
+    },
+    {
+      "valveHeroId": 91,
+      "valveHeroKey": "wisp",
+      "internalHeroId": "valve_91",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 89
+    },
+    {
+      "valveHeroId": 92,
+      "valveHeroKey": "visage",
+      "internalHeroId": "valve_92",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 90
+    },
+    {
+      "valveHeroId": 93,
+      "valveHeroKey": "slark",
+      "internalHeroId": "valve_93",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 91
+    },
+    {
+      "valveHeroId": 94,
+      "valveHeroKey": "medusa",
+      "internalHeroId": "valve_94",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 92
+    },
+    {
+      "valveHeroId": 95,
+      "valveHeroKey": "troll_warlord",
+      "internalHeroId": "valve_95",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 93
+    },
+    {
+      "valveHeroId": 96,
+      "valveHeroKey": "centaur",
+      "internalHeroId": "valve_96",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 94
+    },
+    {
+      "valveHeroId": 97,
+      "valveHeroKey": "magnataur",
+      "internalHeroId": "valve_97",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 95
+    },
+    {
+      "valveHeroId": 98,
+      "valveHeroKey": "shredder",
+      "internalHeroId": "valve_98",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 96
+    },
+    {
+      "valveHeroId": 99,
+      "valveHeroKey": "bristleback",
+      "internalHeroId": "valve_99",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 97
+    },
+    {
+      "valveHeroId": 100,
+      "valveHeroKey": "tusk",
+      "internalHeroId": "valve_100",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 98
+    },
+    {
+      "valveHeroId": 101,
+      "valveHeroKey": "skywrath_mage",
+      "internalHeroId": "valve_101",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 99
+    },
+    {
+      "valveHeroId": 102,
+      "valveHeroKey": "abaddon",
+      "internalHeroId": "valve_102",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 100
+    },
+    {
+      "valveHeroId": 103,
+      "valveHeroKey": "elder_titan",
+      "internalHeroId": "valve_103",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 101
+    },
+    {
+      "valveHeroId": 104,
+      "valveHeroKey": "legion_commander",
+      "internalHeroId": "valve_104",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 102
+    },
+    {
+      "valveHeroId": 105,
+      "valveHeroKey": "techies",
+      "internalHeroId": "valve_105",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 103
+    },
+    {
+      "valveHeroId": 106,
+      "valveHeroKey": "ember_spirit",
+      "internalHeroId": "valve_106",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 104
+    },
+    {
+      "valveHeroId": 107,
+      "valveHeroKey": "earth_spirit",
+      "internalHeroId": "valve_107",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 105
+    },
+    {
+      "valveHeroId": 108,
+      "valveHeroKey": "abyssal_underlord",
+      "internalHeroId": "valve_108",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 106
+    },
+    {
+      "valveHeroId": 109,
+      "valveHeroKey": "terrorblade",
+      "internalHeroId": "valve_109",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 107
+    },
+    {
+      "valveHeroId": 110,
+      "valveHeroKey": "phoenix",
+      "internalHeroId": "valve_110",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 108
+    },
+    {
+      "valveHeroId": 111,
+      "valveHeroKey": "oracle",
+      "internalHeroId": "valve_111",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 109
+    },
+    {
+      "valveHeroId": 112,
+      "valveHeroKey": "winter_wyvern",
+      "internalHeroId": "valve_112",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 110
+    },
+    {
+      "valveHeroId": 113,
+      "valveHeroKey": "arc_warden",
+      "internalHeroId": "valve_113",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 111
+    },
+    {
+      "valveHeroId": 114,
+      "valveHeroKey": "monkey_king",
+      "internalHeroId": "valve_114",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 112
+    },
+    {
+      "valveHeroId": 119,
+      "valveHeroKey": "dark_willow",
+      "internalHeroId": "valve_119",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 113
+    },
+    {
+      "valveHeroId": 120,
+      "valveHeroKey": "pangolier",
+      "internalHeroId": "valve_120",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 114
+    },
+    {
+      "valveHeroId": 121,
+      "valveHeroKey": "grimstroke",
+      "internalHeroId": "valve_121",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 115
+    },
+    {
+      "valveHeroId": 123,
+      "valveHeroKey": "hoodwink",
+      "internalHeroId": "valve_123",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 116
+    },
+    {
+      "valveHeroId": 126,
+      "valveHeroKey": "void_spirit",
+      "internalHeroId": "valve_126",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 117
+    },
+    {
+      "valveHeroId": 128,
+      "valveHeroKey": "snapfire",
+      "internalHeroId": "valve_128",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 118
+    },
+    {
+      "valveHeroId": 129,
+      "valveHeroKey": "mars",
+      "internalHeroId": "valve_129",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 119
+    },
+    {
+      "valveHeroId": 131,
+      "valveHeroKey": "ringmaster",
+      "internalHeroId": "valve_131",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 120
+    },
+    {
+      "valveHeroId": 135,
+      "valveHeroKey": "dawnbreaker",
+      "internalHeroId": "valve_135",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 121
+    },
+    {
+      "valveHeroId": 136,
+      "valveHeroKey": "marci",
+      "internalHeroId": "valve_136",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 122
+    },
+    {
+      "valveHeroId": 137,
+      "valveHeroKey": "primal_beast",
+      "internalHeroId": "valve_137",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 123
+    },
+    {
+      "valveHeroId": 138,
+      "valveHeroKey": "muerta",
+      "internalHeroId": "valve_138",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 124
+    },
+    {
+      "valveHeroId": 145,
+      "valveHeroKey": "kez",
+      "internalHeroId": "valve_145",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 125
+    },
+    {
+      "valveHeroId": 155,
+      "valveHeroKey": "largo",
+      "internalHeroId": "valve_155",
+      "legacyIndex": null,
+      "newIdStatus": "proposed_reserved_namespace",
+      "runtimeArrayIndexIsIdentity": false,
+      "registryNumericId": 126
+    }
+  ]
+}

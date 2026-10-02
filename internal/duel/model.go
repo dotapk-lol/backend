@@ -87,35 +87,39 @@ type Player struct {
 	Hero int    `json:"hero"`
 }
 type Room struct {
-	ID           string       `json:"id"`
-	Code         string       `json:"code"`
-	Version      string       `json:"version"`
-	Policy       Policy       `json:"policy"`
-	Players      [2]Player    `json:"players"`
-	Tokens       [2]string    `json:"tokens"`
-	Offer        *Description `json:"offer"`
-	Answer       *Description `json:"answer"`
-	Answered     bool         `json:"answered"`
-	CreatedAt    int64        `json:"createdAt"`
-	Expires      int64        `json:"expires"`
-	Closed       bool         `json:"closed"`
-	CurrentMatch string       `json:"currentMatch"`
+	RosterID        string       `json:"rosterId,omitempty"`
+	RegistryVersion string       `json:"registryVersion,omitempty"`
+	ID              string       `json:"id"`
+	Code            string       `json:"code"`
+	Version         string       `json:"version"`
+	Policy          Policy       `json:"policy"`
+	Players         [2]Player    `json:"players"`
+	Tokens          [2]string    `json:"tokens"`
+	Offer           *Description `json:"offer"`
+	Answer          *Description `json:"answer"`
+	Answered        bool         `json:"answered"`
+	CreatedAt       int64        `json:"createdAt"`
+	Expires         int64        `json:"expires"`
+	Closed          bool         `json:"closed"`
+	CurrentMatch    string       `json:"currentMatch"`
 }
 type RoomView struct {
-	ID           string       `json:"id"`
-	Code         string       `json:"code"`
-	Version      string       `json:"version"`
-	Policy       Policy       `json:"policy"`
-	Players      [2]Player    `json:"players"`
-	Offer        *Description `json:"offer,omitempty"`
-	Answer       *Description `json:"answer,omitempty"`
-	Expires      int64        `json:"expires"`
-	CurrentMatch string       `json:"currentMatch"`
-	Closed       bool         `json:"closed"`
+	RosterID        string       `json:"rosterId,omitempty"`
+	RegistryVersion string       `json:"registryVersion,omitempty"`
+	ID              string       `json:"id"`
+	Code            string       `json:"code"`
+	Version         string       `json:"version"`
+	Policy          Policy       `json:"policy"`
+	Players         [2]Player    `json:"players"`
+	Offer           *Description `json:"offer,omitempty"`
+	Answer          *Description `json:"answer,omitempty"`
+	Expires         int64        `json:"expires"`
+	CurrentMatch    string       `json:"currentMatch"`
+	Closed          bool         `json:"closed"`
 }
 
 func (r Room) view() RoomView {
-	return RoomView{r.ID, r.Code, r.Version, r.Policy, r.Players, r.Offer, r.Answer, r.Expires, r.CurrentMatch, r.Closed}
+	return RoomView{ID: r.ID, Code: r.Code, Version: r.Version, Policy: r.Policy, Players: r.Players, Offer: r.Offer, Answer: r.Answer, Expires: r.Expires, CurrentMatch: r.CurrentMatch, Closed: r.Closed, RosterID: effectiveRoster(r.RosterID), RegistryVersion: effectiveRegistry(r.RegistryVersion)}
 }
 func (r Room) seat(token string) int {
 	for i, t := range r.Tokens {
@@ -136,11 +140,13 @@ type CreateRoom struct {
 	Hero      int         `json:"hero"`
 	Offer     Description `json:"offer"`
 	Policy    Policy      `json:"policy"`
+	RosterID  string      `json:"rosterId,omitempty" wire:"optional-nonempty"`
 }
 type JoinRoom struct {
-	Code    string `json:"code"`
-	Version string `json:"version"`
-	Hero    int    `json:"hero"`
+	Code     string `json:"code"`
+	Version  string `json:"version"`
+	Hero     int    `json:"hero"`
+	RosterID string `json:"rosterId,omitempty" wire:"optional-nonempty"`
 }
 type Round struct {
 	Number      int `json:"number"`
@@ -161,6 +167,8 @@ type Submission struct {
 	ReceivedAt int64  `json:"receivedAt"`
 }
 type Match struct {
+	RosterID         string         `json:"rosterId,omitempty"`
+	RegistryVersion  string         `json:"registryVersion,omitempty"`
 	ScoreAgreement   string         `json:"scoreAgreement,omitempty"`
 	ID               string         `json:"id"`
 	RoomID           string         `json:"roomId"`

@@ -16,7 +16,7 @@ func TestMySQLIntegration(t *testing.T) {
 		t.Skip("set DUEL_TEST_DSN to an isolated Unix-socket test database")
 	}
 	c, e := mysql.ParseDSN(dsn)
-	if e != nil || c.Net != "unix" || (!strings.Contains(c.Addr, "duel-mysql-test-") && !strings.Contains(c.Addr, ".mysql-integration")) || c.DBName != "dota_duel" {
+	if e != nil || c.Addr == "/tmp/duel-mysql-test-20261002/mysql.sock" || c.Net != "unix" || (!strings.Contains(c.Addr, "duel-mysql-test-") && !strings.Contains(c.Addr, ".mysql-integration")) || c.DBName != "dota_duel" {
 		t.Fatal("test reset allowed only on explicit task-owned temporary Unix socket")
 	}
 	store, e := OpenMySQL(dsn)
@@ -25,23 +25,9 @@ func TestMySQLIntegration(t *testing.T) {
 	if e = store.Ping(ctx); e != nil {
 		t.Fatal(e)
 	}
-	for _, file := range []string{"../../migrations/001_init.sql", "../../migrations/002_analytics.sql", "../../migrations/003_local_pvp_analytics.sql"} {
-		b, e := os.ReadFile(file)
-		if e != nil {
-			t.Fatal(e)
-		}
-		clean := []string{}
-		for _, line := range strings.Split(string(b), "\n") {
-			if !strings.HasPrefix(strings.TrimSpace(line), "--") {
-				clean = append(clean, line)
-			}
-		}
-		for _, stmt := range strings.Split(strings.Join(clean, "\n"), ";") {
-			if strings.TrimSpace(stmt) != "" {
-				if _, e = store.DB.Exec(stmt); e != nil {
-					t.Fatalf("migration %s: %v", file, e)
-				}
-			}
+	for _, file := range []string{"../../migrations/001_init.sql", "../../migrations/002_analytics.sql", "../../migrations/003_local_pvp_analytics.sql", "../../migrations/004_hero_registry.sql"} {
+		if err := applyTestMigration(store, file); err != nil {
+			t.Fatalf("migration %s: %v", file, err)
 		}
 	}
 	factory := func(t *testing.T) Store {
@@ -55,6 +41,8 @@ func TestMySQLIntegration(t *testing.T) {
 	runSuite(t, factory)
 	runLocalSuite(t, factory)
 	runReconciliationSuite(t, factory)
+	runRegistrySuite(t, factory)
+	runRegistrySQL(t, store, factory)
 	t.Run("sql-cleanup-and-analysis", func(t *testing.T) {
 		s := NewService(factory(t))
 		now := time.Now()
@@ -69,7 +57,7 @@ func TestMySQLIntegration(t *testing.T) {
 		if e != nil {
 			t.Fatal(e)
 		}
-		pve, e := s.CreatePVE(ctx, a.Token, PVERequest{"pve_request_00001", "duel-test", 0, 3, "normal"})
+		pve, e := s.CreatePVE(ctx, a.Token, PVERequest{"pve_request_00001", "duel-test", 0, 3, "normal", ""})
 		pve = must(t, pve, e)
 		_, e = s.Submit(ctx, a.Token, pve.ID, completed())
 		if e != nil {
