@@ -2,7 +2,19 @@
 
 ## v1.3 registry candidate — local validation only
 
-### B0 live compatibility service (retained for browser QA)
+### CORE4 local candidate activation (current18083 configuration)
+
+Frontend commit `3fad3f881e38b83952cf44ceefbe9728f1ef6dff`, runtime `duel-751bcab20194934a863a`, roster `arena-core4-24-v1`, IDs0–19 plus25/31/45/100. On explicit local-test authorization, registered only this exact build on the independent18083 database. Existing legacy roster remains available to old builds. This is candidate test enablement, not production registration or skill/browser acceptance.
+
+The repository's embedded default `registry/gameplay-rosters.json` still contains only legacy20. Candidate binary `bin/dueld-v13-core4-local` was built using `../qa-runtime/registry-b0/core4-build-overlay.json`, replacing that embed input only for this build with `core4-gameplay-rosters.json`. Local-only registration SQL, private0600 schema backup metadata and prior-row hashes are retained in the same runtime directory. The schema backup disables global GTID restoration statements. No production configuration or migration file was modified to activate this roster.
+
+Only Go18083 was restarted (oldPID66388 → newPID79657); MySQL PID66345 was not restarted. All five preexisting match payload hashes are identical both immediately after registration and after smoke tests. The startup helper now resumes the binary saved in its process metadata; an explicit `--binary` accepts only this repository's bin directory and never replaces an existing listener. Original18082 remains v1.2.
+
+Nine real HTTP checks using the actual CORE4 MatchAPI modules passed. Eight synthetic matches were independently verified in SQL. Four appended IDs map25→Valve15,31→28,45→47,100→102; each match produces exactly two resolved participant rows, with PVE counting only the human seat. Test-scoped cohorts total10 CORE4 appearances plus1 legacy appearance, without fanout or dropped mappings. Tests cover create/join rejection of unknown roster/build, omitted or legacy fallback for the bound new build, inactive hero rejection, unchanged result digests, legacy omitted-body creation/join/idempotency, local/BC single-reporter semantics and two-peer confirmation. Evidence: [HTTP](core4-local-http-evidence.json), [SQL and preservation](core4-local-sql-evidence.json).
+
+The service is ready at `http://127.0.0.1:18083/api/v1`, with exact CORS `http://127.0.0.1:4174`. A page opened before the switch may retain a rejected `MatchAPI.registryTask`; reload normally to create a new adapter and fetch the current roster. Do not weaken registry validation. Any later gameplay build needs a separately authorized exact candidate binding; no wildcard was enabled.
+
+### B0 live compatibility service (historical legacy-only checkpoint)
 
 API `http://127.0.0.1:18083/api/v1`, health `http://127.0.0.1:18083/healthz`; exact CORS origin `http://127.0.0.1:4174`. `localhost:4174`, the old4173 origin and the production origin are not allowed on this candidate. Production CORS has not changed. Frontend B0's current default local base is still18082: its single writer must explicitly select18083 for this isolated preview; opening4174 alone does not select this API.
 

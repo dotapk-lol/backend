@@ -10,13 +10,18 @@ import urllib.request
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--initialize', action='store_true', help='Allow first initialization in the fixed new B0 directory only')
+parser.add_argument('--binary', help='Explicit candidate executable under this repository bin/; a running listener is never replaced')
 args = parser.parse_args()
 repo = pathlib.Path(__file__).resolve().parent.parent
 base = pathlib.Path('/tmp/duel-mysql-test-registry-b0-20261002')
 data, sock = base / 'data', base / 'mysql.sock'
 runtime = repo.parent / 'qa-runtime' / 'registry-b0'
 runtime.mkdir(parents=True, exist_ok=True)
-binary = repo / 'bin' / 'dueld-v13-registry-b0'
+state_file = runtime / 'processes.json'
+prior_state = json.loads(state_file.read_text()) if state_file.is_file() else {}
+binary = pathlib.Path(args.binary or prior_state.get('binary') or repo / 'bin' / 'dueld-v13-registry-b0').resolve()
+if binary.parent != (repo / 'bin').resolve():
+    raise SystemExit('Candidate executable must belong to this repository bin directory')
 if not binary.is_file():
     raise SystemExit('Build bin/dueld-v13-registry-b0 first')
 mysql = '/opt/homebrew/opt/mysql/bin/mysql'
@@ -39,7 +44,7 @@ with socket.socket() as check:
 if listening:
     previous = runtime / 'processes.json'
     current = health()
-    if previous.is_file() and current and current.get('contractVersion') == 'v1.3-gameplay-rosters':
+    if previous.is_file() and current and current.get('contractVersion') == 'v1.3-gameplay-rosters' and prior_state.get('binary') == str(binary):
         print(json.dumps({'alreadyRunning': True, 'health': current, 'state': str(previous)}))
         raise SystemExit(0)
     raise SystemExit('Port18083 is occupied; refusing to replace a listener')

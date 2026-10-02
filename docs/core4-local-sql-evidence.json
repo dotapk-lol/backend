@@ -1,0 +1,231 @@
+{
+  "checkedAt": "2026-10-02T10:31:52.887204+00:00",
+  "environment": "local18083 only",
+  "mysqlSocket": "/tmp/duel-mysql-test-registry-b0-20261002/mysql.sock",
+  "goPid": 79657,
+  "mysqlPidUnchanged": 66345,
+  "candidateBinary": "/Users/didi/Documents/Codex/2026-10-02/task/backend/bin/dueld-v13-core4-local",
+  "candidateBinarySha256": "e646e93314825a9120479436258a2ff27316279ee2e3d543928542e2cd06e0ec",
+  "frontendCommit": "3fad3f881e38b83952cf44ceefbe9728f1ef6dff",
+  "runtime": "duel-751bcab20194934a863a",
+  "rosterId": "arena-core4-24-v1",
+  "preservedPriorMatches": 5,
+  "allPriorPayloadHashesUnchanged": true,
+  "defaultRepositoryRosterRemainsLegacyOnly": true,
+  "productionChanged": false,
+  "backup": {
+    "path": "/Users/didi/Documents/Codex/2026-10-02/task/qa-runtime/registry-b0/backups/before-core4-portable-20261002T102708Z.sql",
+    "bytes": 52737,
+    "sha256": "c3c10ca91ae2512be20955c6362654c9956752ed6343cb955962e9777047466a"
+  },
+  "verifiedMatches": [
+    {
+      "kind": "core4-pve",
+      "id": "8b1489cfdfa5bb0f6fa0b7ec50de679e8e9e2343efcc0963a64495ea80c01294",
+      "status": "recorded",
+      "mode": "pve",
+      "transport": "local",
+      "trust": "client_reported",
+      "version": "duel-751bcab20194934a863a",
+      "rosterId": "arena-core4-24-v1",
+      "heroes": [
+        25,
+        31
+      ],
+      "valveIds": [
+        15,
+        28
+      ],
+      "resultDigestsVerified": true,
+      "legacyCreateDigestVerified": null
+    },
+    {
+      "kind": "core4-pve",
+      "id": "54a37de56671d86ecbee810c9abdcf3e4d26f11ebc9be8912208c8df8ac602dd",
+      "status": "recorded",
+      "mode": "pve",
+      "transport": "local",
+      "trust": "client_reported",
+      "version": "duel-751bcab20194934a863a",
+      "rosterId": "arena-core4-24-v1",
+      "heroes": [
+        31,
+        45
+      ],
+      "valveIds": [
+        28,
+        47
+      ],
+      "resultDigestsVerified": true,
+      "legacyCreateDigestVerified": null
+    },
+    {
+      "kind": "core4-pve",
+      "id": "8a121ae7452c133a9d2787b258663b6d4100ce75430dc355916f921e56322969",
+      "status": "recorded",
+      "mode": "pve",
+      "transport": "local",
+      "trust": "client_reported",
+      "version": "duel-751bcab20194934a863a",
+      "rosterId": "arena-core4-24-v1",
+      "heroes": [
+        45,
+        100
+      ],
+      "valveIds": [
+        47,
+        102
+      ],
+      "resultDigestsVerified": true,
+      "legacyCreateDigestVerified": null
+    },
+    {
+      "kind": "core4-pve",
+      "id": "26f4a5f7a9b8660276f1a4c89a1c2892bcfb2873eefffc11ec7d0465a6524ce6",
+      "status": "recorded",
+      "mode": "pve",
+      "transport": "local",
+      "trust": "client_reported",
+      "version": "duel-751bcab20194934a863a",
+      "rosterId": "arena-core4-24-v1",
+      "heroes": [
+        100,
+        25
+      ],
+      "valveIds": [
+        102,
+        15
+      ],
+      "resultDigestsVerified": true,
+      "legacyCreateDigestVerified": null
+    },
+    {
+      "kind": "local",
+      "id": "de8ba13bc86c5d2558e5bb54385c0d732608783157f4745f6f2749b3e4e13432",
+      "status": "recorded",
+      "mode": "pvp",
+      "transport": "local",
+      "trust": "client_reported",
+      "version": "duel-751bcab20194934a863a",
+      "rosterId": "arena-core4-24-v1",
+      "heroes": [
+        25,
+        100
+      ],
+      "valveIds": [
+        15,
+        102
+      ],
+      "resultDigestsVerified": true,
+      "legacyCreateDigestVerified": null
+    },
+    {
+      "kind": "broadcastchannel",
+      "id": "1f0d557b202694fc289877c661da2a88ab2de5fd7fb999abc7ac5960075af04d",
+      "status": "recorded",
+      "mode": "pvp",
+      "transport": "broadcastchannel",
+      "trust": "client_reported",
+      "version": "duel-751bcab20194934a863a",
+      "rosterId": "arena-core4-24-v1",
+      "heroes": [
+        31,
+        45
+      ],
+      "valveIds": [
+        28,
+        47
+      ],
+      "resultDigestsVerified": true,
+      "legacyCreateDigestVerified": null
+    },
+    {
+      "kind": "core4-pvp",
+      "id": "4ecef0089263d5f5e16dfcc95cabd9cf1c96adf1980c8aa176e744d9b12e8f4e",
+      "status": "confirmed",
+      "mode": "pvp",
+      "transport": "webrtc",
+      "trust": "peer_agreement",
+      "version": "duel-751bcab20194934a863a",
+      "rosterId": "arena-core4-24-v1",
+      "heroes": [
+        25,
+        31
+      ],
+      "valveIds": [
+        15,
+        28
+      ],
+      "resultDigestsVerified": true,
+      "legacyCreateDigestVerified": null
+    },
+    {
+      "kind": "legacy-pve-omitted",
+      "id": "b6ef9659bb738e5867ce53e747ec44f3d49b00f5d56a107cffa5e39903f03f07",
+      "status": "recorded",
+      "mode": "pve",
+      "transport": "local",
+      "trust": "client_reported",
+      "version": "duel-legacy-core4-check",
+      "rosterId": "legacy-20-v1",
+      "heroes": [
+        0,
+        3
+      ],
+      "valveIds": [
+        8,
+        2
+      ],
+      "resultDigestsVerified": true,
+      "legacyCreateDigestVerified": true
+    }
+  ],
+  "ownTestCohorts": [
+    {
+      "mode": "pvp",
+      "wins": 1,
+      "trust": "client_reported",
+      "version": "duel-751bcab20194934a863a",
+      "rosterId": "arena-core4-24-v1",
+      "transport": "local",
+      "appearances": 2
+    },
+    {
+      "mode": "pve",
+      "wins": 1,
+      "trust": "client_reported",
+      "version": "duel-legacy-core4-check",
+      "rosterId": "legacy-20-v1",
+      "transport": "local",
+      "appearances": 1
+    },
+    {
+      "mode": "pve",
+      "wins": 4,
+      "trust": "client_reported",
+      "version": "duel-751bcab20194934a863a",
+      "rosterId": "arena-core4-24-v1",
+      "transport": "local",
+      "appearances": 4
+    },
+    {
+      "mode": "pvp",
+      "wins": 1,
+      "trust": "peer_agreement",
+      "version": "duel-751bcab20194934a863a",
+      "rosterId": "arena-core4-24-v1",
+      "transport": "webrtc",
+      "appearances": 2
+    },
+    {
+      "mode": "pvp",
+      "wins": 1,
+      "trust": "client_reported",
+      "version": "duel-751bcab20194934a863a",
+      "rosterId": "arena-core4-24-v1",
+      "transport": "broadcastchannel",
+      "appearances": 2
+    }
+  ],
+  "limits": "Synthetic HTTP reports; no skills, browser rendering, guard mitigation, or production acceptance implied"
+}
