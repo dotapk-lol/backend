@@ -1,13 +1,13 @@
 # DOTA DUEL Go/MySQL backend
 
-Independent backend for six-digit room invitations, WebRTC signaling, anonymous sessions, immutable P2P report reconciliation and clearly labeled PVE, same-screen and BroadcastChannel PVP self-reports. Combat remains in browsers. Source does not modify the frontend or AgentSquared application.
+Independent backend for six-digit room invitations, WebRTC signaling, anonymous sessions, immutable P2P report reconciliation and clearly labeled PVE, same-screen and BroadcastChannel PVP self-reports. Combat remains in browsers. Source does not modify the frontend or AgentSquared application. Production Go+isolated schema now run on the existing host; public API DNS/TLS is pending. See DEPLOYMENT.md for current state.
 
 - [Frontend API contract](docs/API.md)
 - [AgentSquared inspection, isolation and deferred approvals](docs/DEPLOYMENT.md)
 - [Validation evidence](docs/TESTING.md)
 - `migrations/001_init.sql`: MySQL8.4+ schema. `002_analytics.sql`: original strict cohorts. `003_local_pvp_analytics.sql`: additional v2 views separating version/mode/transport/trust/hero/opponent/AI-difficulty cohorts.
 - `deploy/dota-duel.service`: loopback systemd unit with resource restrictions.
-- `Dockerfile`, `compose.yaml`: optional isolated staging stack; not installed on AgentSquared.
+- `Dockerfile`, `compose.yaml`: local-only optional test stack; prohibited for this AgentSquared deployment, which reuses its existing MySQL.
 
 ## Build/test
 

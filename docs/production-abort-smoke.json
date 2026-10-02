@@ -1,0 +1,65 @@
+{
+  "health": {
+    "capabilities": [
+      "pvp_peer_agreement",
+      "pve_client_reported",
+      "local_pvp_client_reported"
+    ],
+    "contractVersion": "v1.2-abort-reconciliation",
+    "ok": true,
+    "service": "dota-duel",
+    "transport": "webrtc",
+    "turn": false
+  },
+  "cases": [
+    {
+      "case": "normal_disconnect",
+      "id": "2869239d0ac0ae93765cc51fe9300445c99fdec2d64ccc1d212c69694ecb5418",
+      "status": "aborted",
+      "reason": "interrupted",
+      "scoreAgreement": "peer_agreed",
+      "winner": -1,
+      "reported": [
+        true,
+        true
+      ]
+    },
+    {
+      "case": "completed_abort_conflict",
+      "id": "61199c70dc39aac99311f63f841cd0fc8a3b555ae9160c824786435f4856f9c4",
+      "status": "disputed",
+      "reason": "outcome_conflict",
+      "scoreAgreement": "unresolved",
+      "winner": -1,
+      "reported": [
+        true,
+        true
+      ]
+    },
+    {
+      "case": "completed_winner_conflict",
+      "id": "dea12992e1ab71b23c4e7dbef09c36dbf0cc2ce42cf702bd944ea20c29e0145f",
+      "status": "disputed",
+      "reason": "conflicting_reports",
+      "scoreAgreement": "unresolved",
+      "winner": -1,
+      "reported": [
+        true,
+        true
+      ]
+    },
+    {
+      "case": "completed_agreement",
+      "id": "a02619bdbccad4c08a6cd6ab9de8d0db7c3f6e62bf510f977c47d10c7596650b",
+      "status": "confirmed",
+      "reason": "",
+      "scoreAgreement": "peer_agreed",
+      "winner": 0,
+      "reported": [
+        true,
+        true
+      ]
+    }
+  ],
+  "exactRetriesImmutable": true
+}

@@ -1,6 +1,6 @@
 # Validation evidence — 2026-10-02 (Asia/Shanghai)
 
-Status: independent implementation validated locally; **AgentSquared production not deployed**. No production database, account, listener, nginx configuration or business data was modified.
+Historical local validation below predates production deployment. Current production Go/MySQL loopback acceptance and remaining DNS/TLS boundary are documented in DEPLOYMENT.md and production-*-smoke evidence; no AgentSquared business data was modified.
 
 ## Passed
 

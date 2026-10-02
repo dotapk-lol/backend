@@ -1,0 +1,27 @@
+{
+  "health": {
+    "capabilities": [
+      "pvp_peer_agreement",
+      "pve_client_reported",
+      "local_pvp_client_reported"
+    ],
+    "contractVersion": "v1.2-abort-reconciliation",
+    "ok": true,
+    "service": "dota-duel",
+    "transport": "webrtc",
+    "turn": false
+  },
+  "version": "qa-smoke-go-mysql-v1",
+  "pvpMatchId": "396d8998f8d41248e4ba41d8268b72980118d76484f5916869552912863051fb",
+  "pvpStatus": "confirmed",
+  "pvpReported": [
+    true,
+    true
+  ],
+  "pveMatchId": "a3210c93c4fbce1c0bcce82068c61d05a963aa8c9a117f8c93f47f2a48c55cf2",
+  "pveStatus": "recorded",
+  "pveTrust": "client_reported",
+  "strictScoreLength": true,
+  "duplicateReportIdempotent": true,
+  "peerReportHidden": true
+}
