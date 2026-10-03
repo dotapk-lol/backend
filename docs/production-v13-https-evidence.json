@@ -1,0 +1,510 @@
+{
+  "result": "PASS",
+  "base": "https://api.dotapk.lol",
+  "tlsVerification": true,
+  "allowedOrigin": "https://dotapk.lol",
+  "foreignOriginRejected": true,
+  "health": {
+    "capabilities": [
+      "pvp_peer_agreement",
+      "pve_client_reported",
+      "local_pvp_client_reported",
+      "versioned_gameplay_rosters"
+    ],
+    "contractVersion": "v1.3-gameplay-rosters",
+    "ok": true,
+    "service": "dota-duel",
+    "transport": "webrtc",
+    "turn": false
+  },
+  "registryVersion": "duel-heroes-127-v1",
+  "registrySha256": "5bca2bf8c43972583d1d58c876f5dcde039cabb0e662ac9536b0e7a53037f138",
+  "gameplayRosters": [
+    {
+      "rosterId": "legacy-20-v1",
+      "registryVersion": "duel-heroes-127-v1",
+      "heroIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "gameVersions": []
+    },
+    {
+      "rosterId": "arena-first22-46-v1",
+      "registryVersion": "duel-heroes-127-v1",
+      "heroIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        25,
+        31,
+        45,
+        100,
+        21,
+        28,
+        29,
+        32,
+        36,
+        42,
+        47,
+        50,
+        55,
+        57,
+        58,
+        62,
+        71,
+        81,
+        82,
+        94,
+        99,
+        104,
+        106,
+        117,
+        121,
+        124
+      ],
+      "gameVersions": [
+        "duel-e63dafb5ae2070a90f8b"
+      ]
+    }
+  ],
+  "catalogHeroes": 127,
+  "checks": [
+    {
+      "path": "/healthz",
+      "method": "GET",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/registry",
+      "method": "OPTIONS",
+      "status": 204,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/registry",
+      "method": "GET",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/registry",
+      "method": "GET",
+      "status": 403,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/v1/sessions",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/sessions",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/sessions",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/pve",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/pve",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/4e705032efed08ba75471779b84d1eddcc63ba5e9d051ffb71b067e06bcee255/results",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/join",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/89e3afd5a45737517c758f375543a02564345396af47bc26e6ee82fd9dae895f/answer",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/89e3afd5a45737517c758f375543a02564345396af47bc26e6ee82fd9dae895f/matches",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/1eaccd78a84f546a5248408140bec155ac5294fbe57ac8e49d1aec130274133f/ready",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/1eaccd78a84f546a5248408140bec155ac5294fbe57ac8e49d1aec130274133f/ready",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/1eaccd78a84f546a5248408140bec155ac5294fbe57ac8e49d1aec130274133f/results",
+      "method": "POST",
+      "status": 403,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/1eaccd78a84f546a5248408140bec155ac5294fbe57ac8e49d1aec130274133f/results",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/1eaccd78a84f546a5248408140bec155ac5294fbe57ac8e49d1aec130274133f/results",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/1eaccd78a84f546a5248408140bec155ac5294fbe57ac8e49d1aec130274133f/results",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/89e3afd5a45737517c758f375543a02564345396af47bc26e6ee82fd9dae895f/matches",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/db67e0a6e4b2f67de5b8af591dbd24e186b8075c56a07b38997f318703ec6686/ready",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/db67e0a6e4b2f67de5b8af591dbd24e186b8075c56a07b38997f318703ec6686/ready",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/db67e0a6e4b2f67de5b8af591dbd24e186b8075c56a07b38997f318703ec6686/results",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/db67e0a6e4b2f67de5b8af591dbd24e186b8075c56a07b38997f318703ec6686/results",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/local",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/0c53b4920af43688cd650cae4348309fe56b99a32122d5d14489dc3e14970414/results",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/local",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/afa5c1b5a7c31ee705c66615b21ff6e32930289769709635d99388170a34f114/results",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/pve",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/pve",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/ec37abe3d45ee43f00c384948ea683f2f67fcb817b41bd16a513fb230ef9264c/results",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/join",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/82d95b2921327b105447bbd9b8e9b33012a01342f87445e21674f70136b45396/answer",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/82d95b2921327b105447bbd9b8e9b33012a01342f87445e21674f70136b45396/matches",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/92e8736ff87ad4804445dd20c2e7d2334d16e8a80d2731760b98bb2208a24568/ready",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/92e8736ff87ad4804445dd20c2e7d2334d16e8a80d2731760b98bb2208a24568/ready",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/92e8736ff87ad4804445dd20c2e7d2334d16e8a80d2731760b98bb2208a24568/results",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/92e8736ff87ad4804445dd20c2e7d2334d16e8a80d2731760b98bb2208a24568/results",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/pve",
+      "method": "POST",
+      "status": 409,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/pve",
+      "method": "POST",
+      "status": 409,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/pve",
+      "method": "POST",
+      "status": 400,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/pve",
+      "method": "POST",
+      "status": 400,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/matches/pve",
+      "method": "POST",
+      "status": 400,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/89e3afd5a45737517c758f375543a02564345396af47bc26e6ee82fd9dae895f",
+      "method": "DELETE",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/82d95b2921327b105447bbd9b8e9b33012a01342f87445e21674f70136b45396",
+      "method": "DELETE",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    }
+  ],
+  "syntheticHttpOnlyRecords": [
+    {
+      "id": "4e705032efed08ba75471779b84d1eddcc63ba5e9d051ffb71b067e06bcee255",
+      "version": "duel-c6a74f74a4857d71f74a",
+      "rosterId": "legacy-20-v1",
+      "status": "aborted",
+      "score": [
+        0,
+        0
+      ],
+      "winner": -1,
+      "trust": "client_reported",
+      "mode": "pve",
+      "transport": "local"
+    },
+    {
+      "id": "1eaccd78a84f546a5248408140bec155ac5294fbe57ac8e49d1aec130274133f",
+      "version": "qa-v13-legacy20",
+      "rosterId": "legacy-20-v1",
+      "status": "confirmed",
+      "score": [
+        2,
+        0
+      ],
+      "winner": 0,
+      "trust": "peer_agreement",
+      "mode": "pvp",
+      "transport": "webrtc",
+      "syntheticQA": true
+    },
+    {
+      "id": "db67e0a6e4b2f67de5b8af591dbd24e186b8075c56a07b38997f318703ec6686",
+      "version": "qa-v13-legacy20",
+      "rosterId": "legacy-20-v1",
+      "status": "aborted",
+      "score": [
+        0,
+        0
+      ],
+      "winner": -1,
+      "trust": "peer_agreement",
+      "mode": "pvp",
+      "transport": "webrtc"
+    },
+    {
+      "id": "0c53b4920af43688cd650cae4348309fe56b99a32122d5d14489dc3e14970414",
+      "version": "qa-v13-legacy20",
+      "rosterId": "legacy-20-v1",
+      "status": "aborted",
+      "score": [
+        0,
+        0
+      ],
+      "winner": -1,
+      "trust": "client_reported",
+      "mode": "pvp",
+      "transport": "local"
+    },
+    {
+      "id": "afa5c1b5a7c31ee705c66615b21ff6e32930289769709635d99388170a34f114",
+      "version": "qa-v13-legacy20",
+      "rosterId": "legacy-20-v1",
+      "status": "aborted",
+      "score": [
+        0,
+        0
+      ],
+      "winner": -1,
+      "trust": "client_reported",
+      "mode": "pvp",
+      "transport": "broadcastchannel"
+    },
+    {
+      "id": "ec37abe3d45ee43f00c384948ea683f2f67fcb817b41bd16a513fb230ef9264c",
+      "version": "duel-e63dafb5ae2070a90f8b",
+      "rosterId": "arena-first22-46-v1",
+      "status": "aborted",
+      "score": [
+        0,
+        0
+      ],
+      "winner": -1,
+      "trust": "client_reported",
+      "mode": "pve",
+      "transport": "local"
+    },
+    {
+      "id": "92e8736ff87ad4804445dd20c2e7d2334d16e8a80d2731760b98bb2208a24568",
+      "version": "duel-e63dafb5ae2070a90f8b",
+      "rosterId": "arena-first22-46-v1",
+      "status": "aborted",
+      "score": [
+        0,
+        0
+      ],
+      "winner": -1,
+      "trust": "peer_agreement",
+      "mode": "pvp",
+      "transport": "webrtc"
+    }
+  ],
+  "new46SmokeMatchesAllAborted": true,
+  "syntheticCompletedQAOnlyVersion": "qa-v13-legacy20",
+  "naturalFrontendGameplayClaimed": false,
+  "frontendDeploymentPerformed": false,
+  "sessionTokensWrittenOrPrinted": false,
+  "recordedAcceptanceAtUTC": "2026-10-03T03:06:36+00:00"
+}

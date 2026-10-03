@@ -1,0 +1,22 @@
+{
+  "sourceCommit": "aa04e01f25ef2226b213cfc64e68c6c96fd0e18c",
+  "toolchain": "go1.26.1",
+  "target": "linux/amd64",
+  "cgo": false,
+  "buildFlags": [
+    "-buildvcs=false",
+    "-trimpath"
+  ],
+  "gameplayRosters": [
+    "legacy-20-v1",
+    "arena-first22-46-v1"
+  ],
+  "approved46Build": "duel-e63dafb5ae2070a90f8b",
+  "registryVersion": "duel-heroes-127-v1",
+  "registrySha256": "5bca2bf8c43972583d1d58c876f5dcde039cabb0e662ac9536b0e7a53037f138",
+  "productionApplied": true,
+  "manifestSha256": "868e39fad3f735c4f277b1d8f04aa9c7d991e91841d644ad12435943d1dc2a3b",
+  "binarySha256": "e6a9df663eb4816741fb84c6718bdc31d686d8e00745730957f97e0e376397f6",
+  "productionReleasePath": "/opt/dota-duel/releases/v1.3-e6a9df66/dueld",
+  "reproduceCommand": "python3 scripts/build-production-v13.py"
+}

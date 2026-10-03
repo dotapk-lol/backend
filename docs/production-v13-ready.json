@@ -1,0 +1,128 @@
+{
+  "readyForFrozen46FrontendDeployment": true,
+  "productionVersion": "v1.3-gameplay-rosters",
+  "base": "https://api.dotapk.lol/api/v1",
+  "allowedOrigin": "https://dotapk.lol",
+  "rosters": [
+    {
+      "rosterId": "legacy-20-v1",
+      "registryVersion": "duel-heroes-127-v1",
+      "heroIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "gameVersions": []
+    },
+    {
+      "rosterId": "arena-first22-46-v1",
+      "registryVersion": "duel-heroes-127-v1",
+      "heroIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        25,
+        31,
+        45,
+        100,
+        21,
+        28,
+        29,
+        32,
+        36,
+        42,
+        47,
+        50,
+        55,
+        57,
+        58,
+        62,
+        71,
+        81,
+        82,
+        94,
+        99,
+        104,
+        106,
+        117,
+        121,
+        124
+      ],
+      "gameVersions": [
+        "duel-e63dafb5ae2070a90f8b"
+      ]
+    }
+  ],
+  "registrySha256": "5bca2bf8c43972583d1d58c876f5dcde039cabb0e662ac9536b0e7a53037f138",
+  "productionMySQL": "8.4.8",
+  "migrations": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "externalHttpsChecks": 49,
+  "original22PayloadHashesUnchanged": true,
+  "original29ReportDigestsVerified": 29,
+  "syntheticHttpSmokeMatches": 7,
+  "syntheticSmokeReportDigestsVerified": 10,
+  "new46SyntheticSmokeAllAborted": true,
+  "natural46BrowserGameplayClaimed": false,
+  "activeMatches": 0,
+  "currentMatchCount": 29,
+  "existingAppsHealth": {
+    "https://api.agentsquared.net/healthz": {
+      "body": "ok"
+    },
+    "https://api.pikoo.lol/health/live": {
+      "status": "ok"
+    },
+    "https://api.pikoo.lol/health/ready": {
+      "status": "ready"
+    }
+  },
+  "existingServicePidsUnchanged": true,
+  "protectedFilesCredentialsPermissionsUnchanged": true,
+  "newPrivilegesCredentialsPersistentServices": false,
+  "restartToLoopbackReadySeconds": 0.144,
+  "preMigrationBackup": "/var/backups/dota-duel/upgrade-v13-20261003T025426Z",
+  "preGoBackup": "/var/backups/dota-duel/upgrade-v13-20261003T030233Z",
+  "frontendChangedByBackendAgent": false,
+  "remainingBlockers": [],
+  "scope": "Point-in-time backend release acceptance at2026-10-03; no later frontend publication or natural46 browser QA claim",
+  "recordedAcceptanceAtUTC": "2026-10-03T03:06:36+00:00"
+}

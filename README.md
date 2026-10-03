@@ -5,7 +5,7 @@ Independent backend for six-digit room invitations, WebRTC signaling, anonymous 
 - [Frontend API contract](docs/API.md)
 - [AgentSquared inspection, isolation and deferred approvals](docs/DEPLOYMENT.md)
 - [Validation evidence](docs/TESTING.md)
-- `migrations/001_init.sql`: MySQL8.4+ schema. `002_analytics.sql`: original strict cohorts. `003_local_pvp_analytics.sql`: additional v2 views separating version/mode/transport/trust/hero/opponent/AI-difficulty cohorts.
+- `migrations/001_init.sql`: MySQL8.4+ schema. `002_analytics.sql`: original strict cohorts. `003_local_pvp_analytics.sql`: additional v2 views separating version/mode/transport/trust/hero/opponent/AI-difficulty cohorts. `004_hero_registry.sql`: additive frozen identities, roster membership and v3 views.
 - `deploy/dota-duel.service`: loopback systemd unit with resource restrictions.
 - `Dockerfile`, `compose.yaml`: local-only optional test stack; prohibited for this AgentSquared deployment, which reuses its existing MySQL.
 
@@ -37,4 +37,12 @@ SELECT * FROM dota_duel.duel_data_quality_v2 ORDER BY game_version,mode,status;
 `confirmed` PVP = both clients agreed, not anti-cheat proof. `recorded` PVE/local/BC PVP = client self-report, separated by mode and transport. Aborted/disputed/pending games are excluded from normal win-rate cohorts. Hero indices are scoped to game version. AI seat is excluded from PVE player win rate, but opponent hero/difficulty are retained. Mean duration is server start-to-final-report receipt and includes transport/report delay. Very small cohorts should not drive balance decisions.
 
 
-Production contract remains `v1.2-abort-reconciliation`. This checkout's candidate contract is `v1.3-gameplay-rosters`; it adds a frozen 127-hero identity catalog, optional gameplay roster requests and additive migration004, but activates only the legacy20 gameplay roster. No candidate deployment has occurred. See API.md for the exact frontend contract and TESTING.md for validation evidence. The v1.2 abort reconciliation and immutable report behavior remain unchanged.
+Production contract is `v1.3-gameplay-rosters` (2026-10-03), accepting only legacy20 and `arena-first22-46-v1` bound exactly to `duel-e63dafb5ae2070a90f8b`. The source default deliberately remains legacy20; production uses [the frozen deployment profile](deploy/production-v13/gameplay-rosters.json). The127 identities do not make every hero playable; no24 or later candidate is activated.
+
+The running release is reproducible from source `aa04e01f25ef2226b213cfc64e68c6c96fd0e18c` plus that profile with Go1.26.1:
+
+```sh
+python3 scripts/build-production-v13.py
+```
+
+This uses the local pinned Git snapshot and existing module cache, checks the exact Linux binary SHA256, and never accesses production or MySQL. [Build metadata](deploy/production-v13/build-metadata.json), [deployment receipt](docs/production-v13-deployment.json), [HTTPS checks](docs/production-v13-https-evidence.json) and [SELECT-only SQL checks](docs/production-v13-sql-evidence.json) make the source/profile/migration/runtime traceable. Evidence is a point-in-time backend acceptance snapshot, not a claim of subsequent browser gameplay. This handoff includes no credentials, raw submissions or full database dumps.

@@ -1,0 +1,56 @@
+{
+  "result": "PASS",
+  "phase": "completed",
+  "preMigrationBackup": "/var/backups/dota-duel/upgrade-v13-20261003T025426Z",
+  "preGoBackup": "/var/backups/dota-duel/upgrade-v13-20261003T030233Z",
+  "oldService": {
+    "MainPID": "2097504",
+    "NRestarts": "0",
+    "ActiveState": "active",
+    "SubState": "running"
+  },
+  "newService": {
+    "MainPID": "2684766",
+    "NRestarts": "0",
+    "ActiveState": "active",
+    "SubState": "running"
+  },
+  "targetMySQLVersion": "8.4.8",
+  "targetMySQLMigrationSeconds": 0.071,
+  "newBinary": "/opt/dota-duel/releases/v1.3-e6a9df66/dueld",
+  "newBinarySha256": "e6a9df663eb4816741fb84c6718bdc31d686d8e00745730957f97e0e376397f6",
+  "restartToLoopbackReadySeconds": 0.144,
+  "originalMatchCount": 22,
+  "originalReportDigests": 29,
+  "originalRowsAndReportsPreserved": true,
+  "legacyViewDefinitionsUnchanged": true,
+  "registryManifestSha256": "5bca2bf8c43972583d1d58c876f5dcde039cabb0e662ac9536b0e7a53037f138",
+  "sqlIdentityProjectionSha256": "1b2f96b9493172b9d58603c6d2c5ff1b6ba7544be046daf4ff22f5361fa04206",
+  "existingRuntimeGrants": "duel_app@127.0.0.1\nGRANT USAGE ON *.* TO `duel_app`@`127.0.0.1`\nGRANT SELECT, INSERT, UPDATE, DELETE ON `dota_duel`.* TO `duel_app`@`127.0.0.1`\n127",
+  "existingHealthAfter": {
+    "https://api.agentsquared.net/healthz": {
+      "body": "ok"
+    },
+    "https://api.pikoo.lol/health/live": {
+      "status": "ok"
+    },
+    "https://api.pikoo.lol/health/ready": {
+      "status": "ready"
+    }
+  },
+  "existingUnitsAfter": {
+    "nginx.service": "MainPID=10962\nActiveState=active",
+    "mysqld.service": "MainPID=4057790\nActiveState=active",
+    "redis.service": "MainPID=4057732\nActiveState=active"
+  },
+  "protectedFilesAndCredentialUnchanged": true,
+  "productionMigrationApplied": true,
+  "productionGoRestarted": true,
+  "productionFrontendChanged": false,
+  "rollbackPerformed": false,
+  "newPrivilegesOrCredentials": false,
+  "otherServicesRestarted": false,
+  "receiptPath": "/var/backups/dota-duel/upgrade-v13-20261003T030233Z/upgrade-receipt.json",
+  "sensitiveBackupOrCredentialContentsIncluded": false,
+  "recordedAcceptanceAtUTC": "2026-10-03T03:06:36+00:00"
+}
