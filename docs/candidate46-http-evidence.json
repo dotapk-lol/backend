@@ -1,0 +1,813 @@
+{
+  "checkedAt": "2026-10-03T01:33:10.604Z",
+  "scope": "Actual built candidate adapters + real HTTP, synthetic results/SDP, no browser or skill acceptance",
+  "frontendCommit": "3103f15607fd21e2817d7db330f4bd84a048ce04",
+  "runtime": "duel-e63dafb5ae2070a90f8b",
+  "rosterId": "arena-first22-46-v1",
+  "heroIds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    25,
+    31,
+    45,
+    100,
+    21,
+    28,
+    29,
+    32,
+    36,
+    42,
+    47,
+    50,
+    55,
+    57,
+    58,
+    62,
+    71,
+    81,
+    82,
+    94,
+    99,
+    104,
+    106,
+    117,
+    121,
+    124
+  ],
+  "base": "http://127.0.0.1:18084/api/v1",
+  "corsOrigin": "http://127.0.0.1:4185",
+  "registryStatus": "verified",
+  "checks": [
+    "actual frozen candidate MatchAPI loadRegistry verified46, exact build, all127 identities",
+    "all46 explicit IDs accepted and cancelled without awarding wins",
+    "PVE/local/BC keep single-reporter recorded semantics and new-ID statistics",
+    "unknown roster/build, wrong legacy/core4 binding and unplayable IDs rejected",
+    "room build/roster checks and immutable two-report confirmed lifecycle",
+    "legacy omitted-field wire bytes and idempotency compatible",
+    "only precise4185 candidate origin accepted"
+  ],
+  "mappings": [
+    {
+      "heroId": 0,
+      "internalHeroId": "juggernaut",
+      "valveHeroId": 8
+    },
+    {
+      "heroId": 1,
+      "internalHeroId": "crystal_maiden",
+      "valveHeroId": 5
+    },
+    {
+      "heroId": 2,
+      "internalHeroId": "pudge",
+      "valveHeroId": 14
+    },
+    {
+      "heroId": 3,
+      "internalHeroId": "axe",
+      "valveHeroId": 2
+    },
+    {
+      "heroId": 4,
+      "internalHeroId": "sniper",
+      "valveHeroId": 35
+    },
+    {
+      "heroId": 5,
+      "internalHeroId": "anti_mage",
+      "valveHeroId": 1
+    },
+    {
+      "heroId": 6,
+      "internalHeroId": "phantom_assassin",
+      "valveHeroId": 44
+    },
+    {
+      "heroId": 7,
+      "internalHeroId": "drow_ranger",
+      "valveHeroId": 6
+    },
+    {
+      "heroId": 8,
+      "internalHeroId": "lina",
+      "valveHeroId": 25
+    },
+    {
+      "heroId": 9,
+      "internalHeroId": "lion",
+      "valveHeroId": 26
+    },
+    {
+      "heroId": 10,
+      "internalHeroId": "earthshaker",
+      "valveHeroId": 7
+    },
+    {
+      "heroId": 11,
+      "internalHeroId": "mirana",
+      "valveHeroId": 9
+    },
+    {
+      "heroId": 12,
+      "internalHeroId": "sven",
+      "valveHeroId": 18
+    },
+    {
+      "heroId": 13,
+      "internalHeroId": "zeus",
+      "valveHeroId": 22
+    },
+    {
+      "heroId": 14,
+      "internalHeroId": "windranger",
+      "valveHeroId": 21
+    },
+    {
+      "heroId": 15,
+      "internalHeroId": "shadow_fiend",
+      "valveHeroId": 11
+    },
+    {
+      "heroId": 16,
+      "internalHeroId": "storm_spirit",
+      "valveHeroId": 17
+    },
+    {
+      "heroId": 17,
+      "internalHeroId": "queen_of_pain",
+      "valveHeroId": 39
+    },
+    {
+      "heroId": 18,
+      "internalHeroId": "witch_doctor",
+      "valveHeroId": 30
+    },
+    {
+      "heroId": 19,
+      "internalHeroId": "tidehunter",
+      "valveHeroId": 29
+    },
+    {
+      "heroId": 25,
+      "internalHeroId": "valve_15",
+      "valveHeroId": 15
+    },
+    {
+      "heroId": 31,
+      "internalHeroId": "valve_28",
+      "valveHeroId": 28
+    },
+    {
+      "heroId": 45,
+      "internalHeroId": "valve_47",
+      "valveHeroId": 47
+    },
+    {
+      "heroId": 100,
+      "internalHeroId": "valve_102",
+      "valveHeroId": 102
+    },
+    {
+      "heroId": 21,
+      "internalHeroId": "valve_4",
+      "valveHeroId": 4
+    },
+    {
+      "heroId": 28,
+      "internalHeroId": "valve_20",
+      "valveHeroId": 20
+    },
+    {
+      "heroId": 29,
+      "internalHeroId": "valve_23",
+      "valveHeroId": 23
+    },
+    {
+      "heroId": 32,
+      "internalHeroId": "valve_31",
+      "valveHeroId": 31
+    },
+    {
+      "heroId": 36,
+      "internalHeroId": "valve_36",
+      "valveHeroId": 36
+    },
+    {
+      "heroId": 42,
+      "internalHeroId": "valve_43",
+      "valveHeroId": 43
+    },
+    {
+      "heroId": 47,
+      "internalHeroId": "valve_49",
+      "valveHeroId": 49
+    },
+    {
+      "heroId": 50,
+      "internalHeroId": "valve_52",
+      "valveHeroId": 52
+    },
+    {
+      "heroId": 55,
+      "internalHeroId": "valve_57",
+      "valveHeroId": 57
+    },
+    {
+      "heroId": 57,
+      "internalHeroId": "valve_59",
+      "valveHeroId": 59
+    },
+    {
+      "heroId": 58,
+      "internalHeroId": "valve_60",
+      "valveHeroId": 60
+    },
+    {
+      "heroId": 62,
+      "internalHeroId": "valve_64",
+      "valveHeroId": 64
+    },
+    {
+      "heroId": 71,
+      "internalHeroId": "valve_73",
+      "valveHeroId": 73
+    },
+    {
+      "heroId": 81,
+      "internalHeroId": "valve_83",
+      "valveHeroId": 83
+    },
+    {
+      "heroId": 82,
+      "internalHeroId": "valve_84",
+      "valveHeroId": 84
+    },
+    {
+      "heroId": 94,
+      "internalHeroId": "valve_96",
+      "valveHeroId": 96
+    },
+    {
+      "heroId": 99,
+      "internalHeroId": "valve_101",
+      "valveHeroId": 101
+    },
+    {
+      "heroId": 104,
+      "internalHeroId": "valve_106",
+      "valveHeroId": 106
+    },
+    {
+      "heroId": 106,
+      "internalHeroId": "valve_108",
+      "valveHeroId": 108
+    },
+    {
+      "heroId": 117,
+      "internalHeroId": "valve_126",
+      "valveHeroId": 126
+    },
+    {
+      "heroId": 121,
+      "internalHeroId": "valve_135",
+      "valveHeroId": 135
+    },
+    {
+      "heroId": 124,
+      "internalHeroId": "valve_138",
+      "valveHeroId": 138
+    }
+  ],
+  "receipts": [
+    {
+      "kind": "membership-abort",
+      "id": "9d70160a4d488d5bd19ce52d7220784e284d2c7407d37561d47c354a1452db07",
+      "heroes": [
+        0,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "569751589cb06ab9d22d05014da83a63e11f8f7c3f4749caf222335a1a7149d0",
+      "heroes": [
+        1,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "a8fd6db94196d574d2cc44f033f552f036902474196fc5c3f28de533af947c56",
+      "heroes": [
+        2,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "60485c616438c25778745476c073cf70b35dfbd0b423555a5ec689da9d1a7bd5",
+      "heroes": [
+        3,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "6e5ffa441e11bf6100050adf77d8195ca60a004cbed2c8efbf4233db519d4a05",
+      "heroes": [
+        4,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "616b8ee74d3d38033db4a47357ddf03cf2e4f7e2f0322a17eab00a8dd5a64220",
+      "heroes": [
+        5,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "c49f20623b36b9799c693c7b8a5b2c5780c38b5d7e2baccddf402ff789b01765",
+      "heroes": [
+        6,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "87e9771aad74db46dba5299e5cb309989d0ae31747f9af4e013a057198a6ee5b",
+      "heroes": [
+        7,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "2236ed9f25b49883ebbbaa48da83373f65f70175f4ba03385a0c538f461c293a",
+      "heroes": [
+        8,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "fd24767cea225ed344701b261e317de30667b0cadc55d11dc602284fd8c5bd1f",
+      "heroes": [
+        9,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "fc2d2c510a5ce86abf9f9468921146c3ec8e6ecee2b8465ff93c570c215b9c6f",
+      "heroes": [
+        10,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "fed80947a2d4510324176a25b846be9b4de840cc6b9157eab00ac65951ee4473",
+      "heroes": [
+        11,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "2194b7c00f068ef8f54cbfd30f5bf3c3c5dc631c9b4bc6c3cf3b895655feed93",
+      "heroes": [
+        12,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "a4471c2c31aeddc21b856ff1d37a2b5a259fe29ff387fc68d8a2ed43bc9b5b07",
+      "heroes": [
+        13,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "ad0bd07feb01bd24874f80b7b3072d6b947808d8d7a1f9a11393cc425c1d163b",
+      "heroes": [
+        14,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "c649d90b96e003e0b664b980b02366f4f4b3259723c03f65fc242f1b7c90690b",
+      "heroes": [
+        15,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "cea7b70350e614bb7b21644728bd1578a7bf3dd89fb6b6a7df73052d5ed4c158",
+      "heroes": [
+        16,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "46d01e77e1826174a33d525a1aa36f8e704f69cd96b37b16ddbcd000b46774e0",
+      "heroes": [
+        17,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "55c862b5c56b3916a6011d9c281fb60f7e1f903a42f5c9b6c7883e85dbf62cf3",
+      "heroes": [
+        18,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "13a885ff484f23a549dcd8d02a95c094c8a015067003315afd56ede3fadfac12",
+      "heroes": [
+        19,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "0845f28ed2b2f30b2e579864106d6025bebaf414e2c79861caa74d5876879f34",
+      "heroes": [
+        25,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "ed2080da3572aa491136a11f7e61d92faad9b90c4698ca149f0dc91977bcf683",
+      "heroes": [
+        31,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "6df6f06e5b543b08a2b25b9c29153ba2c719595dd3981563b90488fce76a1791",
+      "heroes": [
+        45,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "e01c773936eae2adc4319b88957b9fa1b67b36c73e40255aa972f471f75df827",
+      "heroes": [
+        100,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "182d772398b2a3775911bdad72fd33c78ac44b25ef1948ca48c50cfb5d576e7c",
+      "heroes": [
+        21,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "253d5c5d34ba37ff0077379e80398971e9db930e0e7b6939c9c73db892c20438",
+      "heroes": [
+        28,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "df5a6ceb082dd168e64331f20fd66894392d5a47cee66f127f90a46b91f7ee6b",
+      "heroes": [
+        29,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "2634c2250f4a4fd568127a05533f7ceb4f6c19ca5885fd17aaa68eb49de306b3",
+      "heroes": [
+        32,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "2ce2af24a1e7e12fda8230fdbfb373c10cf365931c2b1bb0283a60f485970153",
+      "heroes": [
+        36,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "446718ec3631c84afd24b35b73645d626f7e283c9bfc5c87aad510fa5384d892",
+      "heroes": [
+        42,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "8f500fac3b339d90992fd0566c71fb7193c538b6fc46bdaf274ebab32667f00d",
+      "heroes": [
+        47,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "630a2e7cace65600cb270540d245b7b464a36fb59bb49a543176043c75243bc1",
+      "heroes": [
+        50,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "6e079a8fee2dda47441561b11923f56d2ad42df03c25a80149fd012f28bde601",
+      "heroes": [
+        55,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "c1997584c1e36b6f0b924cfccb25ccc34afdfc096ca11fea7070bb13a15c52c7",
+      "heroes": [
+        57,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "411954a45463ded865854d86de3bd5d05be88b5044e8cc26c1e84bdb4d62738a",
+      "heroes": [
+        58,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "83c4815494f44e2533675b454aae48e9ef70a3f5f370b38e7cab0b5d644fb21a",
+      "heroes": [
+        62,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "281753f3cefd6e5053427ecb4d94847c1b2b492e2f700067a2d563215ad40415",
+      "heroes": [
+        71,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "34a90d97c98a7b2679f341edee62c3f8dc5e150d6b91e32bd59bf1c42da90172",
+      "heroes": [
+        81,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "7a71b3ce5b59232275a803dcb393f312b20c69a8b02ac19076567a451251ce92",
+      "heroes": [
+        82,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "1a69f1177d31acdb75328db9d2847f72a4e6a32830d5fff39941906c53578e55",
+      "heroes": [
+        94,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "999dbb262e2f0f4908be315ec08c25c5ecda1b1541a0a2ee664423175b6ab9d4",
+      "heroes": [
+        99,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "16ec8f042963ece4de4b70b6e0f830f9edf71da69461fdebc27606427bb4715d",
+      "heroes": [
+        104,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "6cd7b1c228e43dbc93b11b551192090a788263e8ab0766266b0e3f9884fc6de3",
+      "heroes": [
+        106,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "4ab138eff89cc41c96ea7b4a8e8c9788a1e50666db88bc0b5ec6aecad1bf7a2b",
+      "heroes": [
+        117,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "0a1397aebd6ccca1af9968e98a64baefd2499d6c5d2680d98efe6a4864dc52c2",
+      "heroes": [
+        121,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "membership-abort",
+      "id": "5f30713276ea9e8f1f6eba3bfa67e80cb31e8e4768c08995524dfb9cb5900862",
+      "heroes": [
+        124,
+        0
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "270fd092dfca86c1b02c82ec77397ea622e06b384144809249ed83eea38ea532"
+    },
+    {
+      "kind": "completed-pve",
+      "id": "0c6c2796e95165649f41e7c9543e198da7f8a1a9f4321c3a03be4981e3ac4afe",
+      "heroes": [
+        21,
+        0
+      ],
+      "expectedStatus": "recorded",
+      "resultDigest": "aeb6632e08d33c195aa2eb0205084a15fed528fd2dcfb1b77029e21867b6bd67"
+    },
+    {
+      "kind": "local",
+      "id": "e4bd0a2488ff39c8e489e5da627510ea2bd478e27d1e28172282470127266fa6",
+      "heroes": [
+        21,
+        124
+      ],
+      "expectedStatus": "recorded",
+      "resultDigest": "aeb6632e08d33c195aa2eb0205084a15fed528fd2dcfb1b77029e21867b6bd67"
+    },
+    {
+      "kind": "broadcastchannel",
+      "id": "4fdea199fed7bd8c4b694ca9c795bcfa4cd6367f0a7d9dff96fa60086ace514a",
+      "heroes": [
+        21,
+        124
+      ],
+      "expectedStatus": "recorded",
+      "resultDigest": "aeb6632e08d33c195aa2eb0205084a15fed528fd2dcfb1b77029e21867b6bd67"
+    },
+    {
+      "kind": "webrtc",
+      "id": "4959e69208e882173e58e8bcc03910ce787dd190f9e727962c36f190b81590ae",
+      "heroes": [
+        21,
+        124
+      ],
+      "expectedStatus": "confirmed",
+      "resultDigest": "aeb6632e08d33c195aa2eb0205084a15fed528fd2dcfb1b77029e21867b6bd67"
+    },
+    {
+      "kind": "legacy-omitted",
+      "id": "2666185d76c284ece89150ac8476214766741b0215d9595141ec090c3c8a222c",
+      "heroes": [
+        0,
+        3
+      ],
+      "expectedStatus": "aborted",
+      "resultDigest": "892c46c2379610e45d7ca33fe6112f48b37e0005b9434d3b6a78000b5e10950d",
+      "createDigest": "34a679f1f8918f5a082ec64bda00e79f72ca0f803e99b33d9c355dcb12de776e"
+    }
+  ],
+  "productionChanged": false
+}

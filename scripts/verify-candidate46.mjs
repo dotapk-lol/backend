@@ -1,0 +1,51 @@
+// Real candidate adapter/HTTP smoke; synthetic histories, never browser/skill acceptance.
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {pathToFileURL} from 'node:url';
+import {randomUUID,createHash} from 'node:crypto';
+const frontend=process.argv[2];if(!frontend)throw Error('Pass frozen frontend-pack-runtime worktree');
+const built=path.join(frontend,'dist-candidate/client');
+const manifest=JSON.parse(await fs.readFile(path.join(built,'build-manifest.json'),'utf8'));
+const {MatchAPI,resultPayload}=await import(pathToFileURL(path.join(built,'src/match-api.js')));
+const {ACTIVE_ROSTER,heroRegistry}=await import(pathToFileURL(path.join(built,'src/hero-registry.js')));
+const {NET_VERSION}=await import(pathToFileURL(path.join(built,'src/net-version.js')));
+assert.equal(manifest.commit,'3103f15607fd21e2817d7db330f4bd84a048ce04');
+assert.equal(NET_VERSION,'duel-e63dafb5ae2070a90f8b');assert.equal(manifest.gameVersion,NET_VERSION);assert.deepEqual(ACTIVE_ROSTER,manifest.roster);
+const base='http://127.0.0.1:18084/api/v1',origin='http://127.0.0.1:4185',rosterId=ACTIVE_ROSTER.rosterId;
+assert.equal(rosterId,'arena-first22-46-v1');assert.equal(ACTIVE_ROSTER.heroIds.length,46);
+const checks=[],receipts=[],pass=name=>checks.push(name),key=()=>randomUUID(),digest=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
+const fetcher=async(url,options={})=>{const r=await fetch(url,{...options,headers:{...options.headers,Origin:origin}});assert.equal(r.headers.get('access-control-allow-origin'),origin);return r;};
+const api=new MatchAPI({base,fetcher,storage:null}),peer=new MatchAPI({base,fetcher,storage:null});
+const verified=await api.loadRegistry();assert.equal(verified.status,'verified');assert.deepEqual(verified.heroIds,ACTIVE_ROSTER.heroIds);
+const registry=await(await fetcher(base+'/registry')).json();const live=registry.gameplayRosters.find(x=>x.rosterId===rosterId);assert.deepEqual(live.heroIds,manifest.roster.heroIds);assert.deepEqual(live.gameVersions,[NET_VERSION]);assert.equal(registry.heroes.length,127);pass('actual frozen candidate MatchAPI loadRegistry verified46, exact build, all127 identities');
+const abort=resultPayload({history:[]},'cancelled'),complete=resultPayload({history:[{winner:0,remaining:1.2},{winner:0,remaining:2}]});
+for(const hero of ACTIVE_ROSTER.heroIds){
+ const requestId=key(),m=await api.createPVE(hero,0,requestId);assert.equal(m.rosterId,rosterId);assert.equal(m.players[0].hero,hero);assert.equal(m.version,NET_VERSION);
+ if(hero===ACTIVE_ROSTER.heroIds[0])assert.equal((await api.createPVE(hero,0,requestId)).id,m.id);
+ assert.equal((await api.submit(m.id,abort)).status,'aborted');receipts.push({kind:'membership-abort',id:m.id,heroes:[hero,0],expectedStatus:'aborted',resultDigest:digest(abort)});
+}pass('all46 explicit IDs accepted and cancelled without awarding wins');
+const old24=registry.gameplayRosters.find(x=>x.rosterId==='arena-core4-24-v1');assert.equal(old24.heroIds.length,24);assert.deepEqual(old24.gameVersions,['duel-751bcab20194934a863a','duel-6b66cc14337b5b7f079f']);
+const newIDs=ACTIVE_ROSTER.heroIds.filter(id=>!old24.heroIds.includes(id));assert.equal(newIDs.length,22);const first=newIDs[0],last=newIDs.at(-1);
+const pve=await api.createPVE(first,0,key());assert.equal((await api.submit(pve.id,complete)).status,'recorded');receipts.push({kind:'completed-pve',id:pve.id,heroes:[first,0],expectedStatus:'recorded',resultDigest:digest(complete)});
+for(const transport of ['local','broadcastchannel']){
+ const m=await api.createLocal(first,last,transport,key());assert.equal((await api.submit(m.id,complete)).status,'recorded');receipts.push({kind:transport,id:m.id,heroes:[first,last],expectedStatus:'recorded',resultDigest:digest(complete)});
+}pass('PVE/local/BC keep single-reporter recorded semantics and new-ID statistics');
+const badBody={requestId:key(),version:NET_VERSION,hero:first,opponentHero:0,aiDifficulty:'normal',rosterId};
+for(const [fields,status] of [[{rosterId:'unknown'},400],[{version:'duel-unbound46'},409],[{rosterId:undefined},409],[{rosterId:'legacy-20-v1'},409],[{rosterId:'arena-core4-24-v1'},409],[{hero:20},400],[{hero:127},400]]){
+ await assert.rejects(()=>api.request('matches/pve',{...badBody,requestId:key(),...fields}),e=>e.status===status);
+}pass('unknown roster/build, wrong legacy/core4 binding and unplayable IDs rejected');
+const policy={direction:'above',rttMs:200,jitterMs:30,lossPct:5,minSamples:24,window:30,maxAgeMs:3000};
+const room=await api.request('rooms',{requestId:key(),version:NET_VERSION,hero:first,offer:{type:'offer',sdp:'v=0\r\n'},policy,rosterId});
+for(const fields of [{version:'duel-unbound46'},{rosterId:undefined}])await assert.rejects(()=>peer.request('rooms/join',{code:room.code,version:NET_VERSION,hero:last,rosterId,...fields}),e=>e.status===409);
+await peer.request('rooms/join',{code:room.code,version:NET_VERSION,hero:last,rosterId});await peer.request('rooms/'+room.id+'/answer',{version:NET_VERSION,answer:{type:'answer',sdp:'v=0\r\n'}});
+const pvp=await api.createMatch(room.id,key());await api.ready(pvp.id);await peer.ready(pvp.id);
+assert.equal((await api.submit(pvp.id,complete)).status,'pending');assert.equal((await peer.submit(pvp.id,complete)).status,'confirmed');assert.equal((await api.submit(pvp.id,complete)).status,'confirmed');receipts.push({kind:'webrtc',id:pvp.id,heroes:[first,last],expectedStatus:'confirmed',resultDigest:digest(complete)});pass('room build/roster checks and immutable two-report confirmed lifecycle');
+const old={requestId:key(),version:'duel-legacy46-check',hero:0,opponentHero:3,aiDifficulty:'normal'};
+const legacy=await api.request('matches/pve',old);assert.equal(legacy.rosterId,'legacy-20-v1');assert.equal((await api.request('matches/pve',old)).id,legacy.id);
+const legacyAbort={...abort,version:old.version};assert.equal((await api.submit(legacy.id,legacyAbort)).status,'aborted');receipts.push({kind:'legacy-omitted',id:legacy.id,heroes:[0,3],expectedStatus:'aborted',resultDigest:digest(legacyAbort),createDigest:digest(old)});pass('legacy omitted-field wire bytes and idempotency compatible');
+const options=await fetch(base+'/rooms',{method:'OPTIONS',headers:{Origin:origin,'Access-Control-Request-Method':'POST'}});assert.equal(options.status,204);assert.equal(options.headers.get('access-control-allow-origin'),origin);
+for(const bad of ['http://127.0.0.1:4174','http://localhost:4185','https://dotapk.lol'])assert.equal((await fetch(base+'/registry',{headers:{Origin:bad}})).status,403);pass('only precise4185 candidate origin accepted');
+const mappings=ACTIVE_ROSTER.heroIds.map(id=>{const h=heroRegistry.byNumericId(id);return {heroId:id,internalHeroId:h.internalHeroId,valveHeroId:h.valveHeroId};});
+const evidence={checkedAt:new Date().toISOString(),scope:'Actual built candidate adapters + real HTTP, synthetic results/SDP, no browser or skill acceptance',frontendCommit:manifest.commit,runtime:NET_VERSION,rosterId,heroIds:ACTIVE_ROSTER.heroIds,base,corsOrigin:origin,registryStatus:verified.status,checks,mappings,receipts,productionChanged:false};
+await fs.writeFile(new URL('../docs/candidate46-http-evidence.json',import.meta.url),JSON.stringify(evidence,null,2)+'\n');console.log(JSON.stringify({passed:checks.length,verifiedIDs:mappings.length,syntheticMatches:receipts.length,base,runtime:NET_VERSION}));

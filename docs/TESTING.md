@@ -2,6 +2,18 @@
 
 ## v1.3 registry candidate — local validation only
 
+### Independent46 candidate service (18084, retained for browser QA)
+
+Frozen frontend commit `3103f15607fd21e2817d7db330f4bd84a048ce04`; actual candidate `dist-candidate/client/build-manifest.json` and modules agree on `duel-e63dafb5ae2070a90f8b`, `arena-first22-46-v1`, and all46 explicit hero IDs. The stable source profile intentionally has another runtime and24 heroes; verification imports the built candidate modules. Every candidate identity matches the unchanged127-hero frozen registry. The roster is old24 plus21/28/29/32/36/42/47/50/55/57/58/62/71/81/82/94/99/104/106/117/121/124, preserving the manifest's exact IDs and order.
+
+API `http://127.0.0.1:18084/api/v1`; exact CORS `http://127.0.0.1:4185`. The new MySQL instance uses `/tmp/duel-qa-candidate46-20261002/mysql.sock` with TCP disabled, independent data and a128MiB buffer pool. It is not a persistent system service. Candidate process metadata, overlay, local-only registration SQL, private0600 backup and raw verification receipts are under `../qa-runtime/candidate46/`. Resume with `python3 scripts/start-candidate46-qa.py`; it refuses to replace a listener or reset an existing data directory. The task-owned initialization requires explicit `--initialize` and nonexistent data. Its socket name is outside the destructive integration test allowlist.
+
+Only this candidate binary includes46 through a build overlay. The repository's default embedded roster remains legacy20; production configuration/migrations are unchanged. The new instance also retains legacy20 and the previous24 roster/bindings as separate metadata. The46 roster binds only `duel-e63dafb5ae2070a90f8b`, with no wildcard. Original18083 and18082 were not restarted; old18083's22 full match payload hashes compare exactly equal before and after setup. Health probes confirm18082 remains v1.2 and both candidate services v1.3.
+
+Seven live checks passed using the actual candidate `MatchAPI`: registry verified, all46 member creation/cancellation, PVE/local/BC recorded semantics, wrong roster/build and inactive-ID rejection, room/join checks plus immutable two-party confirmation, old omitted-roster wire/idempotency compatibility, and exact4185 CORS. Independently verified51 synthetic matches,52 original report bodies/digests and two participant mappings per match in SQL. Completed cohorts have7 appearances/4 wins across distinct trust/transport dimensions;47 cancelled membership/legacy probes are excluded. No mapping loss, join fanout or quality issues. Evidence: [HTTP](candidate46-http-evidence.json), [SQL, backup and preservation](candidate46-sql-evidence.json).
+
+These are synthetic API/SDP tests. Their known IDs remain in the new test database for audit; they must not be described as natural browser outcomes. Browser rendering, skill semantics and cross-device acceptance remain pending. This service preparation does not enable46 on production.
+
 ### CORE4 local candidate activation (current18083 configuration)
 
 Frontend commit `3fad3f881e38b83952cf44ceefbe9728f1ef6dff`, runtime `duel-751bcab20194934a863a`, roster `arena-core4-24-v1`, IDs0–19 plus25/31/45/100. On explicit local-test authorization, registered only this exact build on the independent18083 database. Existing legacy roster remains available to old builds. This is candidate test enablement, not production registration or skill/browser acceptance.
