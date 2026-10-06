@@ -1,14 +1,14 @@
 # DotaPK production deployment
 
-Current backend state (2026-10-06): **The existing22 roster now retains27c and additionally accepts the exact6b room-validation build, preserving every old roster/build. Only its version list and the Go embedded profile changed; DOTA DUEL alone restarted.** No existing roster, hero identity, schema, credential, grant, Nginx route or other application changed. Frontend publication/browser acceptance belongs to the parent task. See the current runtime receipts below; October3 receipts remain historical.
+Current backend state (2026-10-06): **The existing22 roster retains27c/6b and additionally accepts the exact851e display-only i18n build, preserving every old roster/build. Only its version list and the Go embedded profile changed; DOTA DUEL alone restarted.** No existing roster, hero identity, schema, credential, grant, Nginx route or other application changed. Frontend publication/browser acceptance belongs to the parent task. See the current runtime receipts below; October3 receipts remain historical.
 
 ## Repository and runtime
 
 - Private repository: https://github.com/dotapk-lol/backend
 - Host: existing `a2-webserver`, `43.162.87.40`, x86_64, OpenCloudOS,2 CPUs, about6.2GB available memory/69GB free disk at inspection.
 - Game service remains `dota-duel.service`, created during the authorized initial deployment and reused for this upgrade. No new MySQL instance, Docker, Redis, TURN, proxy daemon, certbot scheduler or other service was added.
-- Binary `/opt/dota-duel/releases/v1.3-9962a885-room-fix/dueld`; `/opt/dota-duel/bin/dueld` symlink. Linux SHA256 `9962a885ccd42ee8cc8fbd878bef1724b552c35906c8daaca71f4f2536e3c0d3`. Source snapshot `aa04e01f25ef2226b213cfc64e68c6c96fd0e18c` plus `deploy/production-v13/gameplay-rosters.json`, Go1.26.1; `scripts/build-production-v13.py` reproduces and checks the exact binary locally.
-- Production profile retains legacy20 and `arena-first22-46-v1` (e63/7e), retaining `arena-heros22-v1` for exact `duel-27c78aa4cfc8facc8a23` and `duel-6b1d12f75aa4bbac4e12`. No catalog127/CORE4-24/later candidate activation. A generic default build still enables only legacy20.
+- Binary `/opt/dota-duel/releases/v1.3-94e0bbb7-i18n/dueld`; `/opt/dota-duel/bin/dueld` symlink. Linux SHA256 `94e0bbb7bd6bddefab84e15fd3ff7db53f47245813dd0a826ca50088d637f5ca`. Source snapshot `aa04e01f25ef2226b213cfc64e68c6c96fd0e18c` plus `deploy/production-v13/gameplay-rosters.json`, Go1.26.1; `scripts/build-production-v13.py` reproduces and checks the exact binary locally.
+- Production profile retains legacy20 and `arena-first22-46-v1` (e63/7e), retaining `arena-heros22-v1` for exact `duel-27c78aa4cfc8facc8a23`, `duel-6b1d12f75aa4bbac4e12` and `duel-851e67d77307f479f1fa`. No catalog127/CORE4-24/later candidate activation. A generic default build still enables only legacy20.
 - Go binds `127.0.0.1:18082` only. systemd DynamicUser, MemoryMax128MiB, CPUQuota25%, TasksMax32; DB pool5 open/2 idle. User authorized the server deployment and dedicated identity.
 - Exact CORS origin `https://dotapk.lol`; only trusted proxy `127.0.0.1`. Nginx overwrites X-Real-IP. Keep API DNS-only unless Cloudflare proxy client-IP trust is separately configured; never blindly trust incoming CF/X-Forwarded-For headers.
 
@@ -28,7 +28,15 @@ Existing Nginx1.26.3, Certbot2.8 webroot `/var/www/certbot`, and existing `/etc/
 
 Before changes, existing Nginx conf.d was copied to `/var/backups/dota-duel/initial-20261002/nginx-conf.d`; baseline hashes are in existing-nginx.sha256. A2/Pikoo files remain byte-for-byte unchanged after HTTP-stage and final443 reloads. Existing A2 healthz and Pikoo /health/live plus /health/ready returnedok; nginx/A2/MySQL/Redis stayedactive. A pre-existing unrelated tat_agent unit warning was observed, not modified.
 
-## October6 room-validator runtime append
+## October6 display-only i18n runtime append
+
+- Frontend e9dd04a on feat/zh-en-ui has an exact851e build manifest.97 protected source files were independently byte-checked against1affd6d and recorded hashes; rules/22 roster/P1 room validator/policy unchanged. Parent must verify identical runtime after main integration; an altered build needs separate exact registration.
+- `append-i18n-runtime.sql` is a compare-and-swap append to the existing22 game_versions list, exactly1 row changed. All old rosters, bindings and88 memberships remain. No Go runtime logic, schema, credential, permission, service or route changes.
+- Protected dedicated backup `/var/backups/dota-duel/upgrade-v13-20261006T114657Z`, SHA256 `ea65b6b9b8a2e041d6a1ad53badd180e825529cedf93dae0d4fb7465045f3d7a`; local0600 copy verified, no dump committed. Only DOTA DUEL restarted, 0.197s to loopback ready.
+- Production-profile tests and exact binary reproduction pass.34 HTTPS checks cover actual new host/guest room validators, unchanged strict match validation, current6b/old46/legacy signaling and rejected wrong roster/hero requests. Both earlier22 builds and both46 registry validators pass. Four QA rooms closed, no match created.
+- All36 existing payload hashes,127 identities,88 memberships,8 views and protected configuration/grants/credentials preserved; A2/Pikoo health and other service PIDs unchanged. Evidence: `i18n-deployment.json`, `i18n-https-validator-evidence.json`, `i18n-sql-evidence.json`, `i18n-build-reproduction.json`, `i18n-profile-tests.txt`, `i18n-frontend-verification.json`. No native rendered language UI/iOS/WebRTC/battle acceptance claimed.
+
+## October6 room-validator runtime append (historical)
 
 - Frontend1affd6d fixes room-stage validation of Go empty guest slots; no Go logic, hero selection or policy changes. Only `arena-heros22-v1.game_versions` appends6b with compare-and-swap SQL (`append-room-fix-runtime.sql`), exactly1 row affected. Old27c,46/legacy rosters and every member remain unchanged.
 - Protected dedicated backup `/var/backups/dota-duel/upgrade-v13-20261006T110504Z`, SHA256 `d1859ca6a1cf6ba9fd85f60ab0551e658136aebb7d0e1a99132c4b0e0ee6d2b0`; retrieved local0600 copy verified. No dump/credential committed.
@@ -76,7 +84,9 @@ Remaining product acceptance: real-browser frontend domain PVP/gameplay tests co
 
 ## Rollback and operations
 
-For the current room-fix registration, previous binary is `/opt/dota-duel/releases/v1.3-f041e4c6-heros22/dueld` (SHA256 `f041e4c6dde83461fd356849f31df0ff5d2837a2a05f5230445d5c11daa23dd1`). Before any6b match or live room exists, first revert frontend, restore that symlink and restart only DOTA DUEL; an exact compare-and-swap can revert the22 list from `[27c,6b]` to `[27c]`. Once6b is used, stop new starts/rematches, drain rooms/matches and retain used metadata/all records. Never restore a dump over production.
+For the current i18n registration, previous binary is `/opt/dota-duel/releases/v1.3-9962a885-room-fix/dueld` (SHA256 `9962a885ccd42ee8cc8fbd878bef1724b552c35906c8daaca71f4f2536e3c0d3`). Before any851e match or live room exists, revert frontend first, restore that symlink and restart only DOTA DUEL; an exact compare-and-swap can revert the22 list from `[27c,6b,851e]` to `[27c,6b]`. After use, stop new starts/rematches, drain and retain all used metadata/records. Never restore a dump over production.
+
+For the historical room-fix registration, previous binary is `/opt/dota-duel/releases/v1.3-f041e4c6-heros22/dueld` (SHA256 `f041e4c6dde83461fd356849f31df0ff5d2837a2a05f5230445d5c11daa23dd1`). Before any6b match or live room exists, first revert frontend, restore that symlink and restart only DOTA DUEL; an exact compare-and-swap can revert the22 list from `[27c,6b]` to `[27c]`. Once6b is used, stop new starts/rematches, drain rooms/matches and retain used metadata/all records. Never restore a dump over production.
 
 For the historical initial22 registration, prior compatible legacy20/46 binary is `/opt/dota-duel/releases/v1.3-124a519a-ui-code/dueld` (SHA256 `124a519ad6dda3be9a03eb76f4cc3032a1fc48ea58c4281d4779a95eadf5d718`). Before any new27c match or live22 room exists, switch frontend back first, restore that symlink and restart only DOTA DUEL. The deployment rollback can remove only its22 members and single roster row, never matches/reports. After any new22 usage, retain a compatible v1.3 reader/writer and drain rooms before a downgrade; keep all used registry metadata and records. Never restore a dump over production.
 
