@@ -15,9 +15,9 @@
   "registryVersion": "duel-heroes-127-v1",
   "registrySha256": "5bca2bf8c43972583d1d58c876f5dcde039cabb0e662ac9536b0e7a53037f138",
   "productionApplied": true,
-  "manifestSha256": "165a30e366baa186c4ec35463fda4ca56ffc7a9f6603b1de754a0fcf34d4b0de",
-  "binarySha256": "f041e4c6dde83461fd356849f31df0ff5d2837a2a05f5230445d5c11daa23dd1",
-  "productionReleasePath": "/opt/dota-duel/releases/v1.3-f041e4c6-heros22/dueld",
+  "manifestSha256": "b7df50b06e88466580d19c6a0beae241d78ef0386d72c847141eeea3642f79be",
+  "binarySha256": "9962a885ccd42ee8cc8fbd878bef1724b552c35906c8daaca71f4f2536e3c0d3",
+  "productionReleasePath": "/opt/dota-duel/releases/v1.3-9962a885-room-fix/dueld",
   "reproduceCommand": "python3 scripts/build-production-v13.py",
   "approved46Builds": [
     "duel-e63dafb5ae2070a90f8b",
@@ -26,12 +26,14 @@
   "frontendCommits": {
     "duel-e63dafb5ae2070a90f8b": "3103f15607fd21e2817d7db330f4bd84a048ce04",
     "duel-7e767a8ed2b995465875": "43bf16d1006468d8d630d14b2a7ed91022c6a77a",
-    "duel-27c78aa4cfc8facc8a23": "4608b48a9f14194eeda4ccf9bddd263c801d77e5"
+    "duel-27c78aa4cfc8facc8a23": "4608b48a9f14194eeda4ccf9bddd263c801d77e5",
+    "duel-6b1d12f75aa4bbac4e12": "1affd6d17b55d4d1980141eff772b486d4b7d297"
   },
-  "previousReleasePath": "/opt/dota-duel/releases/v1.3-124a519a-ui-code/dueld",
-  "previousBinarySha256": "124a519ad6dda3be9a03eb76f4cc3032a1fc48ea58c4281d4779a95eadf5d718",
+  "previousReleasePath": "/opt/dota-duel/releases/v1.3-f041e4c6-heros22/dueld",
+  "previousBinarySha256": "f041e4c6dde83461fd356849f31df0ff5d2837a2a05f5230445d5c11daa23dd1",
   "approved22Builds": [
-    "duel-27c78aa4cfc8facc8a23"
+    "duel-27c78aa4cfc8facc8a23",
+    "duel-6b1d12f75aa4bbac4e12"
   ],
   "heros22Release": {
     "rulesHash": "5747bdeffe9948c67882ea02858e7958a5ea15be090b08d9ac6d8561a57970a4",
@@ -39,5 +41,10 @@
     "backendRulesExecution": false,
     "frozenFrontendManifestSha256": "d35d3b0635ce304c2f260bc8c060c7522bca4582c1582e417ccc7d41cf5968da"
   },
-  "productionRecordedAtUTC": "2026-10-06T08:15:54.433768+00:00"
+  "roomFixRelease": {
+    "frontendCommit": "1affd6d17b55d4d1980141eff772b486d4b7d297",
+    "backendLogicChanged": false,
+    "change": "Append exact room-validation build to existing22; no roster or policy change"
+  },
+  "productionRecordedAtUTC": "2026-10-06T11:08:19.388410+00:00"
 }

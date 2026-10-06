@@ -1,0 +1,218 @@
+{
+  "result": "PASS",
+  "checkedAtUTC": "2026-10-06T11:08:19.388410+00:00",
+  "source": "Production MySQL8.4.8 SELECT-only after actual room-validator HTTPS acceptance",
+  "originalMatchCount": 35,
+  "currentMatchCount": 35,
+  "all35PayloadHashesUnchanged": true,
+  "activeMatches": 0,
+  "all127IdentitiesAnd88MembershipRowsUnchanged": true,
+  "all8ViewDefinitionHashesUnchanged": true,
+  "protectedConfigurationCredentialMetadataServicePidsAndHealthUnchanged": true,
+  "migrations": "1,2,3,4",
+  "gameplayRosters": [
+    {
+      "rosterId": "legacy-20-v1",
+      "registryVersion": "duel-heroes-127-v1",
+      "heroIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "gameVersions": []
+    },
+    {
+      "rosterId": "arena-first22-46-v1",
+      "registryVersion": "duel-heroes-127-v1",
+      "heroIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        25,
+        31,
+        45,
+        100,
+        21,
+        28,
+        29,
+        32,
+        36,
+        42,
+        47,
+        50,
+        55,
+        57,
+        58,
+        62,
+        71,
+        81,
+        82,
+        94,
+        99,
+        104,
+        106,
+        117,
+        121,
+        124
+      ],
+      "gameVersions": [
+        "duel-e63dafb5ae2070a90f8b",
+        "duel-7e767a8ed2b995465875"
+      ]
+    },
+    {
+      "rosterId": "arena-heros22-v1",
+      "registryVersion": "duel-heroes-127-v1",
+      "heroIds": [
+        1,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        15,
+        17,
+        18,
+        28,
+        31,
+        32,
+        36,
+        50,
+        55,
+        57,
+        58,
+        62,
+        71,
+        81,
+        82
+      ],
+      "gameVersions": [
+        "duel-27c78aa4cfc8facc8a23",
+        "duel-6b1d12f75aa4bbac4e12"
+      ]
+    }
+  ],
+  "closedRoomSnapshots": [
+    {
+      "id": "20730bd0520ee99536b687e9f62f8a35b30400599566a6374ca5acc64b33289d",
+      "closed": true,
+      "heroes": [
+        0,
+        3
+      ],
+      "policy": {
+        "rttMs": 150,
+        "window": 30,
+        "lossPct": 5,
+        "jitterMs": 30,
+        "maxAgeMs": 3000,
+        "direction": "above",
+        "minSamples": 24
+      },
+      "version": "qa-room-fix-legacy20",
+      "rosterId": "legacy-20-v1",
+      "currentMatch": "",
+      "registryVersion": "duel-heroes-127-v1"
+    },
+    {
+      "id": "a01b23dbe6c26dd268fb7486a7b8255721580c3a1f7c8102852a3364314534ab",
+      "closed": true,
+      "heroes": [
+        1,
+        3
+      ],
+      "policy": {
+        "rttMs": 150,
+        "window": 30,
+        "lossPct": 5,
+        "jitterMs": 30,
+        "maxAgeMs": 3000,
+        "direction": "above",
+        "minSamples": 24
+      },
+      "version": "duel-27c78aa4cfc8facc8a23",
+      "rosterId": "arena-heros22-v1",
+      "currentMatch": "",
+      "registryVersion": "duel-heroes-127-v1"
+    },
+    {
+      "id": "cbf0f63c8ef70bef3e487fcc23d1bcfe139c901bd94351d40a5baf61e1f8de3f",
+      "closed": true,
+      "heroes": [
+        1,
+        3
+      ],
+      "policy": {
+        "rttMs": 150,
+        "window": 30,
+        "lossPct": 5,
+        "jitterMs": 30,
+        "maxAgeMs": 3000,
+        "direction": "above",
+        "minSamples": 24
+      },
+      "version": "duel-6b1d12f75aa4bbac4e12",
+      "rosterId": "arena-heros22-v1",
+      "currentMatch": "",
+      "registryVersion": "duel-heroes-127-v1"
+    },
+    {
+      "id": "fcf86ef09908706f483c32a1c1cfad66b3716d6bfd50982087ed41fa421f3b93",
+      "closed": true,
+      "heroes": [
+        99,
+        82
+      ],
+      "policy": {
+        "rttMs": 150,
+        "window": 30,
+        "lossPct": 5,
+        "jitterMs": 30,
+        "maxAgeMs": 3000,
+        "direction": "above",
+        "minSamples": 24
+      },
+      "version": "duel-7e767a8ed2b995465875",
+      "rosterId": "arena-first22-46-v1",
+      "currentMatch": "",
+      "registryVersion": "duel-heroes-127-v1"
+    }
+  ],
+  "matchRowsCreated": 0,
+  "sessionTokensOrRawReportsIncluded": false
+}
