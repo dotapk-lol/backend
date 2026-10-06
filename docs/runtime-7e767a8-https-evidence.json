@@ -1,0 +1,326 @@
+{
+  "result": "PASS",
+  "checks": [
+    {
+      "path": "/healthz",
+      "method": "GET",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/registry",
+      "method": "OPTIONS",
+      "status": 204,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/registry",
+      "method": "GET",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/registry",
+      "method": "GET",
+      "status": 403,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/v1/sessions",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/sessions",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/join",
+      "method": "POST",
+      "status": 409,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/join",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/join",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/44426b5e84dfd9eebd9612a9259977e4407adfc3210efb7899de0173a384b52b/answer",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/44426b5e84dfd9eebd9612a9259977e4407adfc3210efb7899de0173a384b52b",
+      "method": "GET",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/44426b5e84dfd9eebd9612a9259977e4407adfc3210efb7899de0173a384b52b",
+      "method": "DELETE",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/join",
+      "method": "POST",
+      "status": 409,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/join",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/join",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/2e1aa6f8902f31541d0a48dfc755a8ac2f7310a14c790a64752b8452c7a1a0da/answer",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/2e1aa6f8902f31541d0a48dfc755a8ac2f7310a14c790a64752b8452c7a1a0da",
+      "method": "GET",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/2e1aa6f8902f31541d0a48dfc755a8ac2f7310a14c790a64752b8452c7a1a0da",
+      "method": "DELETE",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms",
+      "method": "POST",
+      "status": 201,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/join",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/join",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/b082c2a6db2f7c8d9a968fd2c807af62360203a08488773215eb7c6b821b56a0/answer",
+      "method": "POST",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/b082c2a6db2f7c8d9a968fd2c807af62360203a08488773215eb7c6b821b56a0",
+      "method": "GET",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    },
+    {
+      "path": "/api/v1/rooms/b082c2a6db2f7c8d9a968fd2c807af62360203a08488773215eb7c6b821b56a0",
+      "method": "DELETE",
+      "status": 200,
+      "corsOrigin": "https://dotapk.lol"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "44426b5e84dfd9eebd9612a9259977e4407adfc3210efb7899de0173a384b52b",
+      "version": "duel-e63dafb5ae2070a90f8b",
+      "rosterId": "arena-first22-46-v1",
+      "policy": {
+        "direction": "above",
+        "rttMs": 150,
+        "jitterMs": 30,
+        "lossPct": 5,
+        "minSamples": 24,
+        "window": 30,
+        "maxAgeMs": 3000
+      },
+      "sixDigitStringCode": true,
+      "createIdempotency": true,
+      "guestReplay": true,
+      "closed": true
+    },
+    {
+      "id": "2e1aa6f8902f31541d0a48dfc755a8ac2f7310a14c790a64752b8452c7a1a0da",
+      "version": "duel-7e767a8ed2b995465875",
+      "rosterId": "arena-first22-46-v1",
+      "policy": {
+        "direction": "above",
+        "rttMs": 150,
+        "jitterMs": 30,
+        "lossPct": 5,
+        "minSamples": 24,
+        "window": 30,
+        "maxAgeMs": 3000
+      },
+      "sixDigitStringCode": true,
+      "createIdempotency": true,
+      "guestReplay": true,
+      "closed": true
+    },
+    {
+      "id": "b082c2a6db2f7c8d9a968fd2c807af62360203a08488773215eb7c6b821b56a0",
+      "version": "qa-ui-compat-legacy20",
+      "rosterId": "legacy-20-v1",
+      "policy": {
+        "direction": "above",
+        "rttMs": 150,
+        "jitterMs": 30,
+        "lossPct": 5,
+        "minSamples": 24,
+        "window": 30,
+        "maxAgeMs": 3000
+      },
+      "sixDigitStringCode": true,
+      "createIdempotency": true,
+      "guestReplay": true,
+      "closed": true
+    }
+  ],
+  "catalogHeroes": 127,
+  "gameplayRosters": [
+    {
+      "rosterId": "legacy-20-v1",
+      "registryVersion": "duel-heroes-127-v1",
+      "heroIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "gameVersions": []
+    },
+    {
+      "rosterId": "arena-first22-46-v1",
+      "registryVersion": "duel-heroes-127-v1",
+      "heroIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        25,
+        31,
+        45,
+        100,
+        21,
+        28,
+        29,
+        32,
+        36,
+        42,
+        47,
+        50,
+        55,
+        57,
+        58,
+        62,
+        71,
+        81,
+        82,
+        94,
+        99,
+        104,
+        106,
+        117,
+        121,
+        124
+      ],
+      "gameVersions": [
+        "duel-e63dafb5ae2070a90f8b",
+        "duel-7e767a8ed2b995465875"
+      ]
+    }
+  ],
+  "matchEndpointsCalled": false,
+  "matchRowsCreated": 0,
+  "tlsVerification": true,
+  "sessionTokensPrintedOrWritten": false,
+  "naturalBrowserOrQualityAcceptanceClaimed": false
+}

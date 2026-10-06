@@ -11,12 +11,22 @@
     "legacy-20-v1",
     "arena-first22-46-v1"
   ],
-  "approved46Build": "duel-e63dafb5ae2070a90f8b",
   "registryVersion": "duel-heroes-127-v1",
   "registrySha256": "5bca2bf8c43972583d1d58c876f5dcde039cabb0e662ac9536b0e7a53037f138",
   "productionApplied": true,
-  "manifestSha256": "868e39fad3f735c4f277b1d8f04aa9c7d991e91841d644ad12435943d1dc2a3b",
-  "binarySha256": "e6a9df663eb4816741fb84c6718bdc31d686d8e00745730957f97e0e376397f6",
-  "productionReleasePath": "/opt/dota-duel/releases/v1.3-e6a9df66/dueld",
-  "reproduceCommand": "python3 scripts/build-production-v13.py"
+  "manifestSha256": "95e4cc5bd35db5afdccfa094b28ca5b1ecdc0f3565e7445340443ab9b5f46163",
+  "binarySha256": "124a519ad6dda3be9a03eb76f4cc3032a1fc48ea58c4281d4779a95eadf5d718",
+  "productionReleasePath": "/opt/dota-duel/releases/v1.3-124a519a-ui-code/dueld",
+  "reproduceCommand": "python3 scripts/build-production-v13.py",
+  "approved46Builds": [
+    "duel-e63dafb5ae2070a90f8b",
+    "duel-7e767a8ed2b995465875"
+  ],
+  "frontendCommits": {
+    "duel-e63dafb5ae2070a90f8b": "3103f15607fd21e2817d7db330f4bd84a048ce04",
+    "duel-7e767a8ed2b995465875": "43bf16d1006468d8d630d14b2a7ed91022c6a77a"
+  },
+  "previousReleasePath": "/opt/dota-duel/releases/v1.3-e6a9df66/dueld",
+  "previousBinarySha256": "e6a9df663eb4816741fb84c6718bdc31d686d8e00745730957f97e0e376397f6",
+  "productionRecordedAtUTC": "2026-10-06T06:19:41.368933+00:00"
 }

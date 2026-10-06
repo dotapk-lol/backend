@@ -1,0 +1,165 @@
+{
+  "result": "PASS",
+  "checkedAtUTC": "2026-10-06T06:19:41.368933+00:00",
+  "source": "Production MySQL8.4.8 SELECT-only after HTTPS signaling acceptance",
+  "currentBinarySha256": "124a519ad6dda3be9a03eb76f4cc3032a1fc48ea58c4281d4779a95eadf5d718",
+  "originalMatchCount": 34,
+  "currentMatchCount": 34,
+  "all34PayloadHashesUnchanged": true,
+  "activeMatches": 0,
+  "matchRowsCreated": 0,
+  "all127IdentitiesAnd66MembershipRowsUnchanged": true,
+  "all8ViewDefinitionHashesUnchanged": true,
+  "protectedConfigurationAndCredentialMetadataUnchanged": true,
+  "existingServicePidsAndHealthUnchanged": true,
+  "migrations": "1,2,3,4",
+  "gameplayRosters": [
+    {
+      "rosterId": "legacy-20-v1",
+      "registryVersion": "duel-heroes-127-v1",
+      "heroIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "gameVersions": []
+    },
+    {
+      "rosterId": "arena-first22-46-v1",
+      "registryVersion": "duel-heroes-127-v1",
+      "heroIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        25,
+        31,
+        45,
+        100,
+        21,
+        28,
+        29,
+        32,
+        36,
+        42,
+        47,
+        50,
+        55,
+        57,
+        58,
+        62,
+        71,
+        81,
+        82,
+        94,
+        99,
+        104,
+        106,
+        117,
+        121,
+        124
+      ],
+      "gameVersions": [
+        "duel-e63dafb5ae2070a90f8b",
+        "duel-7e767a8ed2b995465875"
+      ]
+    }
+  ],
+  "closedRoomSnapshots": [
+    {
+      "id": "2e1aa6f8902f31541d0a48dfc755a8ac2f7310a14c790a64752b8452c7a1a0da",
+      "version": "duel-7e767a8ed2b995465875",
+      "rosterId": "arena-first22-46-v1",
+      "closed": true,
+      "policy": {
+        "rttMs": 150,
+        "window": 30,
+        "lossPct": 5,
+        "jitterMs": 30,
+        "maxAgeMs": 3000,
+        "direction": "above",
+        "minSamples": 24
+      },
+      "heroes": [
+        99,
+        82
+      ],
+      "currentMatchEmpty": true
+    },
+    {
+      "id": "44426b5e84dfd9eebd9612a9259977e4407adfc3210efb7899de0173a384b52b",
+      "version": "duel-e63dafb5ae2070a90f8b",
+      "rosterId": "arena-first22-46-v1",
+      "closed": true,
+      "policy": {
+        "rttMs": 150,
+        "window": 30,
+        "lossPct": 5,
+        "jitterMs": 30,
+        "maxAgeMs": 3000,
+        "direction": "above",
+        "minSamples": 24
+      },
+      "heroes": [
+        99,
+        82
+      ],
+      "currentMatchEmpty": true
+    },
+    {
+      "id": "b082c2a6db2f7c8d9a968fd2c807af62360203a08488773215eb7c6b821b56a0",
+      "version": "qa-ui-compat-legacy20",
+      "rosterId": "legacy-20-v1",
+      "closed": true,
+      "policy": {
+        "rttMs": 150,
+        "window": 30,
+        "lossPct": 5,
+        "jitterMs": 30,
+        "maxAgeMs": 3000,
+        "direction": "above",
+        "minSamples": 24
+      },
+      "heroes": [
+        0,
+        3
+      ],
+      "currentMatchEmpty": true
+    }
+  ],
+  "sessionTokensOrRawReportsIncluded": false,
+  "browserQualityAcceptanceClaimed": false
+}

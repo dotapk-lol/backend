@@ -1,14 +1,14 @@
 # DotaPK production deployment
 
-Current backend state (2026-10-03): **Go v1.3 and additive migration004 are deployed on the existing AgentSquared host; https://api.dotapk.lol external HTTPS/CORS and old20/new46 API acceptance passed.** Frontend publication/DNS belong to the separate frontend task. These records capture backend handoff before frozen46 publication and do not claim later browser gameplay.
+Current backend state (2026-10-06): **The existing46 roster now accepts both exact e63 and7e UI runtimes. Only its game_versions row was appended and DOTA DUEL Go restarted.** No hero roster, schema, credential, grant, Nginx route or other application changed. Frontend publication/browser acceptance belongs to the parent task. See the current runtime receipts below; October3 receipts remain historical.
 
 ## Repository and runtime
 
 - Private repository: https://github.com/dotapk-lol/backend
 - Host: existing `a2-webserver`, `43.162.87.40`, x86_64, OpenCloudOS,2 CPUs, about6.2GB available memory/69GB free disk at inspection.
 - Game service remains `dota-duel.service`, created during the authorized initial deployment and reused for this upgrade. No new MySQL instance, Docker, Redis, TURN, proxy daemon, certbot scheduler or other service was added.
-- Binary `/opt/dota-duel/releases/v1.3-e6a9df66/dueld`; `/opt/dota-duel/bin/dueld` symlink. Linux SHA256 `e6a9df663eb4816741fb84c6718bdc31d686d8e00745730957f97e0e376397f6`. Source snapshot `aa04e01f25ef2226b213cfc64e68c6c96fd0e18c` plus `deploy/production-v13/gameplay-rosters.json`, Go1.26.1; `scripts/build-production-v13.py` reproduces and checks the exact binary locally.
-- Production profile is only legacy20 plus `arena-first22-46-v1`, exact build `duel-e63dafb5ae2070a90f8b`. No catalog127/CORE4-24/later candidate activation. A generic default build still enables only legacy20.
+- Binary `/opt/dota-duel/releases/v1.3-124a519a-ui-code/dueld`; `/opt/dota-duel/bin/dueld` symlink. Linux SHA256 `124a519ad6dda3be9a03eb76f4cc3032a1fc48ea58c4281d4779a95eadf5d718`. Source snapshot `aa04e01f25ef2226b213cfc64e68c6c96fd0e18c` plus `deploy/production-v13/gameplay-rosters.json`, Go1.26.1; `scripts/build-production-v13.py` reproduces and checks the exact binary locally.
+- Production profile is only legacy20 plus `arena-first22-46-v1`, exact builds `duel-e63dafb5ae2070a90f8b` and `duel-7e767a8ed2b995465875`. No catalog127/CORE4-24/later candidate activation. A generic default build still enables only legacy20.
 - Go binds `127.0.0.1:18082` only. systemd DynamicUser, MemoryMax128MiB, CPUQuota25%, TasksMax32; DB pool5 open/2 idle. User authorized the server deployment and dedicated identity.
 - Exact CORS origin `https://dotapk.lol`; only trusted proxy `127.0.0.1`. Nginx overwrites X-Real-IP. Keep API DNS-only unless Cloudflare proxy client-IP trust is separately configured; never blindly trust incoming CF/X-Forwarded-For headers.
 
@@ -28,7 +28,16 @@ Existing Nginx1.26.3, Certbot2.8 webroot `/var/www/certbot`, and existing `/etc/
 
 Before changes, existing Nginx conf.d was copied to `/var/backups/dota-duel/initial-20261002/nginx-conf.d`; baseline hashes are in existing-nginx.sha256. A2/Pikoo files remain byte-for-byte unchanged after HTTP-stage and final443 reloads. Existing A2 healthz and Pikoo /health/live plus /health/ready returnedok; nginx/A2/MySQL/Redis stayedactive. A pre-existing unrelated tat_agent unit warning was observed, not modified.
 
-## v1.3 production release acceptance
+## October6 exact UI runtime registration
+
+- Fresh protected dedicated backup: `/var/backups/dota-duel/upgrade-v13-20261006T061701Z/`; SHA256 `598af630894f6ef9caa93ad0797ab11b2974da8d16a5706c235ca1e659dd4f2d`. Local protected copy was also SHA-verified; dumps are excluded from this repository.
+- `deploy/production-v13/append-runtime-7e767a8.sql` is a one-time compare-and-swap DML append, not a new migration or seed replacement. Exactly1 row changed, preserving e63 and the exact46 membership. Do not rerun blindly.
+- Only Go restarted,0.188s to loopback ready, PID151973/NRestarts0 at this check. Existing service PIDs, A2/Pikoo health, all protected configuration and credential/grants remained unchanged.
+- 29 external TLS/CORS/signaling checks passed across old46, new46 and omitted-roster legacy20; mixed-version joins rejected. Three signaling rooms were closed, no matches created. Actual frontend43bf built compatibility validator accepted both exact builds and all46 IDs. No browser RTT/quality or combat acceptance is claimed.
+- All34 existing match payload hashes,127 identities,66 membership rows and8 view definitions were preserved; migrations remain1–4, active matches0 at handoff.
+- Current evidence: `runtime-7e767a8-deployment.json`, `runtime-7e767a8-https-evidence.json`, `runtime-7e767a8-candidate-registry.json`, `runtime-7e767a8-sql-evidence.json`, `runtime-7e767a8-build-reproduction.json`. The immutable server build metadata records build facts; repository metadata additionally records successful production application.
+
+## October3 v1.3 production release acceptance (historical)
 
 - No active match before restart. Protected dedicated backups retained before target8.4 migration (`/var/backups/dota-duel/upgrade-v13-20261003T025426Z/`) and before Go switch (`/var/backups/dota-duel/upgrade-v13-20261003T030233Z/`). Full dumps are not in this repository. An earlier dedicated backup was actually restored into a separate local9.6 socket, reproducing all7 original table fingerprints and rehearsing the additive migration; this did not replace target8.4 verification.
 - Actual MySQL8.4.8 executed004 and46 registration. Original22 match payloads/29 immutable report digests and old4 view definitions unchanged; all127 SQL mappings equal the frozen identity projection. Membership20+46 and sole46 binding verified. The existing service continued normal expiry housekeeping of session/request references; match/report evidence was retained.
@@ -49,6 +58,8 @@ Remaining product acceptance: real-browser frontend domain PVP/gameplay tests co
 
 ## Rollback and operations
 
-Before expanded rooms are used, code rollback restores the symlink to `/opt/dota-duel/releases/v1.2-07e2845b/dueld` (SHA256 `07e2845b60e8ac734ab4244fba193424de7d6b35dd997137ad02fc7b5852a3fb`) and restarts only `dota-duel.service`. Keep Nginx routes, unit, credentials, grants, additive tables/views and every record. After46 usage, first restore old20 frontend, stop new46 starts/rematches, finish or correctly abort existing46 sessions, close invitations and confirm no live/pending46 before downgrade. v1.2 is not a metadata-preserving46 writer; retain compatible v1.3 for inspection/history. Never overwrite an online database with an old dump, drop evidence, or touch business data. Restore only to an isolated recovery instance for investigation/reconciliation.
+For the October6 UI registration, the prior compatible46 binary is `/opt/dota-duel/releases/v1.3-e6a9df66/dueld` (SHA256 `e6a9df663eb4816741fb84c6718bdc31d686d8e00745730957f97e0e376397f6`). Before any new-runtime match exists, restore that symlink and restart only `dota-duel.service`; revert only the exact `[e63,7e]` version list with compare-and-swap. After new-runtime usage, first stop new7e starts/rematches, finish or correctly abort sessions and close invitations; retain a compatible v1.3 reader/writer until drained. Keep every match/report and never restore an old dump over production.
+
+The original October3 downgrade procedure is historical: before expanded rooms are used, code rollback restores the symlink to `/opt/dota-duel/releases/v1.2-07e2845b/dueld` (SHA256 `07e2845b60e8ac734ab4244fba193424de7d6b35dd997137ad02fc7b5852a3fb`) and restarts only `dota-duel.service`. Keep Nginx routes, unit, credentials, grants, additive tables/views and every record. After46 usage, first restore old20 frontend, stop new46 starts/rematches, finish or correctly abort existing46 sessions, close invitations and confirm no live/pending46 before downgrade. v1.2 is not a metadata-preserving46 writer; retain compatible v1.3 for inspection/history. Never overwrite an online database with an old dump, drop evidence, or touch business data. Restore only to an isolated recovery instance for investigation/reconciliation.
 
 No other service restarts, MySQL setting changes, firewall/security-group expansion, host access keys or OAuth scope changes were performed. Monitor new DB/binlog growth and coordinate backup coverage: current AgentSquared backup implementation has not yet been changed to include this new schema. PVP peer agreement and PVE/local reports remain noncompetitive anonymous statistics; filter QA versions and keep transport/trust cohorts separate.

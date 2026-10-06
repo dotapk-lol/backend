@@ -1,0 +1,4 @@
+=== RUN   TestLegacyRequestBytes
+--- PASS: TestLegacyRequestBytes (0.00s)
+PASS
+ok  	dota-duel-backend/internal/duel	0.656s
