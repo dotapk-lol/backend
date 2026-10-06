@@ -9,8 +9,8 @@ import subprocess
 import tempfile
 
 SOURCE = 'aa04e01f25ef2226b213cfc64e68c6c96fd0e18c'
-MANIFEST_SHA = '95e4cc5bd35db5afdccfa094b28ca5b1ecdc0f3565e7445340443ab9b5f46163'
-BINARY_SHA = '124a519ad6dda3be9a03eb76f4cc3032a1fc48ea58c4281d4779a95eadf5d718'
+MANIFEST_SHA = '165a30e366baa186c4ec35463fda4ca56ffc7a9f6603b1de754a0fcf34d4b0de'
+BINARY_SHA = 'f041e4c6dde83461fd356849f31df0ff5d2837a2a05f5230445d5c11daa23dd1'
 repo = pathlib.Path(__file__).resolve().parent.parent
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--output', type=pathlib.Path, default=repo/'bin/dueld-production-v13-linux-amd64')
@@ -35,8 +35,9 @@ if actual_go!=expected_go:
 with tempfile.TemporaryDirectory(prefix='duel-production-v13-build-',dir='/tmp') as tmp:
     overlay = pathlib.Path(tmp)/'overlay.json'
     overlay.write_text(json.dumps({'Replace':{str(repo/'internal/duel/registry/gameplay-rosters.json'):str(manifest)}}))
-    env=dict(os.environ,CGO_ENABLED='0',GOOS='linux',GOARCH='amd64',GOPROXY='off',GOFLAGS='')
-    subprocess.run(['go','build','-buildvcs=false','-overlay',str(overlay),'-trimpath','-o',str(output),'./cmd/dueld'],cwd=repo,env=env,check=True)
+    env=dict(os.environ,CGO_ENABLED='0',GOOS='linux',GOARCH='amd64',GOPROXY='off',GOFLAGS='',GOMAXPROCS='2')
+    env.setdefault('GOCACHE',str(pathlib.Path(tmp)/'cache'))
+    subprocess.run(['go','build','-p=1','-buildvcs=false','-overlay',str(overlay),'-trimpath','-o',str(output),'./cmd/dueld'],cwd=repo,env=env,check=True)
 actual=hashlib.sha256(output.read_bytes()).hexdigest()
 if actual != BINARY_SHA:
     raise SystemExit('Reproduced binary differs from production: '+actual)

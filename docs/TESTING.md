@@ -2,7 +2,9 @@
 
 ## Production v1.3 — 2026-10-03 UTC
 
-Current October6 UI registration: old/new exact46 runtime signaling and actual candidate validator passed;34 payload hashes/127 identities/66 memberships/8 view definitions unchanged, three rooms closed and no matches created. See `runtime-7e767a8-*.json`. Browser combat/AUTO quality acceptance is separate.
+Current October6 independent22 release: `test-production-v13.py` passes all127 identity selections across room/join/PVE/local/BC boundaries,105 exclusions, exact builds and legacy request/result/rematch compatibility.37 external HTTPS checks pass, new22 and old46 actual candidate validators verified. All34 existing payload hashes/127 mappings/old66 members/8 views retained;22 new members exact, three rooms closed, no matches created. See `heros22-*.json` and `heros22-profile-tests.txt`. Natural browser/combat/quality QA is separate.
+
+Historical October6 UI registration: old/new exact46 runtime signaling and actual candidate validator passed;34 payload hashes/127 identities/66 memberships/8 view definitions unchanged, three rooms closed and no matches created. See `runtime-7e767a8-*.json`. Browser combat/AUTO quality acceptance is separate.
 
 Historical October3 acceptance: target MySQL8.4.8 migrations1–4 and frozen20+46 Go release were deployed.49 external TLS/CORS/API checks passed; original22 payload hashes/29 report digests preserved,7 explicitly synthetic HTTP games/10 reports independently verified, all v3 integrity counters0. New46 HTTP smoke games are aborted; the one synthetic completion is isolated under `qa-v13-legacy20`. This does not claim natural46 browser acceptance. See `production-v13-deployment.json`, `production-v13-https-evidence.json` and `production-v13-sql-evidence.json`. The exact local-only binary reproduction check is `production-v13-build-reproduction.json`.
 

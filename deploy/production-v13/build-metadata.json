@@ -9,14 +9,15 @@
   ],
   "gameplayRosters": [
     "legacy-20-v1",
-    "arena-first22-46-v1"
+    "arena-first22-46-v1",
+    "arena-heros22-v1"
   ],
   "registryVersion": "duel-heroes-127-v1",
   "registrySha256": "5bca2bf8c43972583d1d58c876f5dcde039cabb0e662ac9536b0e7a53037f138",
   "productionApplied": true,
-  "manifestSha256": "95e4cc5bd35db5afdccfa094b28ca5b1ecdc0f3565e7445340443ab9b5f46163",
-  "binarySha256": "124a519ad6dda3be9a03eb76f4cc3032a1fc48ea58c4281d4779a95eadf5d718",
-  "productionReleasePath": "/opt/dota-duel/releases/v1.3-124a519a-ui-code/dueld",
+  "manifestSha256": "165a30e366baa186c4ec35463fda4ca56ffc7a9f6603b1de754a0fcf34d4b0de",
+  "binarySha256": "f041e4c6dde83461fd356849f31df0ff5d2837a2a05f5230445d5c11daa23dd1",
+  "productionReleasePath": "/opt/dota-duel/releases/v1.3-f041e4c6-heros22/dueld",
   "reproduceCommand": "python3 scripts/build-production-v13.py",
   "approved46Builds": [
     "duel-e63dafb5ae2070a90f8b",
@@ -24,9 +25,19 @@
   ],
   "frontendCommits": {
     "duel-e63dafb5ae2070a90f8b": "3103f15607fd21e2817d7db330f4bd84a048ce04",
-    "duel-7e767a8ed2b995465875": "43bf16d1006468d8d630d14b2a7ed91022c6a77a"
+    "duel-7e767a8ed2b995465875": "43bf16d1006468d8d630d14b2a7ed91022c6a77a",
+    "duel-27c78aa4cfc8facc8a23": "4608b48a9f14194eeda4ccf9bddd263c801d77e5"
   },
-  "previousReleasePath": "/opt/dota-duel/releases/v1.3-e6a9df66/dueld",
-  "previousBinarySha256": "e6a9df663eb4816741fb84c6718bdc31d686d8e00745730957f97e0e376397f6",
-  "productionRecordedAtUTC": "2026-10-06T06:19:41.368933+00:00"
+  "previousReleasePath": "/opt/dota-duel/releases/v1.3-124a519a-ui-code/dueld",
+  "previousBinarySha256": "124a519ad6dda3be9a03eb76f4cc3032a1fc48ea58c4281d4779a95eadf5d718",
+  "approved22Builds": [
+    "duel-27c78aa4cfc8facc8a23"
+  ],
+  "heros22Release": {
+    "rulesHash": "5747bdeffe9948c67882ea02858e7958a5ea15be090b08d9ac6d8561a57970a4",
+    "wireRulesetHash": "c1f4ccd86a0dc21f293d7a56489d10a0ecaebcc7d08260b33218b809f983122f",
+    "backendRulesExecution": false,
+    "frozenFrontendManifestSha256": "d35d3b0635ce304c2f260bc8c060c7522bca4582c1582e417ccc7d41cf5968da"
+  },
+  "productionRecordedAtUTC": "2026-10-06T08:15:54.433768+00:00"
 }

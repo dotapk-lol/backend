@@ -81,5 +81,36 @@
       "duel-e63dafb5ae2070a90f8b",
       "duel-7e767a8ed2b995465875"
     ]
+  },
+  {
+    "rosterId": "arena-heros22-v1",
+    "registryVersion": "duel-heroes-127-v1",
+    "heroIds": [
+      1,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      15,
+      17,
+      18,
+      28,
+      31,
+      32,
+      36,
+      50,
+      55,
+      57,
+      58,
+      62,
+      71,
+      81,
+      82
+    ],
+    "gameVersions": [
+      "duel-27c78aa4cfc8facc8a23"
+    ]
   }
 ]

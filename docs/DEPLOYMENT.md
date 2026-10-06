@@ -1,14 +1,14 @@
 # DotaPK production deployment
 
-Current backend state (2026-10-06): **The existing46 roster now accepts both exact e63 and7e UI runtimes. Only its game_versions row was appended and DOTA DUEL Go restarted.** No hero roster, schema, credential, grant, Nginx route or other application changed. Frontend publication/browser acceptance belongs to the parent task. See the current runtime receipts below; October3 receipts remain historical.
+Current backend state (2026-10-06): **The independent22 roster is registered with its sole27c runtime, preserving the old legacy20/46 rosters and builds. Only additive roster metadata and the Go embedded production profile changed; DOTA DUEL alone restarted.** No existing roster, hero identity, schema, credential, grant, Nginx route or other application changed. Frontend publication/browser acceptance belongs to the parent task. See the current runtime receipts below; October3 receipts remain historical.
 
 ## Repository and runtime
 
 - Private repository: https://github.com/dotapk-lol/backend
 - Host: existing `a2-webserver`, `43.162.87.40`, x86_64, OpenCloudOS,2 CPUs, about6.2GB available memory/69GB free disk at inspection.
 - Game service remains `dota-duel.service`, created during the authorized initial deployment and reused for this upgrade. No new MySQL instance, Docker, Redis, TURN, proxy daemon, certbot scheduler or other service was added.
-- Binary `/opt/dota-duel/releases/v1.3-124a519a-ui-code/dueld`; `/opt/dota-duel/bin/dueld` symlink. Linux SHA256 `124a519ad6dda3be9a03eb76f4cc3032a1fc48ea58c4281d4779a95eadf5d718`. Source snapshot `aa04e01f25ef2226b213cfc64e68c6c96fd0e18c` plus `deploy/production-v13/gameplay-rosters.json`, Go1.26.1; `scripts/build-production-v13.py` reproduces and checks the exact binary locally.
-- Production profile is only legacy20 plus `arena-first22-46-v1`, exact builds `duel-e63dafb5ae2070a90f8b` and `duel-7e767a8ed2b995465875`. No catalog127/CORE4-24/later candidate activation. A generic default build still enables only legacy20.
+- Binary `/opt/dota-duel/releases/v1.3-f041e4c6-heros22/dueld`; `/opt/dota-duel/bin/dueld` symlink. Linux SHA256 `f041e4c6dde83461fd356849f31df0ff5d2837a2a05f5230445d5c11daa23dd1`. Source snapshot `aa04e01f25ef2226b213cfc64e68c6c96fd0e18c` plus `deploy/production-v13/gameplay-rosters.json`, Go1.26.1; `scripts/build-production-v13.py` reproduces and checks the exact binary locally.
+- Production profile retains legacy20 and `arena-first22-46-v1` (e63/7e), adding only `arena-heros22-v1` for `duel-27c78aa4cfc8facc8a23`. No catalog127/CORE4-24/later candidate activation. A generic default build still enables only legacy20.
 - Go binds `127.0.0.1:18082` only. systemd DynamicUser, MemoryMax128MiB, CPUQuota25%, TasksMax32; DB pool5 open/2 idle. User authorized the server deployment and dedicated identity.
 - Exact CORS origin `https://dotapk.lol`; only trusted proxy `127.0.0.1`. Nginx overwrites X-Real-IP. Keep API DNS-only unless Cloudflare proxy client-IP trust is separately configured; never blindly trust incoming CF/X-Forwarded-For headers.
 
@@ -28,7 +28,17 @@ Existing Nginx1.26.3, Certbot2.8 webroot `/var/www/certbot`, and existing `/etc/
 
 Before changes, existing Nginx conf.d was copied to `/var/backups/dota-duel/initial-20261002/nginx-conf.d`; baseline hashes are in existing-nginx.sha256. A2/Pikoo files remain byte-for-byte unchanged after HTTP-stage and final443 reloads. Existing A2 healthz and Pikoo /health/live plus /health/ready returnedok; nginx/A2/MySQL/Redis stayedactive. A pre-existing unrelated tat_agent unit warning was observed, not modified.
 
-## October6 exact UI runtime registration
+## October6 independent22 release
+
+- Frozen frontend4608b48 and all36 handoff files SHA-verified; independent review SHA4b3019ae verified. Exact22 IDs and sole27c build come from that freeze; registry127 and all prior mappings are unchanged.
+- Dedicated protected backup `/var/backups/dota-duel/upgrade-v13-20261006T081134Z`, SHA256 `27d717948d482b970b8817271974c74a6f3be8a2aa7a42e1222cdf44d6d541b9`; local0600 copy verified. No dump or credential is committed.
+- `register-heros22.sql` transaction inserts1 independent roster and22 membership rows, without an upsert or old-row update. This is additive DML using the existing operator, not a new migration/privilege.
+- Only Go restarted;0.189s to loopback ready. Protected configuration, runtime grants and credentials, existing service PIDs and A2/Pikoo health unchanged.
+- Serial in-memory tests cover all127 IDs at room/join/PVE/local/BC boundaries, old request bytes and result/rematch behavior.37 external TLS/CORS/signaling/rejection checks pass. Three rooms closed; no match created. Actual22 built modules match frozen archive (93 JS files); their registry validator and both old46 validators return verified.
+- All34 payload hashes,127 identities, old66 membership rows and8 view definitions retained; new22 membership exact. Migrations still1–4.
+- Current evidence: `heros22-deployment.json`, `heros22-https-evidence.json`, `heros22-candidate-registry.json`, `heros22-sql-evidence.json`, `heros22-build-reproduction.json`, `heros22-profile-tests.txt`, `heros22-freeze-verification.json`, `heros22-review-verification.json`. These are backend/API checks; no natural browser/device/WebRTC or skill acceptance is claimed.
+
+## October6 exact UI runtime registration (historical)
 
 - Fresh protected dedicated backup: `/var/backups/dota-duel/upgrade-v13-20261006T061701Z/`; SHA256 `598af630894f6ef9caa93ad0797ab11b2974da8d16a5706c235ca1e659dd4f2d`. Local protected copy was also SHA-verified; dumps are excluded from this repository.
 - `deploy/production-v13/append-runtime-7e767a8.sql` is a one-time compare-and-swap DML append, not a new migration or seed replacement. Exactly1 row changed, preserving e63 and the exact46 membership. Do not rerun blindly.
@@ -58,7 +68,9 @@ Remaining product acceptance: real-browser frontend domain PVP/gameplay tests co
 
 ## Rollback and operations
 
-For the October6 UI registration, the prior compatible46 binary is `/opt/dota-duel/releases/v1.3-e6a9df66/dueld` (SHA256 `e6a9df663eb4816741fb84c6718bdc31d686d8e00745730957f97e0e376397f6`). Before any new-runtime match exists, restore that symlink and restart only `dota-duel.service`; revert only the exact `[e63,7e]` version list with compare-and-swap. After new-runtime usage, first stop new7e starts/rematches, finish or correctly abort sessions and close invitations; retain a compatible v1.3 reader/writer until drained. Keep every match/report and never restore an old dump over production.
+For the current22 registration, prior compatible legacy20/46 binary is `/opt/dota-duel/releases/v1.3-124a519a-ui-code/dueld` (SHA256 `124a519ad6dda3be9a03eb76f4cc3032a1fc48ea58c4281d4779a95eadf5d718`). Before any new27c match or live22 room exists, switch frontend back first, restore that symlink and restart only DOTA DUEL. The deployment rollback can remove only its22 members and single roster row, never matches/reports. After any new22 usage, retain a compatible v1.3 reader/writer and drain rooms before a downgrade; keep all used registry metadata and records. Never restore a dump over production.
+
+For the historical October6 UI registration, the prior compatible46 binary is `/opt/dota-duel/releases/v1.3-e6a9df66/dueld` (SHA256 `e6a9df663eb4816741fb84c6718bdc31d686d8e00745730957f97e0e376397f6`). Before any new-runtime match exists, restore that symlink and restart only `dota-duel.service`; revert only the exact `[e63,7e]` version list with compare-and-swap. After new-runtime usage, first stop new7e starts/rematches, finish or correctly abort sessions and close invitations; retain a compatible v1.3 reader/writer until drained. Keep every match/report and never restore an old dump over production.
 
 The original October3 downgrade procedure is historical: before expanded rooms are used, code rollback restores the symlink to `/opt/dota-duel/releases/v1.2-07e2845b/dueld` (SHA256 `07e2845b60e8ac734ab4244fba193424de7d6b35dd997137ad02fc7b5852a3fb`) and restarts only `dota-duel.service`. Keep Nginx routes, unit, credentials, grants, additive tables/views and every record. After46 usage, first restore old20 frontend, stop new46 starts/rematches, finish or correctly abort existing46 sessions, close invitations and confirm no live/pending46 before downgrade. v1.2 is not a metadata-preserving46 writer; retain compatible v1.3 for inspection/history. Never overwrite an online database with an old dump, drop evidence, or touch business data. Restore only to an isolated recovery instance for investigation/reconciliation.
 
