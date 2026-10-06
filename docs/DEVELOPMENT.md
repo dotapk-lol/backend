@@ -75,3 +75,7 @@ curl --fail -X OPTIONS -H 'Origin: http://127.0.0.1:4173' -H 'Access-Control-Req
 README 中的 Go 单元测试不需要真实数据库；`scripts/test-production-v13.py` 仅用临时 overlay 测 production profile 准入，拒绝模式/build 不符，串行低内存运行。MySQL integration 会清表，只能用 TESTING.md 明确允许的可丢弃 socket 环境。
 
 `duel_hero_balance_v3` 按 game_version、roster/registry、mode、status、trust、transport、AI 难度、seat、hero/opponent 分组。PVP 双 seat 可形成两个 appearance，PVE 只统计人类 seat 0；`appearances` 不等于唯一比赛数。质量 view 不自动纠正异常，汇总前仍需检查重复/时间/身份/可信度/测试局。公开平衡数据只按 [balance-data 说明](https://github.com/dotapk-lol/heros/blob/main/balance-data/README.md) 内部手动整理和人工审阅；不提交原始 SELECT * 结果、match ID 或报告 body。
+
+## 许可范围
+
+本项目自有代码与开发者文档采用 [MIT](../LICENSE)；修改或分发时保留版权和许可声明。第三方图片、音乐、字体、商标与依赖各自适用的许可保持独立，不包含在项目自有代码 MIT 授权内。保留上游 LICENSE/NOTICE 与来源记录；素材是否可再分发应按素材自身授权核实，不能仅凭项目 LICENSE 判断。

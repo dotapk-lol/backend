@@ -71,4 +71,4 @@ python3 scripts/test-production-v13.py
 
 ## 许可
 
-本仓库目前没有 LICENSE；公开可见不等于已采用 MIT。[heros 的 MIT](https://github.com/dotapk-lol/heros/blob/main/LICENSE) 仅覆盖其原有范围，不自动授权前后端。Valve 名称、商标、图像、音乐及其他第三方素材始终要单独核对许可，代码许可不包含这些素材，不表示 Valve 背书。
+本项目自有代码与开发者文档采用 [MIT 许可](LICENSE)，版权归属为 `Copyright (c) 2026 dotapk-lol contributors`。使用、修改和分发时保留许可及版权声明。第三方依赖遵循各自许可，保留其 LICENSE/NOTICE；项目 MIT 不取代依赖许可。Valve 名称、商标、图像、音乐及其他第三方素材不纳入自有代码 MIT，复用时分别核对授权，不表示 Valve 背书。[heros](https://github.com/dotapk-lol/heros/blob/main/LICENSE) 保持其独立 MIT 许可。
