@@ -75,3 +75,5 @@ Match元数据含 id/roomId/version/players[{id,hero}]、mode/trust/ready/report
 400 shape/input、401会话、403成员/origin、404缺失、409座位/幂等/版本/状态、413 body>45KB、415媒体类型、429限流+Retry-After、503存储/服务。decoder拒未知/缺失/null字段与错误数组长度，MySQL不可用写失败，无D1/memory fallback。
 
 迁移003增加独立v2 local/BC组，004增加身份/roster表和v3 view，不改旧记录/v1/v2含义。按build、roster/registry、mode/status/trust/transport、AI难度、英雄/对手/seat分组，PVP可每局两个appearance、PVE仅人类seat0；pending/disputed/aborted不计胜率，未映射/异常需人工质量审阅。没有公共统计/导出、排行榜、登录/管理UI、服务器模拟或反作弊。公开[平衡快照](https://github.com/dotapk-lol/heros/blob/main/balance-data/README.zh-CN.md)人工汇总审阅，不发原报告/标识。
+
+当前源码新增按精确构建启用的[进房选人与同房重赛](SELECTION.zh-CN.md)，默认功能绑定为空，不代表生产启用。内存/race 与临时 MySQL 测试覆盖 epoch 重放、本人锁定、旧局不可变、并发锁定、唯一建局、过期和旧请求字节兼容。

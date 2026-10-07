@@ -41,6 +41,7 @@ func TestMySQLIntegration(t *testing.T) {
 	runSuite(t, factory)
 	runLocalSuite(t, factory)
 	runReconciliationSuite(t, factory)
+	runSelectionSuite(t, factory)
 	runRegistrySuite(t, factory)
 	runRegistrySQL(t, store, factory)
 	t.Run("sql-cleanup-and-analysis", func(t *testing.T) {

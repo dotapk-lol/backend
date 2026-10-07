@@ -42,8 +42,11 @@ type requestRef struct {
 
 func reqKey(scope, token, key string) string { return hash(scope + ":" + token + ":" + key) }
 func (s *Service) CreateRoom(ctx context.Context, token string, in CreateRoom) (out RoomView, err error) {
-	if !keyPattern.MatchString(in.RequestID) || !versionPattern.MatchString(in.Version) || !in.Offer.valid("offer") || !in.Policy.valid() {
+	if !keyPattern.MatchString(in.RequestID) || !versionPattern.MatchString(in.Version) || !in.Offer.valid("offer") || !(in.Policy.valid() || s.registry.selectionEnabled(in.Version) && in.Policy.casual()) {
 		return out, bad("invalid room")
+	}
+	if s.registry.selectionEnabled(in.Version) && in.Hero != 1 {
+		return out, bad("seat reservation requires default hero 1")
 	}
 	roster, err := s.registry.resolve(in.RosterID, in.Version, in.Hero)
 	if err != nil {
@@ -116,6 +119,9 @@ func (s *Service) JoinRoom(ctx context.Context, token string, in JoinRoom) (out 
 	if !codePattern.MatchString(in.Code) {
 		return out, bad("code must contain exactly six digits")
 	}
+	if s.registry.selectionEnabled(in.Version) && in.Hero != 1 {
+		return out, bad("seat reservation requires default hero 1")
+	}
 	roster, err := s.registry.resolve(in.RosterID, in.Version, in.Hero)
 	if err != nil {
 		return out, err
@@ -154,7 +160,7 @@ func (s *Service) JoinRoom(ctx context.Context, token string, in JoinRoom) (out 
 			if r.Tokens[1] != hash(token) {
 				return conflict("room full")
 			}
-			if r.Players[1].Hero != in.Hero {
+			if !s.registry.selectionEnabled(r.Version) && r.Players[1].Hero != in.Hero {
 				return conflict("hero already locked")
 			}
 			out = r.view()
@@ -248,13 +254,17 @@ func (s *Service) CloseRoom(ctx context.Context, token, id string) error {
 }
 
 type CreateMatch struct {
-	RequestID string `json:"requestId"`
-	Version   string `json:"version"`
+	RequestID      string `json:"requestId"`
+	Version        string `json:"version"`
+	SelectionEpoch string `json:"selectionEpoch,omitempty" wire:"optional-nonempty"`
 }
 
 func (s *Service) CreateMatch(ctx context.Context, token, roomID string, in CreateMatch) (out Match, err error) {
 	if !keyPattern.MatchString(in.RequestID) {
 		return out, bad("invalid requestId")
+	}
+	if in.SelectionEpoch != "" && !epochPattern.MatchString(in.SelectionEpoch) {
+		return out, bad("invalid selection epoch")
 	}
 	err = s.Store.Run(ctx, func(t Tx) error {
 		r, seat, e := s.room(t, token, roomID)
@@ -270,6 +280,9 @@ func (s *Service) CreateMatch(ctx context.Context, token, roomID string, in Crea
 		key := reqKey("match:"+roomID, token, in.RequestID)
 		var ref requestRef
 		if e = t.Get("request", key, &ref); e == nil {
+			if ref.Digest != digest(in) {
+				return conflict("requestId reused with different body")
+			}
 			return t.Get("match", ref.ID, &out)
 		} else if !errors.Is(e, ErrMissing) {
 			return e
@@ -280,6 +293,19 @@ func (s *Service) CreateMatch(ctx context.Context, token, roomID string, in Crea
 		}
 		if now >= r.CreatedAt+SessionTTL.Milliseconds() {
 			return conflict("room session expired")
+		}
+		if s.registry.selectionEnabled(r.Version) || r.Selection != nil {
+			if !s.registry.selectionEnabled(r.Version) || r.Selection == nil || in.SelectionEpoch != r.Selection.Epoch || !r.Selection.Locked[0] || !r.Selection.Locked[1] || r.Selection.MatchID != "" {
+				return conflict("selection not locked or already consumed")
+			}
+			if e = s.selectionRoom(t, r, in.Version, now); e != nil {
+				return e
+			}
+			if _, e = s.registry.resolve(r.RosterID, r.Version, r.Players[0].Hero, r.Players[1].Hero); e != nil {
+				return e
+			}
+		} else if in.SelectionEpoch != "" {
+			return conflict("selection protocol is not enabled")
 		}
 		if r.CurrentMatch != "" {
 			var prev Match
@@ -295,11 +321,14 @@ func (s *Service) CreateMatch(ctx context.Context, token, roomID string, in Crea
 				return conflict("previous match still active or pending")
 			}
 		}
-		out = Match{ID: randomID(), RoomID: roomID, RequestID: in.RequestID, Version: r.Version, RosterID: effectiveRoster(r.RosterID), RegistryVersion: effectiveRegistry(r.RegistryVersion), Players: r.Players, Mode: "pvp", Transport: "webrtc", ParticipantKinds: [2]string{"anonymous_session", "anonymous_session"}, Trust: "peer_agreement", Status: "awaiting_ready", CreatedAt: now, Deadline: now + ReportTTL.Milliseconds(), Winner: -1}
+		out = Match{SelectionEpoch: in.SelectionEpoch, ID: randomID(), RoomID: roomID, RequestID: in.RequestID, Version: r.Version, RosterID: effectiveRoster(r.RosterID), RegistryVersion: effectiveRegistry(r.RegistryVersion), Players: r.Players, Mode: "pvp", Transport: "webrtc", ParticipantKinds: [2]string{"anonymous_session", "anonymous_session"}, Trust: "peer_agreement", Status: "awaiting_ready", CreatedAt: now, Deadline: now + ReportTTL.Milliseconds(), Winner: -1}
 		if e = t.Insert("match", out.ID, out, out.Deadline); e != nil {
 			return e
 		}
 		r.CurrentMatch = out.ID
+		if r.Selection != nil {
+			r.Selection.MatchID = out.ID
+		}
 		if e = t.Put("room", r.ID, r, r.Expires); e != nil {
 			return e
 		}

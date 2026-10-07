@@ -46,6 +46,8 @@ func randomCode() (string, error) {
 	return fmt.Sprintf("%06d", n.Int64()), nil
 }
 
+var epochPattern = regexp.MustCompile(`^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$`)
+
 var codePattern = regexp.MustCompile(`^[0-9]{6}$`)
 var keyPattern = regexp.MustCompile(`^[a-zA-Z0-9_-]{16,80}$`)
 var versionPattern = regexp.MustCompile(`^[a-zA-Z0-9._-]{1,100}$`)
@@ -82,11 +84,28 @@ func (p Policy) valid() bool {
 	return (p.Direction == "above" || p.Direction == "below") && p.RTTMS >= 1 && p.RTTMS <= 2000 && p.JitterMS == 30 && p.LossPct == 5 && p.MinSamples == 24 && p.Window == 30 && p.MaxAgeMS == 3000
 }
 
+func (p Policy) casual() bool {
+	return p == (Policy{"above", 500, 250, 30, 1, 12, 10000})
+}
+
 type Player struct {
 	ID   string `json:"id"`
 	Hero int    `json:"hero"`
 }
+type SelectionView struct {
+	Epoch           string  `json:"epoch"`
+	PreviousEpoch   string  `json:"previousEpoch"`
+	PreviousMatchID string  `json:"previousMatchId"`
+	Locked          [2]bool `json:"locked"`
+}
+
+// Consumption is private; clients see only the current selection and their locks.
+type Selection struct {
+	SelectionView
+	MatchID string `json:"matchId,omitempty"`
+}
 type Room struct {
+	Selection       *Selection   `json:"selection,omitempty"`
 	RosterID        string       `json:"rosterId,omitempty"`
 	RegistryVersion string       `json:"registryVersion,omitempty"`
 	ID              string       `json:"id"`
@@ -104,22 +123,28 @@ type Room struct {
 	CurrentMatch    string       `json:"currentMatch"`
 }
 type RoomView struct {
-	RosterID        string       `json:"rosterId,omitempty"`
-	RegistryVersion string       `json:"registryVersion,omitempty"`
-	ID              string       `json:"id"`
-	Code            string       `json:"code"`
-	Version         string       `json:"version"`
-	Policy          Policy       `json:"policy"`
-	Players         [2]Player    `json:"players"`
-	Offer           *Description `json:"offer,omitempty"`
-	Answer          *Description `json:"answer,omitempty"`
-	Expires         int64        `json:"expires"`
-	CurrentMatch    string       `json:"currentMatch"`
-	Closed          bool         `json:"closed"`
+	Selection       *SelectionView `json:"selection,omitempty"`
+	RosterID        string         `json:"rosterId,omitempty"`
+	RegistryVersion string         `json:"registryVersion,omitempty"`
+	ID              string         `json:"id"`
+	Code            string         `json:"code"`
+	Version         string         `json:"version"`
+	Policy          Policy         `json:"policy"`
+	Players         [2]Player      `json:"players"`
+	Offer           *Description   `json:"offer,omitempty"`
+	Answer          *Description   `json:"answer,omitempty"`
+	Expires         int64          `json:"expires"`
+	CurrentMatch    string         `json:"currentMatch"`
+	Closed          bool           `json:"closed"`
 }
 
 func (r Room) view() RoomView {
-	return RoomView{ID: r.ID, Code: r.Code, Version: r.Version, Policy: r.Policy, Players: r.Players, Offer: r.Offer, Answer: r.Answer, Expires: r.Expires, CurrentMatch: r.CurrentMatch, Closed: r.Closed, RosterID: effectiveRoster(r.RosterID), RegistryVersion: effectiveRegistry(r.RegistryVersion)}
+	var selection *SelectionView
+	if r.Selection != nil {
+		v := r.Selection.SelectionView
+		selection = &v
+	}
+	return RoomView{Selection: selection, ID: r.ID, Code: r.Code, Version: r.Version, Policy: r.Policy, Players: r.Players, Offer: r.Offer, Answer: r.Answer, Expires: r.Expires, CurrentMatch: r.CurrentMatch, Closed: r.Closed, RosterID: effectiveRoster(r.RosterID), RegistryVersion: effectiveRegistry(r.RegistryVersion)}
 }
 func (r Room) seat(token string) int {
 	for i, t := range r.Tokens {
@@ -167,6 +192,7 @@ type Submission struct {
 	ReceivedAt int64  `json:"receivedAt"`
 }
 type Match struct {
+	SelectionEpoch   string         `json:"selectionEpoch,omitempty"`
 	RosterID         string         `json:"rosterId,omitempty"`
 	RegistryVersion  string         `json:"registryVersion,omitempty"`
 	ScoreAgreement   string         `json:"scoreAgreement,omitempty"`

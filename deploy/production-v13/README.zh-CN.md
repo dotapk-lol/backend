@@ -20,3 +20,5 @@
 `heros22_profile_test.go` 由 `scripts/test-production-v13.py` 在 memory 下应用，不是游戏/浏览器测试。本地使用、运维审阅与回滚见[开发](../../docs/DEVELOPMENT.zh-CN.md)、[部署](../../docs/DEPLOYMENT.zh-CN.md)、[测试](../../docs/TESTING.zh-CN.md)。工作树不保留旧逐局/provision 回执，原 Git 历史仍在。
 
 经审核的前端标准构建提交 `fcec6cf62c5ba53e397d3fef45e17ac9e859cb08` 使用 `duel-9431984810f197b393c5`，由 `append-privacy-release-runtime.sql` 精确追加绑定；既有22、46与legacy版本全部保留。英雄成员、规则和七字段质量策略不变。部署回执、主机配置、备份及逐局核验留在私有环境，不进入版本库。源码更新及这些产物摘要不表示前端已发布或浏览器验收通过。
+
+新的进房选人源码会改变运行时代码字节，固定复现工具会明确拒绝。历史复现使用原源码 checkout，新候选用 [build-profile.py](../../scripts/build-profile.py) 显式指定审核后的 roster/features manifest，详见[选人发布边界](../../docs/SELECTION.zh-CN.md)。此现有 profile 保留全部旧审核构建。

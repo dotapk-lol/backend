@@ -90,7 +90,7 @@ func pair(t *testing.T, s *Service) (Credentials, Credentials, RoomView) {
 }
 func start(t *testing.T, s *Service, a, b Credentials, r RoomView, key string) Match {
 	t.Helper()
-	m, e := s.CreateMatch(ctx, a.Token, r.ID, CreateMatch{key, "duel-test"})
+	m, e := s.CreateMatch(ctx, a.Token, r.ID, CreateMatch{key, "duel-test", ""})
 	m = must(t, m, e)
 	_, e = s.Ready(ctx, a.Token, m.ID, "duel-test")
 	if e != nil {
@@ -188,7 +188,7 @@ func runSuite(t *testing.T, factory func(*testing.T) Store) {
 		if m.Status != "in_progress" || m.StartedAt == 0 {
 			t.Fatal(m)
 		}
-		if _, e := s.CreateMatch(ctx, a.Token, r.ID, CreateMatch{"match_request_0002", "duel-test"}); e == nil {
+		if _, e := s.CreateMatch(ctx, a.Token, r.ID, CreateMatch{"match_request_0002", "duel-test", ""}); e == nil {
 			t.Fatal("overlapping match")
 		}
 		v, e := s.Submit(ctx, a.Token, m.ID, completed())

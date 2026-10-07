@@ -46,7 +46,7 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			replyError(w, &Fault{503, "database unavailable"})
 			return
 		}
-		reply(w, 200, map[string]any{"ok": true, "service": "dota-duel", "contractVersion": "v1.3-gameplay-rosters", "transport": "webrtc", "capabilities": []string{"pvp_peer_agreement", "pve_client_reported", "local_pvp_client_reported", "versioned_gameplay_rosters"}, "turn": false})
+		reply(w, 200, map[string]any{"ok": true, "service": "dota-duel", "contractVersion": "v1.3-gameplay-rosters", "transport": "webrtc", "capabilities": []string{"pvp_peer_agreement", "pve_client_reported", "local_pvp_client_reported", "versioned_gameplay_rosters", "room_selection_epochs"}, "turn": false})
 		return
 	}
 	ip, _, e := net.SplitHostPort(r.RemoteAddr)
@@ -139,6 +139,8 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 				e = h.Service.Answer(ctx, token, id, in.Version, in.Answer)
 				result = map[string]bool{"ok": true}
 			}
+		case len(parts) == 5 && parts[4] == "selection" && r.Method == "POST":
+			result, e = h.selection(w, r, token, id)
 		case len(parts) == 5 && parts[4] == "matches" && r.Method == "POST":
 			var in CreateMatch
 			if e = decode(w, r, &in); e == nil {
@@ -218,12 +220,15 @@ func decode(w http.ResponseWriter, r *http.Request, out any) error {
 	if e != nil {
 		return &Fault{413, "body too large"}
 	}
-	if e = shape(b, reflect.TypeOf(out).Elem()); e != nil {
+	return decodeBytes(b, out)
+}
+func decodeBytes(b []byte, out any) error {
+	if e := shape(b, reflect.TypeOf(out).Elem()); e != nil {
 		return e
 	}
 	d := json.NewDecoder(bytes.NewReader(b))
 	d.DisallowUnknownFields()
-	if e = d.Decode(out); e != nil {
+	if e := d.Decode(out); e != nil {
 		return bad("invalid JSON body")
 	}
 	return nil
@@ -276,4 +281,36 @@ func shape(b json.RawMessage, t reflect.Type) error {
 		}
 	}
 	return nil
+}
+
+func (h *Handler) selection(w http.ResponseWriter, r *http.Request, token, id string) (any, error) {
+	if !strings.HasPrefix(r.Header.Get("Content-Type"), "application/json") {
+		return nil, &Fault{415, "application/json required"}
+	}
+	b, e := io.ReadAll(http.MaxBytesReader(w, r.Body, 45000))
+	if e != nil {
+		return nil, &Fault{413, "body too large"}
+	}
+	var probe struct {
+		Action string `json:"action"`
+	}
+	if json.Unmarshal(b, &probe) != nil {
+		return nil, bad("invalid JSON body")
+	}
+	switch probe.Action {
+	case "begin":
+		var in BeginSelection
+		if e = decodeBytes(b, &in); e != nil {
+			return nil, e
+		}
+		return h.Service.BeginSelection(r.Context(), token, id, in)
+	case "lock":
+		var in LockSelection
+		if e = decodeBytes(b, &in); e != nil {
+			return nil, e
+		}
+		return h.Service.LockSelection(r.Context(), token, id, in)
+	default:
+		return nil, bad("invalid selection action")
+	}
 }

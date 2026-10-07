@@ -49,3 +49,5 @@ Unit/profile tests use a test-only memory store. MySQL integration needs a dedic
 PVP/WebRTC `confirmed / peer_agreement` means two identical completed reports, not anti-cheat proof. PVE/local/BC `recorded / client_reported` are separate cohorts; BC host reports once. Aborted/disputed/incomplete or abnormal games do not enter win rates. Internal30-second cleanup is not balance-data synchronization; public snapshots require manual review and aggregation with no identifiers/raw reports. Analytics views have no public unauthenticated REST/export endpoint.
 
 Project-owned code/docs are [MIT](LICENSE), copyright2026 dotapk-lol contributors. Third-party images, music, trademarks and dependencies keep separate licenses/notices outside this grant. No Valve endorsement is implied.
+
+Current source adds exact-build-gated [room-first selection and same-room rematches](docs/SELECTION.md). Default feature bindings are empty; this is not a production activation. Memory/race and disposable MySQL tests cover epoch replay, own-seat locks, immutable prior matches, simultaneous locks, single allocation, expiry and legacy request bytes.

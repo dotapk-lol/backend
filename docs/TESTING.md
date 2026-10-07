@@ -27,3 +27,5 @@ Use the development guide's local health/registry/OPTIONS probes for CORS and pr
 For prose/template changes check Markdown pairing, language/website headers, relative links, script paths and `git diff --check`. Pinned binary reproduction is a build, not an ordinary documentation check. Historical logs removed from current source remain reachable in Git history; they cannot serve as current validation.
 
 Paired-guide maintenance: `python3 scripts/check-docs.py` checks all retained Markdown headers, language partners and relative links.
+
+Current source adds exact-build-gated [room-first selection and same-room rematches](SELECTION.md). Default feature bindings are empty; this is not a production activation. Memory/race and disposable MySQL tests cover epoch replay, own-seat locks, immutable prior matches, simultaneous locks, single allocation, expiry and legacy request bytes.

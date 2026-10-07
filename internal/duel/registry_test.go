@@ -88,7 +88,7 @@ func TestLegacyRequestBytes(t *testing.T) {
 		{roomInput(), `{"requestId":"request_1234567890","version":"duel-test","hero":0,"offer":{"type":"offer","sdp":"v=0\r\n"},"policy":{"direction":"above","rttMs":200,"jitterMs":30,"lossPct":5,"minSamples":24,"window":30,"maxAgeMs":3000}}`},
 		{PVERequest{"pve_request_00001", "duel-test", 0, 3, "normal", ""}, `{"requestId":"pve_request_00001","version":"duel-test","hero":0,"opponentHero":3,"aiDifficulty":"normal"}`},
 		{localInput("local"), `{"requestId":"local_request_0001","version":"duel-test","hero":1,"opponentHero":4,"transport":"local"}`},
-		{CreateMatch{"match_request_0001", "duel-test"}, `{"requestId":"match_request_0001","version":"duel-test"}`},
+		{CreateMatch{"match_request_0001", "duel-test", ""}, `{"requestId":"match_request_0001","version":"duel-test"}`},
 		{completed(), `{"version":"duel-test","outcome":"completed","rounds":[{"number":1,"winner":0,"remainingMs":1200},{"number":2,"winner":-1,"remainingMs":0},{"number":3,"winner":0,"remainingMs":2000}],"score":[2,0],"winner":0,"reason":""}`},
 	} {
 		b, _ := json.Marshal(tc.in)
@@ -193,7 +193,7 @@ func runRegistrySuite(t *testing.T, factory func(*testing.T) Store) {
 		if err = s.Answer(ctx, b.Token, r.ID, in.Version, Description{"answer", "v=0\r\n"}); err != nil {
 			t.Fatal(err)
 		}
-		m, err := s.CreateMatch(ctx, a.Token, r.ID, CreateMatch{"match_request_0001", in.Version})
+		m, err := s.CreateMatch(ctx, a.Token, r.ID, CreateMatch{"match_request_0001", in.Version, ""})
 		m = must(t, m, err)
 		if m.RosterID != in.RosterID || m.RegistryVersion != RegistryVersion || m.Players[0].Hero != 20 || m.Players[1].Hero != 126 {
 			t.Fatal("snapshot mismatch", m)
@@ -214,7 +214,7 @@ func runRegistrySuite(t *testing.T, factory func(*testing.T) Store) {
 		if m.Status != "confirmed" || m.Submissions[0].Digest != digest(result) {
 			t.Fatal("result contract changed")
 		}
-		next, err := s.CreateMatch(ctx, a.Token, r.ID, CreateMatch{"match_request_0002", in.Version})
+		next, err := s.CreateMatch(ctx, a.Token, r.ID, CreateMatch{"match_request_0002", in.Version, ""})
 		next = must(t, next, err)
 		if next.ID == m.ID || next.RosterID != m.RosterID || next.Players != m.Players {
 			t.Fatal("rematch identity/roster changed")

@@ -49,3 +49,5 @@ python3 scripts/test-production-v13.py
 PVP/WebRTC `confirmed / peer_agreement` 是双份完成报告完全一致，不是反作弊证明；PVE/local/BC `recorded / client_reported` 分层统计，BC 仅房主上报一次。中止/争议/未完成和异常局不计胜率。内部30秒清理不是 balance-data 同步；公开快照需人工审阅汇总，不含标识/原始报告。统计 view 没有公开未认证 REST/导出接口。
 
 自有代码/文档采用 [MIT](LICENSE)，版权2026 dotapk-lol contributors。第三方图片、音乐、商标和依赖保留各自许可/声明，不包含在此授权内，不表示 Valve 背书。
+
+当前源码新增按精确构建启用的[进房选人与同房重赛](docs/SELECTION.zh-CN.md)，默认功能绑定为空，不代表生产启用。内存/race 与临时 MySQL 测试覆盖 epoch 重放、本人锁定、旧局不可变、并发锁定、唯一建局、过期和旧请求字节兼容。

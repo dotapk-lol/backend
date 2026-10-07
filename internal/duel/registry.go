@@ -21,6 +21,9 @@ var registryJSON []byte
 //go:embed registry/gameplay-rosters.json
 var gameplayJSON []byte
 
+//go:embed registry/protocol-features.json
+var protocolJSON []byte
+
 type HeroIdentity struct {
 	HeroID      int    `json:"registryNumericId"`
 	InternalID  string `json:"internalHeroId"`
@@ -37,11 +40,12 @@ type GameplayRoster struct {
 }
 
 type heroRegistry struct {
-	heroes   []HeroIdentity
-	byID     map[int]HeroIdentity
-	rosters  []GameplayRoster
-	byRoster map[string]GameplayRoster
-	byBuild  map[string]string
+	selectionBuilds map[string]bool
+	heroes          []HeroIdentity
+	byID            map[int]HeroIdentity
+	rosters         []GameplayRoster
+	byRoster        map[string]GameplayRoster
+	byBuild         map[string]string
 }
 
 func loadRegistry(catalog, gameplay []byte) (*heroRegistry, error) {
@@ -116,6 +120,9 @@ func mustRegistry() *heroRegistry {
 	if err != nil {
 		panic(err)
 	}
+	if err = r.loadFeatures(protocolJSON); err != nil {
+		panic(err)
+	}
 	return r
 }
 
@@ -161,3 +168,33 @@ func effectiveRegistry(version string) string {
 	} // historical rows predate the catalog
 	return version
 }
+
+// Explicit exact-build opt-in; an empty default never upgrades legacy rooms.
+func (r *heroRegistry) loadFeatures(b []byte) error {
+	var features struct {
+		RoomSelectionVersions []string `json:"roomSelectionVersions"`
+	}
+	if json.Unmarshal(b, &features) != nil {
+		return fmt.Errorf("invalid protocol features")
+	}
+	builds := map[string]bool{}
+	for _, version := range features.RoomSelectionVersions {
+		if !versionPattern.MatchString(version) || builds[version] || r.byBuild[version] == "" {
+			return fmt.Errorf("selection requires a unique approved roster build")
+		}
+		roster := r.byRoster[r.byBuild[version]]
+		found := false
+		for _, hero := range roster.HeroIDs {
+			if hero == 1 {
+				found = true
+			}
+		}
+		if !found {
+			return fmt.Errorf("selection roster requires default hero 1")
+		}
+		builds[version] = true
+	}
+	r.selectionBuilds = builds
+	return nil
+}
+func (r *heroRegistry) selectionEnabled(version string) bool { return r.selectionBuilds[version] }
