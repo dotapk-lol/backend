@@ -9,8 +9,8 @@ import subprocess
 import tempfile
 
 SOURCE = 'aa04e01f25ef2226b213cfc64e68c6c96fd0e18c'
-MANIFEST_SHA = '405af9bf209f8d343e4d8e3dd8f2beaa88ec22b4fe06fe8b64e0a5785bad592b'
-BINARY_SHA = '94e0bbb7bd6bddefab84e15fd3ff7db53f47245813dd0a826ca50088d637f5ca'
+MANIFEST_SHA = '7fbdab24680a8b1b1101d5c596274e39a0bf757880fcf481e82da9ff5247023f'
+BINARY_SHA = '9512f02b72d20c97f14f8855559f42d902c6a13fb0fe8b7cd03baa859dcc1b8c'
 repo = pathlib.Path(__file__).resolve().parent.parent
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--output', type=pathlib.Path, default=repo/'bin/dueld-production-v13-linux-amd64')

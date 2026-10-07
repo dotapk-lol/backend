@@ -9,10 +9,10 @@ import (
 // Loaded only through the production profile test overlay; no database/network.
 func TestHeros22ProductionBoundary(t *testing.T) {
 	const rid = "arena-heros22-v1"
-	const version = "duel-851e67d77307f479f1fa"
+	const version = "duel-9431984810f197b393c5"
 	ids := []int{1, 3, 4, 5, 7, 8, 9, 15, 17, 18, 28, 31, 32, 36, 50, 55, 57, 58, 62, 71, 81, 82}
 	s := NewService(newMemory())
-	if len(s.registry.rosters) != 3 || !reflect.DeepEqual(s.registry.byRoster[rid].HeroIDs, ids) || !reflect.DeepEqual(s.registry.byRoster[rid].GameVersions, []string{"duel-27c78aa4cfc8facc8a23", "duel-6b1d12f75aa4bbac4e12", version}) {
+	if len(s.registry.rosters) != 3 || !reflect.DeepEqual(s.registry.byRoster[rid].HeroIDs, ids) || !reflect.DeepEqual(s.registry.byRoster[rid].GameVersions, []string{"duel-27c78aa4cfc8facc8a23", "duel-6b1d12f75aa4bbac4e12", "duel-851e67d77307f479f1fa", version}) {
 		t.Fatal("Production22 profile drift")
 	}
 	a := creds(t, s)
