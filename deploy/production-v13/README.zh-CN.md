@@ -22,3 +22,5 @@
 经审核的前端标准构建提交 `fcec6cf62c5ba53e397d3fef45e17ac9e859cb08` 使用 `duel-9431984810f197b393c5`，由 `append-privacy-release-runtime.sql` 精确追加绑定；既有22、46与legacy版本全部保留。英雄成员、规则和七字段质量策略不变。部署回执、主机配置、备份及逐局核验留在私有环境，不进入版本库。源码更新及这些产物摘要不表示前端已发布或浏览器验收通过。
 
 新的进房选人源码会改变运行时代码字节，固定复现工具会明确拒绝。历史复现使用原源码 checkout，新候选用 [build-profile.py](../../scripts/build-profile.py) 显式指定审核后的 roster/features manifest，详见[选人发布边界](../../docs/SELECTION.zh-CN.md)。此现有 profile 保留全部旧审核构建。
+
+审核后的 DOTA PK 前端73341e2运行时 `duel-2f81eeda15fb572139ad` 已精确追加到 released22 profile，也是该 profile 的 `protocol-features.json` 中 roomSelectionVersions 唯一版本；保留全部旧绑定。`append-selection-runtime.sql` 用精确 compare-and-swap 更新既有 SQL 元数据，不新增迁移或权限。当前部署源码用 `scripts/build-profile.py` 同时指定两个生产 manifest 编译；此前固定摘要保留为历史身份。源码登记与前端实际发布分开。
