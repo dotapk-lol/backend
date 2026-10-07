@@ -1,8 +1,8 @@
 [English](README.md) | [简体中文](README.zh-CN.md) | [Website / 官网](https://dotapk.lol)
 
-# DOTA DUEL Go / MySQL backend
+# DOTA PK Go / MySQL backend
 
-API for [dotapk.lol](https://dotapk.lol): anonymous sessions, six-digit invitations, WebRTC signaling, immutable report reconciliation and separated result statistics. No account login is required. Combat runs in browsers; Go does not execute hero skills.
+API for DOTA PK at [dotapk.lol](https://dotapk.lol): anonymous sessions, six-digit invitations, WebRTC signaling, immutable report reconciliation and separated result statistics. No account login is required. Combat runs in browsers; Go does not execute hero skills.
 
 | Repository | Responsibility |
 | --- | --- |

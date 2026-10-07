@@ -1,8 +1,8 @@
 [English](README.md) | [简体中文](README.zh-CN.md) | [Website / 官网](https://dotapk.lol)
 
-# DOTA DUEL Go / MySQL 后端
+# DOTA PK Go / MySQL 后端
 
-[dotapk.lol](https://dotapk.lol) 的 API：匿名会话、六位邀请码、WebRTC 信令、不可变报告核对与分层结果统计。玩家无需登录账号；战斗在浏览器，Go 不执行英雄技能。
+DOTA PK（[dotapk.lol](https://dotapk.lol)） 的 API：匿名会话、六位邀请码、WebRTC 信令、不可变报告核对与分层结果统计。玩家无需登录账号；战斗在浏览器，Go 不执行英雄技能。
 
 | 仓库 | 职责 |
 | --- | --- |
