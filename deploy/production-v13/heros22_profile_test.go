@@ -12,7 +12,7 @@ func TestHeros22ProductionBoundary(t *testing.T) {
 	const version = "duel-9431984810f197b393c5"
 	ids := []int{1, 3, 4, 5, 7, 8, 9, 15, 17, 18, 28, 31, 32, 36, 50, 55, 57, 58, 62, 71, 81, 82}
 	s := NewService(newMemory())
-	if len(s.registry.rosters) != 3 || !reflect.DeepEqual(s.registry.byRoster[rid].HeroIDs, ids) || !reflect.DeepEqual(s.registry.byRoster[rid].GameVersions, []string{"duel-27c78aa4cfc8facc8a23", "duel-6b1d12f75aa4bbac4e12", "duel-851e67d77307f479f1fa", version, "duel-2f81eeda15fb572139ad", "duel-2c2ad50b276ef596598c"}) {
+	if len(s.registry.rosters) != 3 || !reflect.DeepEqual(s.registry.byRoster[rid].HeroIDs, ids) || !reflect.DeepEqual(s.registry.byRoster[rid].GameVersions, []string{"duel-27c78aa4cfc8facc8a23", "duel-6b1d12f75aa4bbac4e12", "duel-851e67d77307f479f1fa", version, "duel-2f81eeda15fb572139ad", "duel-2c2ad50b276ef596598c", "duel-64714553cccdaf8cc362"}) {
 		t.Fatal("Production22 profile drift")
 	}
 	a := creds(t, s)
@@ -87,11 +87,11 @@ func TestHeros22ProductionBoundary(t *testing.T) {
 
 // Exact reviewed new runtime opts in; every earlier build retains its old path.
 func TestHeros22SelectionProfile(t *testing.T) {
-	for _, version := range []string{"duel-2f81eeda15fb572139ad", "duel-2c2ad50b276ef596598c"} {
+	for _, version := range []string{"duel-2f81eeda15fb572139ad", "duel-2c2ad50b276ef596598c", "duel-64714553cccdaf8cc362"} {
 		t.Run(version, func(t *testing.T) {
 			const roster = "arena-heros22-v1"
 			s := NewService(newMemory())
-			if len(s.registry.selectionBuilds) != 2 || !s.registry.selectionEnabled(version) || s.registry.selectionEnabled("duel-9431984810f197b393c5") || s.registry.selectionEnabled("duel-room-first-local-qa") || s.registry.selectionEnabled("duel-e81da0fe6c6faec0eef8") {
+			if len(s.registry.selectionBuilds) != 3 || !s.registry.selectionEnabled(version) || s.registry.selectionEnabled("duel-9431984810f197b393c5") || s.registry.selectionEnabled("duel-room-first-local-qa") || s.registry.selectionEnabled("duel-e81da0fe6c6faec0eef8") || s.registry.selectionEnabled("duel-4a47c22dc137cb12d594") {
 				t.Fatal("protocol gate drift")
 			}
 			a, b := creds(t, s), creds(t, s)
