@@ -58,4 +58,6 @@ python3 scripts/build-profile.py --rosters '<审核ROSTERS_JSON>' --features '<�
 
 选人/局关联存在已有 JSON payload，无需修改 migration1–4、历史记录或运行时数据库权限。启用前须冻结精确前端运行时，在两个 manifest 及已有 SQL roster 版本元数据绑定，通过隔离 API/浏览器验收后，再协调现有 API 监听与 origin 部署；不增加公网监听或创建凭据。回滚恢复旧二进制/profile，历史 JSON 可保留新增字段。旧服务器不执行新选人门槛，因此新前端也须同时回滚或禁用。本地 QA 标签不授权任何生产构建。
 
-审核后的 DOTA PK 前端73341e2运行时 `duel-2f81eeda15fb572139ad` 已精确追加到 released22 profile，也是该 profile 的 `protocol-features.json` 中 roomSelectionVersions 唯一版本；保留全部旧绑定。`append-selection-runtime.sql` 用精确 compare-and-swap 更新既有 SQL 元数据，不新增迁移或权限。当前部署源码用 `scripts/build-profile.py` 同时指定两个生产 manifest 编译；此前固定摘要保留为历史身份。源码登记与前端实际发布分开。
+审核后的 DOTA PK 前端73341e2运行时 `duel-2f81eeda15fb572139ad` 已精确追加到 released22 profile，也是该 profile 的 `protocol-features.json` 中 roomSelectionVersions 首个版本；保留全部旧绑定。`append-selection-runtime.sql` 用精确 compare-and-swap 更新既有 SQL 元数据，不新增迁移或权限。当前部署源码用 `scripts/build-profile.py` 同时指定两个生产 manifest 编译；此前固定摘要保留为历史身份。源码登记与前端实际发布分开。
+
+DOTA PK 前端 `dad8e352` 使用精确运行时 `duel-2c2ad50b276ef596598c`。以 `append-materials-runtime.sql` 追加登记并与2f81一同启用选人，保留全部旧绑定与22/88规则；中间e81仅用于本地。当前2c2的HTTP/模块建房、取消、加入和锁定检查通过，未创建比赛；复用原e81自然P2P/重赛及独立native素材/fallback检查。因浏览器工具不可用，最终组合2c2 native双浏览器验收未执行，不能标为通过。无需新增后端逻辑、schema或权限。

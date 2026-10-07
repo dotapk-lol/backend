@@ -23,4 +23,6 @@
 
 新的进房选人源码会改变运行时代码字节，固定复现工具会明确拒绝。历史复现使用原源码 checkout，新候选用 [build-profile.py](../../scripts/build-profile.py) 显式指定审核后的 roster/features manifest，详见[选人发布边界](../../docs/SELECTION.zh-CN.md)。此现有 profile 保留全部旧审核构建。
 
-审核后的 DOTA PK 前端73341e2运行时 `duel-2f81eeda15fb572139ad` 已精确追加到 released22 profile，也是该 profile 的 `protocol-features.json` 中 roomSelectionVersions 唯一版本；保留全部旧绑定。`append-selection-runtime.sql` 用精确 compare-and-swap 更新既有 SQL 元数据，不新增迁移或权限。当前部署源码用 `scripts/build-profile.py` 同时指定两个生产 manifest 编译；此前固定摘要保留为历史身份。源码登记与前端实际发布分开。
+审核后的 DOTA PK 前端73341e2运行时 `duel-2f81eeda15fb572139ad` 已精确追加到 released22 profile，也是该 profile 的 `protocol-features.json` 中 roomSelectionVersions 首个版本；保留全部旧绑定。`append-selection-runtime.sql` 用精确 compare-and-swap 更新既有 SQL 元数据，不新增迁移或权限。当前部署源码用 `scripts/build-profile.py` 同时指定两个生产 manifest 编译；此前固定摘要保留为历史身份。源码登记与前端实际发布分开。
+
+DOTA PK 前端 `dad8e352` 使用精确运行时 `duel-2c2ad50b276ef596598c`。以 `append-materials-runtime.sql` 追加登记并与2f81一同启用选人，保留全部旧绑定与22/88规则；中间e81仅用于本地。当前2c2的HTTP/模块建房、取消、加入和锁定检查通过，未创建比赛；复用原e81自然P2P/重赛及独立native素材/fallback检查。因浏览器工具不可用，最终组合2c2 native双浏览器验收未执行，不能标为通过。无需新增后端逻辑、schema或权限。

@@ -12,7 +12,7 @@ func TestHeros22ProductionBoundary(t *testing.T) {
 	const version = "duel-9431984810f197b393c5"
 	ids := []int{1, 3, 4, 5, 7, 8, 9, 15, 17, 18, 28, 31, 32, 36, 50, 55, 57, 58, 62, 71, 81, 82}
 	s := NewService(newMemory())
-	if len(s.registry.rosters) != 3 || !reflect.DeepEqual(s.registry.byRoster[rid].HeroIDs, ids) || !reflect.DeepEqual(s.registry.byRoster[rid].GameVersions, []string{"duel-27c78aa4cfc8facc8a23", "duel-6b1d12f75aa4bbac4e12", "duel-851e67d77307f479f1fa", version, "duel-2f81eeda15fb572139ad"}) {
+	if len(s.registry.rosters) != 3 || !reflect.DeepEqual(s.registry.byRoster[rid].HeroIDs, ids) || !reflect.DeepEqual(s.registry.byRoster[rid].GameVersions, []string{"duel-27c78aa4cfc8facc8a23", "duel-6b1d12f75aa4bbac4e12", "duel-851e67d77307f479f1fa", version, "duel-2f81eeda15fb572139ad", "duel-2c2ad50b276ef596598c"}) {
 		t.Fatal("Production22 profile drift")
 	}
 	a := creds(t, s)
@@ -87,50 +87,53 @@ func TestHeros22ProductionBoundary(t *testing.T) {
 
 // Exact reviewed new runtime opts in; every earlier build retains its old path.
 func TestHeros22SelectionProfile(t *testing.T) {
-	const version = "duel-2f81eeda15fb572139ad"
-	const roster = "arena-heros22-v1"
-	s := NewService(newMemory())
-	if len(s.registry.selectionBuilds) != 1 || !s.registry.selectionEnabled(version) || s.registry.selectionEnabled("duel-9431984810f197b393c5") || s.registry.selectionEnabled("duel-room-first-local-qa") {
-		t.Fatal("protocol gate drift")
-	}
-	a, b := creds(t, s), creds(t, s)
-	in := roomInput()
-	in.Version, in.RosterID, in.Hero = version, roster, 1
-	in.Policy = Policy{"above", 500, 250, 30, 1, 12, 10000}
-	r, e := s.CreateRoom(ctx, a.Token, in)
-	r = must(t, r, e)
-	_, e = s.JoinRoom(ctx, b.Token, JoinRoom{r.Code, version, 1, roster})
-	if e != nil {
-		t.Fatal(e)
-	}
-	if e = s.Answer(ctx, b.Token, r.ID, version, Description{"answer", "v=0\r\n"}); e != nil {
-		t.Fatal(e)
-	}
-	_, e = s.CreateMatch(ctx, a.Token, r.ID, CreateMatch{"selection_profile_01", version, ""})
-	expectStatus(t, e, 409)
-	_, e = s.BeginSelection(ctx, a.Token, r.ID, BeginSelection{version, "begin", firstEpoch, "", ""})
-	if e != nil {
-		t.Fatal(e)
-	}
-	for seat, c := range []Credentials{a, b} {
-		_, e = s.LockSelection(ctx, c.Token, r.ID, LockSelection{version, "lock", firstEpoch, []int{3, 5}[seat]})
-		if e != nil {
-			t.Fatal(e)
-		}
-	}
-	m, e := s.CreateMatch(ctx, a.Token, r.ID, CreateMatch{"selection_profile_01", version, firstEpoch})
-	m = must(t, m, e)
-	if m.Players[0].Hero != 3 || m.Players[1].Hero != 5 || m.SelectionEpoch != firstEpoch {
-		t.Fatal("new profile snapshot drift")
-	}
-	half, e := s.Ready(ctx, a.Token, m.ID, version)
-	half = must(t, half, e)
-	if half.Status != "awaiting_ready" {
-		t.Fatal("missing bilateral ready")
-	}
-	started, e := s.Ready(ctx, b.Token, m.ID, version)
-	started = must(t, started, e)
-	if started.Status != "in_progress" {
-		t.Fatal("new profile did not start")
+	for _, version := range []string{"duel-2f81eeda15fb572139ad", "duel-2c2ad50b276ef596598c"} {
+		t.Run(version, func(t *testing.T) {
+			const roster = "arena-heros22-v1"
+			s := NewService(newMemory())
+			if len(s.registry.selectionBuilds) != 2 || !s.registry.selectionEnabled(version) || s.registry.selectionEnabled("duel-9431984810f197b393c5") || s.registry.selectionEnabled("duel-room-first-local-qa") || s.registry.selectionEnabled("duel-e81da0fe6c6faec0eef8") {
+				t.Fatal("protocol gate drift")
+			}
+			a, b := creds(t, s), creds(t, s)
+			in := roomInput()
+			in.Version, in.RosterID, in.Hero = version, roster, 1
+			in.Policy = Policy{"above", 500, 250, 30, 1, 12, 10000}
+			r, e := s.CreateRoom(ctx, a.Token, in)
+			r = must(t, r, e)
+			_, e = s.JoinRoom(ctx, b.Token, JoinRoom{r.Code, version, 1, roster})
+			if e != nil {
+				t.Fatal(e)
+			}
+			if e = s.Answer(ctx, b.Token, r.ID, version, Description{"answer", "v=0\r\n"}); e != nil {
+				t.Fatal(e)
+			}
+			_, e = s.CreateMatch(ctx, a.Token, r.ID, CreateMatch{"selection_profile_01", version, ""})
+			expectStatus(t, e, 409)
+			_, e = s.BeginSelection(ctx, a.Token, r.ID, BeginSelection{version, "begin", firstEpoch, "", ""})
+			if e != nil {
+				t.Fatal(e)
+			}
+			for seat, c := range []Credentials{a, b} {
+				_, e = s.LockSelection(ctx, c.Token, r.ID, LockSelection{version, "lock", firstEpoch, []int{3, 5}[seat]})
+				if e != nil {
+					t.Fatal(e)
+				}
+			}
+			m, e := s.CreateMatch(ctx, a.Token, r.ID, CreateMatch{"selection_profile_01", version, firstEpoch})
+			m = must(t, m, e)
+			if m.Players[0].Hero != 3 || m.Players[1].Hero != 5 || m.SelectionEpoch != firstEpoch {
+				t.Fatal("new profile snapshot drift")
+			}
+			half, e := s.Ready(ctx, a.Token, m.ID, version)
+			half = must(t, half, e)
+			if half.Status != "awaiting_ready" {
+				t.Fatal("missing bilateral ready")
+			}
+			started, e := s.Ready(ctx, b.Token, m.ID, version)
+			started = must(t, started, e)
+			if started.Status != "in_progress" {
+				t.Fatal("new profile did not start")
+			}
+		})
 	}
 }
