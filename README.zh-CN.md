@@ -10,7 +10,7 @@
 | backend（本仓库） | `https://api.dotapk.lol/api/v1`、Go 服务与 MySQL 持久化 |
 | [heros](https://github.com/dotapk-lol/heros) | MIT 规则/参数/host 合约；[人工汇总快照](https://github.com/dotapk-lol/heros/blob/main/balance-data/README.zh-CN.md) |
 
-生产复用现有 AgentSquared 主机、MySQL8.4 和 Nginx，使用独立 `dota_duel` schema。API 已经使用 MySQL，不用换库、增加数据库或自动平衡导出；源码公开不授权操作生产。
+生产复用现有主机、MySQL8.4 和 Nginx，使用独立 `dota_duel` schema。API 已经使用 MySQL，不用换库、增加数据库或自动平衡导出；源码公开不授权操作生产。
 
 ## 本地启动
 

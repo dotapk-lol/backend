@@ -10,7 +10,7 @@ API for [dotapk.lol](https://dotapk.lol): anonymous sessions, six-digit invitati
 | backend (this repository) | `https://api.dotapk.lol/api/v1`, Go service and MySQL persistence |
 | [heros](https://github.com/dotapk-lol/heros) | MIT rules/parameters/host contract; [manual aggregate snapshots](https://github.com/dotapk-lol/heros/blob/main/balance-data/README.md) |
 
-Production reuses the existing AgentSquared host, MySQL8.4 and Nginx with a dedicated `dota_duel` schema. The API already uses MySQL; no database switch, extra database or automatic balance export is needed. Source visibility does not authorize production operations.
+Production reuses the existing host, MySQL8.4 and Nginx with a dedicated `dota_duel` schema. The API already uses MySQL; no database switch, extra database or automatic balance export is needed. Source visibility does not authorize production operations.
 
 ## Local start
 

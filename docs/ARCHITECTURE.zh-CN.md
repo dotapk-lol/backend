@@ -15,7 +15,7 @@ HTTP handler 验证匿名会话、严格 body/origin/成员身份并实施持久
 | `deploy/production-v13/` | 保留 profile、审核后的增量登记 SQL 和 profile 测试 |
 | `deploy/` | 已有操作者 Nginx/systemd/DSN隔离配置，不是通用凭据 |
 | `scripts/build-production-v13.py`、`scripts/test-production-v13.py` | 固定二进制复现与 memory profile 检查 |
-| `Dockerfile`、`compose.yaml` | 可选隔离本地/staging栈，不用于现有 AgentSquared 部署 |
+| `Dockerfile`、`compose.yaml` | 可选隔离本地/staging栈，不用于现有 现有主机 部署 |
 
 记录保存 game version/roster/registry 快照。local/BC 的比赛内部座位 ID 不代表两个已鉴权的人，只由一个报告者拥有记录。PVP 每座位报告不可变，HTTP 隐藏原始 submissions，双报只有在语义核对边界一致才确认。维护过期邀请码/SDP/会话/限流及超时比赛，不导出数据。
 

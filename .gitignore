@@ -19,3 +19,14 @@ docs/*-receipts.*
 *.ndjson
 *.sql.gz
 *.dump
+
+# Private operator configuration and authentication material stay local.
+/.ssh/
+/credentials/
+/private-deploy/
+/operator.local.*
+/.npmrc
+*.pem
+*.key
+*.p12
+*.pfx

@@ -15,7 +15,7 @@ The HTTP handler authenticates anonymous sessions, validates strict bodies/origi
 | `deploy/production-v13/` | Retained profile, reviewed additive registration SQL and profile test |
 | `deploy/` | Existing operator Nginx/systemd/DSN-isolation setup, not general credentials |
 | `scripts/build-production-v13.py`, `scripts/test-production-v13.py` | Pinned binary reproduction and memory profile checks |
-| `Dockerfile`, `compose.yaml` | Optional isolated local/staging stack, not existing AgentSquared deployment |
+| `Dockerfile`, `compose.yaml` | Optional isolated local/staging stack, not existing host deployment |
 
 Server records snapshot game version/roster/registry. Match-local IDs for local/BC seats are not two authenticated people; one reporter owns their record. PVP reports are immutable per seat, raw submissions hidden from HTTP, and two reports agree only at the semantic reconciliation boundary. Cleanup expires invitations/SDP/sessions/limits and times out games, without exporting data.
 
