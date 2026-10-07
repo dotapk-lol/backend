@@ -1,7 +1,0 @@
-{"status":"ok"}
-
-{"status":"ready"}
-
-ok
-/etc/nginx/conf.d/api.agentsquared.net.conf: OK
-/etc/nginx/conf.d/api.pikoo.lol.conf: OK

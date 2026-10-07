@@ -8,3 +8,14 @@ __pycache__/
 *.pyc
 
 /MANIFEST.sha256
+
+# Local QA/operational evidence stays outside source control.
+.DS_Store
+.env.*
+qa-runtime/
+coverage/
+docs/*-evidence.*
+docs/*-receipts.*
+*.ndjson
+*.sql.gz
+*.dump

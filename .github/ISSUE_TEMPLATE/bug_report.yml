@@ -1,0 +1,26 @@
+name: Bug report / 问题报告
+description: Report a minimal non-sensitive reproduction / 提供最小非敏感复现
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: "Website / 官网: https://dotapk.lol — Read the paired developer guides before reporting. / 报告前阅读中英开发指南。Do not include credentials, player or match identifiers, raw reports or private paths. / 不包含凭据、玩家或比赛标识、原报告或私有路径。"
+  - type: input
+    id: version
+    attributes:
+      label: Commit and environment / 提交与环境
+      description: Exact commit, runtime and relevant profile; no secrets. / 精确提交、运行时及相关 profile，不含秘密。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction and expected behavior / 复现与预期
+      description: Minimal original fixture and expected/actual result. / 最小原创夹具及预期和实际结果。
+    validations:
+      required: true
+  - type: textarea
+    id: checks
+    attributes:
+      label: Checks and limits / 检查与限制
+      description: Commands already run and their scope; no raw per-game evidence. / 实际命令与证明范围，不附逐局原证据。
