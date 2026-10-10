@@ -2,7 +2,7 @@
 
 # API 合约 v1.3
 
-生产 base 为 `https://api.dotapk.lol/api/v1`，本地 `http://127.0.0.1:18082/api/v1`，JSON UTF-8、不用 cookie。GET `/healthz` 在 `/api/v1` 之外，探测 MySQL 并报告 `v1.3-gameplay-rosters`。Origin 必须与配置精确一致，生产为 `https://dotapk.lol`；OPTIONS 允许 GET/POST/DELETE/OPTIONS 和 Content-Type/Authorization。
+生产 base 为 `https://api.dotapk.lol/api/v1`，本地 `http://127.0.0.1:18082/api/v1`，JSON UTF-8、不用 cookie。GET `/healthz` 在 `/api/v1` 之外，探测 MySQL 并报告 `v1.3-gameplay-rosters`。非空 Origin 必须精确匹配配置列表的一项，生产仅允许 `https://dotapk.lol` 和 `https://dotapk-frontend.skiyo.workers.dev`。响应回显已匹配的 Origin，保留 `Vary: Origin`；其他非空 Origin、`null` 和多个 Origin 头均拒绝，不启用认证Cookie或凭据响应。OPTIONS 允许 GET/POST/DELETE/OPTIONS 和 Content-Type/Authorization。
 
 POST `/sessions` body `{}` 返回 `{playerId,token,expires}`，256-bit ID/token，24小时过期。token 留本地，不放 URL/P2P/Git。除 registry/health/新会话外都需 `Authorization: Bearer <TOKEN>`；匿名会话不是持久人类身份。六位邀请码是保留前导零的字符串，不是强认证；内部房间/比赛 ID 是独立64位十六进制串。
 

@@ -72,6 +72,8 @@ curl --fail -X OPTIONS -H 'Origin: http://127.0.0.1:4173' -H 'Access-Control-Req
 
 These inspect local health/registry/preflight without generating reports. Verify roster/version before play, then use anonymous authenticated request shapes from [API](API.md). No WebSocket signaling/public analytics REST exists. WebRTC has no TURN; real NAT/device acceptance remains separate from source tests.
 
+`DUEL_ALLOWED_ORIGIN` remains compatible with a single origin and also accepts an explicit comma-separated list. Production uses `https://dotapk.lol,https://dotapk-frontend.skiyo.workers.dev`. Invalid entries (wildcards, `null`, paths, userinfo or empty CSV entries) stop startup. Only exact matches receive their own CORS origin; `Vary: Origin`, Bearer identity checks and existing preflight methods/headers remain. No WebSocket, cookie or database change is required. Adding a browser origin requires explicit approval. Switching frontend origins does not share anonymous in-memory sessions or origin-scoped local history.
+
 ## Tests and analytics
 
 README unit tests need no database. `scripts/test-production-v13.py` checks profile/build rejection using memory and a temporary overlay, serially. MySQL integration clears tables only on explicitly allowlisted disposable sockets; see [testing](TESTING.md).

@@ -14,6 +14,10 @@ import (
 )
 
 func main() {
+	origin := os.Getenv("DUEL_ALLOWED_ORIGIN")
+	if _, e := duel.ParseAllowedOrigins(origin); e != nil {
+		log.Fatal("invalid DUEL_ALLOWED_ORIGIN configuration")
+	}
 	dsn := os.Getenv("DUEL_MYSQL_DSN")
 	if file := os.Getenv("DUEL_MYSQL_DSN_FILE"); file != "" {
 		b, e := os.ReadFile(file)
@@ -39,7 +43,7 @@ func main() {
 	if addr == "" {
 		addr = "127.0.0.1:18082"
 	}
-	h := &duel.Handler{Service: duel.NewService(store), Origin: os.Getenv("DUEL_ALLOWED_ORIGIN"), TrustedProxy: os.Getenv("DUEL_TRUSTED_PROXY_IP")}
+	h := &duel.Handler{Service: duel.NewService(store), Origin: origin, TrustedProxy: os.Getenv("DUEL_TRUSTED_PROXY_IP")}
 	server := &http.Server{Addr: addr, Handler: h, ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 10 * time.Second, WriteTimeout: 10 * time.Second, IdleTimeout: 30 * time.Second, MaxHeaderBytes: 8192}
 	go func() {
 		ticker := time.NewTicker(30 * time.Second)

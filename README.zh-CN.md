@@ -23,7 +23,7 @@ export DUEL_ALLOWED_ORIGIN='http://127.0.0.1:4173'
 go run ./cmd/dueld
 ```
 
-DSN 文件格式：`<LOCAL_DB_USER>:<LOCAL_DB_PASSWORD>@tcp(127.0.0.1:3306)/dota_duel`。占位符私下填写，不提交/打印真实凭据。文件优先于 `DUEL_MYSQL_DSN`；`DUEL_LISTEN` 默认127.0.0.1:18082，`DUEL_ALLOWED_ORIGIN` 仅一个精确 origin，`DUEL_TRUSTED_PROXY_IP` 可选一个精确代理地址、默认禁用。GET `/healthz` 实际 ping MySQL，服务器没有内存 fallback。
+DSN 文件格式：`<LOCAL_DB_USER>:<LOCAL_DB_PASSWORD>@tcp(127.0.0.1:3306)/dota_duel`。占位符私下填写，不提交/打印真实凭据。文件优先于 `DUEL_MYSQL_DSN`；`DUEL_LISTEN` 默认127.0.0.1:18082，`DUEL_ALLOWED_ORIGIN` 兼容单个精确 origin或逗号分隔的精确白名单，`DUEL_TRUSTED_PROXY_IP` 可选一个精确代理地址、默认禁用。GET `/healthz` 实际 ping MySQL，服务器没有内存 fallback。
 
 普通构建**只含 legacy20**。当前前端为**22英雄/88槽**、`arena-heros22-v1`、`duel-heroes-127-v1`、源码 build `duel-851e67d77307f479f1fa`。22 overlay、SQL 元数据与精确绑定见[开发](docs/DEVELOPMENT.zh-CN.md)。目录身份不等于可玩，未发布英雄继续暂停/灰禁。
 

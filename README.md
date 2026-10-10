@@ -23,7 +23,7 @@ export DUEL_ALLOWED_ORIGIN='http://127.0.0.1:4173'
 go run ./cmd/dueld
 ```
 
-DSN file format: `<LOCAL_DB_USER>:<LOCAL_DB_PASSWORD>@tcp(127.0.0.1:3306)/dota_duel`. Fill placeholders privately; never commit/print actual credentials. The file takes precedence over `DUEL_MYSQL_DSN`. `DUEL_LISTEN` defaults to127.0.0.1:18082; `DUEL_ALLOWED_ORIGIN` is one exact origin; `DUEL_TRUSTED_PROXY_IP` is one optional exact proxy address, disabled by default. Health GET `/healthz` pings MySQL. There is no in-memory server fallback.
+DSN file format: `<LOCAL_DB_USER>:<LOCAL_DB_PASSWORD>@tcp(127.0.0.1:3306)/dota_duel`. Fill placeholders privately; never commit/print actual credentials. The file takes precedence over `DUEL_MYSQL_DSN`. `DUEL_LISTEN` defaults to127.0.0.1:18082; `DUEL_ALLOWED_ORIGIN` accepts one exact origin or a comma-separated exact allowlist; `DUEL_TRUSTED_PROXY_IP` is one optional exact proxy address, disabled by default. Health GET `/healthz` pings MySQL. There is no in-memory server fallback.
 
 Ordinary builds contain **legacy20 only**. Current frontend play uses **22 heroes/88 slots**, `arena-heros22-v1`, `duel-heroes-127-v1`, source build `duel-851e67d77307f479f1fa`. Follow [development](docs/DEVELOPMENT.md) for the22 overlay, SQL metadata and exact binding. A catalog ID does not imply playability; unreleased heroes remain paused/grey.
 

@@ -23,14 +23,14 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Cache-Control", "no-store")
 	w.Header().Set("X-Content-Type-Options", "nosniff")
+	w.Header().Set("Vary", "Origin")
 	origin := r.Header.Get("Origin")
-	if origin != "" && origin != h.Origin {
+	if len(r.Header.Values("Origin")) > 1 || origin != "" && !h.allowsOrigin(origin) {
 		replyError(w, &Fault{403, "origin not allowed"})
 		return
 	}
 	if origin != "" {
-		w.Header().Set("Access-Control-Allow-Origin", h.Origin)
-		w.Header().Set("Vary", "Origin")
+		w.Header().Set("Access-Control-Allow-Origin", origin)
 	}
 	if r.Method == "OPTIONS" {
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")

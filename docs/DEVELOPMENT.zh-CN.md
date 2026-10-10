@@ -72,6 +72,8 @@ curl --fail -X OPTIONS -H 'Origin: http://127.0.0.1:4173' -H 'Access-Control-Req
 
 这只检查本地 health/registry/预检；不生成玩家报告。进入人机或建房前确认返回名单/版本，结果由匿名会话鉴权，完整 shapes 见 [API.md](API.md)。没有 WebSocket 信令或公共 analytics REST endpoint。WebRTC 无 TURN，跨网络需要真实设备/NAT 验证；源码测试不替代这些验证。
 
+`DUEL_ALLOWED_ORIGIN` 兼容原单个Origin，也支持显式逗号列表。生产为 `https://dotapk.lol,https://dotapk-frontend.skiyo.workers.dev`。通配、`null`、路径、userinfo或空CSV条目会阻止启动。仅精确匹配时回显对应CORS来源，保留 `Vary: Origin`、Bearer身份校验与原预检方法/头。无需WebSocket、Cookie或数据库改动。增加浏览器来源需显式授权；切换前端Origin不会共享内存匿名会话或按来源隔离的本机战绩。
+
 ## 测试与统计边界
 
 README 中的 Go 单元测试不需要真实数据库；`scripts/test-production-v13.py` 仅用临时 overlay 测 production profile 准入，拒绝模式/build 不符，串行低内存运行。MySQL integration 会清表，只能用 TESTING.md 明确允许的可丢弃 socket 环境。

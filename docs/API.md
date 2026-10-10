@@ -2,7 +2,7 @@
 
 # API contract v1.3
 
-Production base: `https://api.dotapk.lol/api/v1`; local base: `http://127.0.0.1:18082/api/v1`. JSON UTF-8, no cookies. GET `/healthz` is outside `/api/v1`, probes MySQL and reports `v1.3-gameplay-rosters`. An Origin header must exactly match configured origin; production uses `https://dotapk.lol`. OPTIONS allows GET/POST/DELETE/OPTIONS and Content-Type/Authorization.
+Production base: `https://api.dotapk.lol/api/v1`; local base: `http://127.0.0.1:18082/api/v1`. JSON UTF-8, no cookies. GET `/healthz` is outside `/api/v1`, probes MySQL and reports `v1.3-gameplay-rosters`. A nonempty Origin header must exactly match one configured origin; production permits only `https://dotapk.lol` and `https://dotapk-frontend.skiyo.workers.dev`. The response echoes that matched origin with `Vary: Origin`. Other nonempty origins, `null` and multiple Origin headers are rejected; credentials/cookies are not enabled. OPTIONS allows GET/POST/DELETE/OPTIONS and Content-Type/Authorization.
 
 POST `/sessions` body `{}` returns `{playerId,token,expires}` with256-bit identifiers/tokens and24-hour expiry. Keep tokens local, outside URLs/P2P/Git. Except registry/health/session creation, routes require `Authorization: Bearer <TOKEN>`. Anonymous sessions are not durable human identities. A six-digit invitation string preserves leading zeros; it is not strong authentication. Internal room/match IDs are independent64-character hex values.
 
