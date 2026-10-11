@@ -4,6 +4,12 @@
 
 ## Independent28 release profile
 
+### Current entry-fix runtime
+
+Frontend `d81c67bb738f3ba534eaabc19d05358b21679196` uses `duel-1518053e640d9203bbf2`. Shared release-profile derivation and strict registry/mechanics/exact-ID entry validation replace the hardcoded22 gate found by real browser acceptance. RULESET_HASH is `2962ef0261546982eb145303364d046216e4949861918fdbdb19bc19b87dcc54`; rulesHash, heros commit and all28 IDs remain unchanged. `append-heros28-entry-runtime.sql` appends1518 with exact compare-and-swap from the registered6750 list (expect one affected row; a zero result requires inspection). Both manifests retain6750 and every old22/46/legacy binding. Do not register intermediate56ab or rerun the initial INSERT. Membership, schema, historical reports and permissions remain unchanged. Tests exercise both6750 and1518 selection/rematch lifecycles. Frontend publication still requires real PVP acceptance.
+
+### Initial6750 registration
+
 The six new heroes (0 Juggernaut, 2 Pudge, 6 Phantom Assassin, 10 Earthshaker, 14 Windranger, 19 Tidehunter) use independent `arena-heros28-v1`. Never expand historical22: v3 views resolve membership through the original roster. Preserve all seven22 builds, two46 builds, legacy20, registry127, migrations001–004 and authentication. Exact28 IDs: `0,1,2,3,4,5,6,7,8,9,10,14,15,17,18,19,28,31,32,36,50,55,57,58,62,71,81,82`.
 
 Final runtime `duel-6750ae2e1cfd1c3cdd42` maps to frontend `57a69c151ff388d1205a03c7e9912d375bd46ec1`, heros `7a555cdd47dc7c5eec4f0cdccf022c4a0fdbd7c0`, rulesHash `1c834e77da8f10a46a281da6df9f62458b701a7297befc9c5d5c9c52210d3f67`. The reviewed fixes cover Dismember control duration, Phantom Strike reflection, six-effect snapshot provenance and training revival clocks. Frontend RULESET_HASH is `1fb62f5882823ce2407f7f6041484285cf281b068216c93e98e41370fab7e289`. Both manifests, SQL and tests bind only this final28 runtime. Superseded unpublished candidates are not production bindings. RulesHash is checked against the frontend artifact, not stored in SQL. Frontend publication remains a separate real-PVP acceptance gate.

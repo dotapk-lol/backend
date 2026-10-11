@@ -4,6 +4,12 @@
 
 ## 独立28发布profile
 
+### 当前入口修复版本
+
+Frontend `d81c67bb738f3ba534eaabc19d05358b21679196` 使用 `duel-1518053e640d9203bbf2`。共用发布profile推导及严格registry/mechanics/精确ID入口校验，修复真实浏览器验收发现的硬编码22门槛。RULESET_HASH为 `2962ef0261546982eb145303364d046216e4949861918fdbdb19bc19b87dcc54`，rulesHash、heros提交及28名单不变。`append-heros28-entry-runtime.sql` 从已登记6750列表精确比较后追加1518（预期影响1行；0行须调查）。两manifest保留6750及所有旧22/46/legacy绑定；不登记中间56ab，不重跑初始INSERT。成员、schema、历史报告和权限不变。测试同时覆盖6750和1518选人/重赛流程。前端发布仍需真实PVP验收。
+
+### 首次6750登记
+
 新增六英雄（0剑圣、2帕吉、6PA、10撼地者、14风行、19潮汐）使用独立 `arena-heros28-v1`。不能扩写旧22：v3视图通过原roster解释历史成员。保留旧22的7个build、旧46的2个build、legacy20、127身份、迁移001–004和鉴权。精确28名单：`0,1,2,3,4,5,6,7,8,9,10,14,15,17,18,19,28,31,32,36,50,55,57,58,62,71,81,82`。
 
 最终runtime `duel-6750ae2e1cfd1c3cdd42` 对应frontend `57a69c151ff388d1205a03c7e9912d375bd46ec1`、heros `7a555cdd47dc7c5eec4f0cdccf022c4a0fdbd7c0`、rulesHash `1c834e77da8f10a46a281da6df9f62458b701a7297befc9c5d5c9c52210d3f67`。复审修复包括肢解控制时长、幻影突袭反弹、六英雄效果快照来源校验和训练复活时钟；前端RULESET_HASH为 `1fb62f5882823ce2407f7f6041484285cf281b068216c93e98e41370fab7e289`。两manifest、SQL和测试只绑定此最终28版本，被替代且未发布的候选不登记生产。rulesHash核验前端工件，不存SQL。前端发布仍需单独通过真实PVP验收门槛。

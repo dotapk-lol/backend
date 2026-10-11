@@ -10,14 +10,15 @@ import (
 )
 
 // Exact final six-hero fingerprint; both manifests and SQL must match.
-const heros28Version = "duel-6750ae2e1cfd1c3cdd42"
+const heros28Version = "duel-1518053e640d9203bbf2"
+const heros28RetainedVersion = "duel-6750ae2e1cfd1c3cdd42"
 const heros28Roster = "arena-heros28-v1"
 
 func TestHeros28ProductionBoundary(t *testing.T) {
 	ids := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 15, 17, 18, 19, 28, 31, 32, 36, 50, 55, 57, 58, 62, 71, 81, 82}
 	s := NewService(newMemory())
 	r := s.registry.byRoster[heros28Roster]
-	if r.RegistryVersion != RegistryVersion || !reflect.DeepEqual(r.HeroIDs, ids) || !reflect.DeepEqual(r.GameVersions, []string{heros28Version}) || !s.registry.selectionEnabled(heros28Version) {
+	if r.RegistryVersion != RegistryVersion || !reflect.DeepEqual(r.HeroIDs, ids) || !reflect.DeepEqual(r.GameVersions, []string{heros28RetainedVersion, heros28Version}) || !s.registry.selectionEnabled(heros28Version) || !s.registry.selectionEnabled(heros28RetainedVersion) || s.registry.selectionEnabled("duel-56ab6091b8eb3f5603ec") {
 		t.Fatal("28 profile fingerprint drift")
 	}
 	// Exact old membership/builds are independently pinned by the22 fixture.
@@ -77,6 +78,14 @@ func TestHeros28ProductionBoundary(t *testing.T) {
 
 // Real handler contract with a memory store: synthetic reports, not browser/P2P acceptance.
 func TestHeros28HTTPSelectionLifecycle(t *testing.T) {
+	testHeros28HTTPSelectionLifecycle(t, heros28Version)
+}
+
+func TestHeros28RetainedSelectionLifecycle(t *testing.T) {
+	testHeros28HTTPSelectionLifecycle(t, heros28RetainedVersion)
+}
+
+func testHeros28HTTPSelectionLifecycle(t *testing.T, version string) {
 	for _, pair := range [][2]int{{0, 2}, {6, 10}, {14, 19}} {
 		t.Run(fmt.Sprint(pair), func(t *testing.T) {
 			s := NewService(newMemory())
@@ -103,7 +112,7 @@ func TestHeros28HTTPSelectionLifecycle(t *testing.T) {
 				}
 			}
 			in := roomInput()
-			in.Version, in.RosterID, in.Hero = heros28Version, heros28Roster, 1
+			in.Version, in.RosterID, in.Hero = version, heros28Roster, 1
 			call("POST", "/rooms", "", in, 401, nil)
 			for _, rid := range []string{"", LegacyRosterID, "arena-heros22-v1", "arena-first22-46-v1"} {
 				bad := in
@@ -121,17 +130,17 @@ func TestHeros28HTTPSelectionLifecycle(t *testing.T) {
 			var room RoomView
 			call("POST", "/rooms", a.Token, in, 201, &room)
 			path := "/rooms/" + room.ID
-			call("POST", "/rooms/join", b.Token, JoinRoom{room.Code, heros28Version, 1, "arena-heros22-v1"}, 409, nil)
-			call("POST", "/rooms/join", b.Token, JoinRoom{room.Code, heros28Version, 1, heros28Roster}, 200, nil)
-			call("POST", path+"/answer", b.Token, map[string]any{"version": heros28Version, "answer": Description{"answer", "v=0\r\n"}}, 200, nil)
-			begin := BeginSelection{heros28Version, "begin", firstEpoch, "", ""}
+			call("POST", "/rooms/join", b.Token, JoinRoom{room.Code, version, 1, "arena-heros22-v1"}, 409, nil)
+			call("POST", "/rooms/join", b.Token, JoinRoom{room.Code, version, 1, heros28Roster}, 200, nil)
+			call("POST", path+"/answer", b.Token, map[string]any{"version": version, "answer": Description{"answer", "v=0\r\n"}}, 200, nil)
+			begin := BeginSelection{version, "begin", firstEpoch, "", ""}
 			call("POST", path+"/selection", outsider.Token, begin, 403, nil)
 			call("POST", path+"/selection", b.Token, begin, 403, nil)
 			call("POST", path+"/selection", a.Token, begin, 200, nil)
-			call("POST", path+"/selection", a.Token, LockSelection{heros28Version, "lock", firstEpoch, 11}, 400, nil)
-			call("POST", path+"/matches", a.Token, CreateMatch{"heros28_match_0001", heros28Version, firstEpoch}, 409, nil)
+			call("POST", path+"/selection", a.Token, LockSelection{version, "lock", firstEpoch, 11}, 400, nil)
+			call("POST", path+"/matches", a.Token, CreateMatch{"heros28_match_0001", version, firstEpoch}, 409, nil)
 			for seat, c := range []Credentials{a, b} {
-				lock := LockSelection{heros28Version, "lock", firstEpoch, pair[seat]}
+				lock := LockSelection{version, "lock", firstEpoch, pair[seat]}
 				call("POST", path+"/selection", c.Token, lock, 200, nil)
 				call("POST", path+"/selection", c.Token, lock, 200, nil)
 				lock.Hero = 3
@@ -141,7 +150,7 @@ func TestHeros28HTTPSelectionLifecycle(t *testing.T) {
 			if room.Selection.Locked != [2]bool{true, true} {
 				t.Fatal("begin replay erased locks")
 			}
-			request := CreateMatch{"heros28_match_0001", heros28Version, firstEpoch}
+			request := CreateMatch{"heros28_match_0001", version, firstEpoch}
 			var match, replay Match
 			call("POST", path+"/matches", b.Token, request, 403, nil)
 			call("POST", path+"/matches", a.Token, request, 201, &match)
@@ -149,7 +158,7 @@ func TestHeros28HTTPSelectionLifecycle(t *testing.T) {
 			if replay.ID != match.ID || match.Players[0].Hero != pair[0] || match.Players[1].Hero != pair[1] || match.RosterID != heros28Roster || match.RegistryVersion != RegistryVersion {
 				t.Fatal("snapshot/replay drift")
 			}
-			ready := map[string]string{"version": heros28Version}
+			ready := map[string]string{"version": version}
 			mp := "/matches/" + match.ID
 			call("POST", mp+"/ready", outsider.Token, ready, 403, nil)
 			call("POST", mp+"/ready", a.Token, ready, 200, &replay)
@@ -160,10 +169,10 @@ func TestHeros28HTTPSelectionLifecycle(t *testing.T) {
 			if replay.Status != "in_progress" {
 				t.Fatal("bilateral start failed")
 			}
-			next := BeginSelection{heros28Version, "begin", nextEpoch, firstEpoch, match.ID}
+			next := BeginSelection{version, "begin", nextEpoch, firstEpoch, match.ID}
 			call("POST", path+"/selection", a.Token, next, 409, nil)
 			report := completed()
-			report.Version = heros28Version
+			report.Version = version
 			call("POST", mp+"/results", a.Token, report, 200, &replay)
 			if replay.Status != "pending" {
 				t.Fatal("single report promoted")
@@ -178,10 +187,10 @@ func TestHeros28HTTPSelectionLifecycle(t *testing.T) {
 				t.Fatal("rematch retained locks")
 			}
 			for seat, c := range []Credentials{a, b} {
-				call("POST", path+"/selection", c.Token, LockSelection{heros28Version, "lock", nextEpoch, pair[1-seat]}, 200, nil)
+				call("POST", path+"/selection", c.Token, LockSelection{version, "lock", nextEpoch, pair[1-seat]}, 200, nil)
 			}
 			var second Match
-			call("POST", path+"/matches", a.Token, CreateMatch{"heros28_match_0002", heros28Version, nextEpoch}, 201, &second)
+			call("POST", path+"/matches", a.Token, CreateMatch{"heros28_match_0002", version, nextEpoch}, 201, &second)
 			if second.ID == match.ID || second.RoomID != match.RoomID || second.Players[0].Hero != pair[1] || second.Players[1].Hero != pair[0] {
 				t.Fatal("rematch identity drift")
 			}

@@ -91,7 +91,7 @@ func TestHeros22SelectionProfile(t *testing.T) {
 		t.Run(version, func(t *testing.T) {
 			const roster = "arena-heros22-v1"
 			s := NewService(newMemory())
-			if len(s.registry.selectionBuilds) != 4 || !s.registry.selectionEnabled(version) || s.registry.selectionEnabled("duel-9431984810f197b393c5") || s.registry.selectionEnabled("duel-room-first-local-qa") || s.registry.selectionEnabled("duel-e81da0fe6c6faec0eef8") || s.registry.selectionEnabled("duel-4a47c22dc137cb12d594") {
+			if len(s.registry.selectionBuilds) != 5 || !s.registry.selectionEnabled(version) || s.registry.selectionEnabled("duel-9431984810f197b393c5") || s.registry.selectionEnabled("duel-room-first-local-qa") || s.registry.selectionEnabled("duel-e81da0fe6c6faec0eef8") || s.registry.selectionEnabled("duel-4a47c22dc137cb12d594") {
 				t.Fatal("protocol gate drift")
 			}
 			a, b := creds(t, s), creds(t, s)
