@@ -2,6 +2,20 @@
 
 # Pinned gameplay profile
 
+## Independent28 release profile
+
+The six new heroes (0 Juggernaut, 2 Pudge, 6 Phantom Assassin, 10 Earthshaker, 14 Windranger, 19 Tidehunter) use independent `arena-heros28-v1`. Never expand historical22: v3 views resolve membership through the original roster. Preserve all seven22 builds, two46 builds, legacy20, registry127, migrations001–004 and authentication. Exact28 IDs: `0,1,2,3,4,5,6,7,8,9,10,14,15,17,18,19,28,31,32,36,50,55,57,58,62,71,81,82`.
+
+Final runtime `duel-6750ae2e1cfd1c3cdd42` maps to frontend `57a69c151ff388d1205a03c7e9912d375bd46ec1`, heros `7a555cdd47dc7c5eec4f0cdccf022c4a0fdbd7c0`, rulesHash `1c834e77da8f10a46a281da6df9f62458b701a7297befc9c5d5c9c52210d3f67`. The reviewed fixes cover Dismember control duration, Phantom Strike reflection, six-effect snapshot provenance and training revival clocks. Frontend RULESET_HASH is `1fb62f5882823ce2407f7f6041484285cf281b068216c93e98e41370fab7e289`. Both manifests, SQL and tests bind only this final28 runtime. Superseded unpublished candidates are not production bindings. RulesHash is checked against the frontend artifact, not stored in SQL. Frontend publication remains a separate real-PVP acceptance gate.
+
+`register-heros28.sql` inserts one metadata row and28 memberships in one transaction. First verify schema/registry SHA, exact existing legacy/46/22 metadata and membership, absence of28, and back up the previous binary/profile. Apply only missing incremental SQL with stop-on-error (never mysql `--force`); require affected counts1 and28. Inspect an existing registration before retrying. Compare historical metadata and v3 results before/after; do not update/delete historical rows.
+
+Run Go tests, race, vet, `scripts/test-production-v13.py` and `scripts/check-docs.py` serially. The new overlay fixture checks127 identities on both selection and PVE/local/BC seats, exact build/roster/auth rejection, all six new heroes across three pairs, lock/request replay, bilateral ready, reconciliation and same-room rematch. Synthetic handler reports do not establish browser/P2P acceptance. Disposable SQL checks require a newly owned allowlisted socket; report actual server version and skipped checks.
+
+Build with `scripts/build-profile.py --rosters deploy/production-v13/gameplay-rosters.json --features deploy/production-v13/protocol-features.json --goos linux --goarch amd64 --output bin/dueld-heros28`; record both manifest digests and binary SHA256. After the final fingerprint review, deploy additive SQL, then backend, then verify health, exact registry/runtime bindings and CORS. Keep only `https://dotapk.lol` and `https://dotapk-frontend.skiyo.workers.dev`; do not change TURN, proxy, grants or network configuration. Frontend publication is coordinated separately after backend readiness and real PVP acceptance; CPU checks are not PVP. Rollback first removes the new frontend and drains28 sessions, then restores the previous backend/profile, retaining metadata and history.
+
+## Historical profile
+
 This file set preserves explicit legacy20, historical `arena-first22-46-v1` and released `arena-heros22-v1` bindings in [gameplay-rosters.json](gameplay-rosters.json). It does not unlock46/127 in the current frontend, which remains22/88. Default source embed remains legacy20.
 
 For the pinned reproduction helper:

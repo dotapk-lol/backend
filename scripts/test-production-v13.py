@@ -7,7 +7,8 @@ with tempfile.TemporaryDirectory(prefix='duel-profile-tests-',dir='/tmp') as tmp
  overlay.write_text(json.dumps({'Replace':{
   str(repo/'internal/duel/registry/gameplay-rosters.json'):str(repo/'deploy/production-v13/gameplay-rosters.json'),
   str(repo/'internal/duel/registry/protocol-features.json'):str(repo/'deploy/production-v13/protocol-features.json'),
+  str(repo/'internal/duel/heros28_profile_test.go'):str(repo/'deploy/production-v13/heros28_profile_test.go'),
   str(repo/'internal/duel/heros22_profile_test.go'):str(repo/'deploy/production-v13/heros22_profile_test.go')}}))
  env=dict(os.environ,GOPROXY='off',GOMAXPROCS='2',GOFLAGS='')
  env.setdefault('GOCACHE',str(pathlib.Path(tmp)/'cache'))
- subprocess.run(['go','test','-p=1','-count=1','-overlay',str(overlay),'-run','^(TestHeros22ProductionBoundary|TestHeros22SelectionProfile|TestLegacyRequestBytes|TestRegistryMemory|TestRosterHTTPContract)$','./internal/duel'],cwd=repo,env=env,check=True)
+ subprocess.run(['go','test','-p=1','-count=1','-overlay',str(overlay),'-run','^(TestHeros28ProductionBoundary|TestHeros28HTTPSelectionLifecycle|TestHeros22ProductionBoundary|TestHeros22SelectionProfile|TestLegacyRequestBytes|TestRegistryMemory|TestRosterHTTPContract)$','./internal/duel'],cwd=repo,env=env,check=True)

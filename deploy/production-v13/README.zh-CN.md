@@ -2,6 +2,20 @@
 
 # 固定 gameplay profile
 
+## 独立28发布profile
+
+新增六英雄（0剑圣、2帕吉、6PA、10撼地者、14风行、19潮汐）使用独立 `arena-heros28-v1`。不能扩写旧22：v3视图通过原roster解释历史成员。保留旧22的7个build、旧46的2个build、legacy20、127身份、迁移001–004和鉴权。精确28名单：`0,1,2,3,4,5,6,7,8,9,10,14,15,17,18,19,28,31,32,36,50,55,57,58,62,71,81,82`。
+
+最终runtime `duel-6750ae2e1cfd1c3cdd42` 对应frontend `57a69c151ff388d1205a03c7e9912d375bd46ec1`、heros `7a555cdd47dc7c5eec4f0cdccf022c4a0fdbd7c0`、rulesHash `1c834e77da8f10a46a281da6df9f62458b701a7297befc9c5d5c9c52210d3f67`。复审修复包括肢解控制时长、幻影突袭反弹、六英雄效果快照来源校验和训练复活时钟；前端RULESET_HASH为 `1fb62f5882823ce2407f7f6041484285cf281b068216c93e98e41370fab7e289`。两manifest、SQL和测试只绑定此最终28版本，被替代且未发布的候选不登记生产。rulesHash核验前端工件，不存SQL。前端发布仍需单独通过真实PVP验收门槛。
+
+`register-heros28.sql` 在一个事务中新增1行metadata和28行membership。先核对schema/registry SHA、已有legacy/46/22精确metadata及成员、28尚不存在，并备份旧二进制/profile。只执行缺失增量SQL，遇错停止（绝不用mysql `--force`），确认影响行数1和28。已有登记须先调查再重试。比较登记前后历史metadata和v3结果，不更新/删除历史行。
+
+串行运行Go tests、race、vet、`scripts/test-production-v13.py` 和 `scripts/check-docs.py`。新overlay fixture验证127身份在双边选人及PVE/local/BC双座位准入、精确build/roster/鉴权拒绝、三组六英雄、锁定/请求重放、双边ready、对账及同房重赛。合成HTTP报告不代表浏览器/P2P通过。SQL检查使用本任务新建的可丢弃白名单socket，记录实际版本及跳过项。
+
+构建使用 `scripts/build-profile.py --rosters deploy/production-v13/gameplay-rosters.json --features deploy/production-v13/protocol-features.json --goos linux --goarch amd64 --output bin/dueld-heros28`，记录两manifest及二进制SHA256。最终指纹复审后先增量SQL、后配套后端，再验证health、精确registry/runtime绑定及CORS。仅保留 `https://dotapk.lol` 和 `https://dotapk-frontend.skiyo.workers.dev`，不改TURN、代理、授权或网络。前端在后端就绪及真实PVP验收后单独协调发布，CPU不算PVP。回滚先撤新前端并排空28会话，再恢复旧后端/profile，保留metadata和历史。
+
+## 历史profile
+
 [gameplay-rosters.json](gameplay-rosters.json) 保留明确的 legacy20、旧 `arena-first22-46-v1` 和已发 `arena-heros22-v1` 绑定；不解锁当前前端46/127，前端仍22/88。默认 source embed 仍 legacy20。
 
 固定复现工具输入：
