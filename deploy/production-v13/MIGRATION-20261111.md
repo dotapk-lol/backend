@@ -19,6 +19,6 @@ Candidate SHA256: `e0707769d19812a832e8b7b91ae32608cc850c67e51a4bf4158ad3bc26bfa
 - A natural2:0 match ended with both peers showing saved/agreed; MySQL statusconfirmed, scoreAgreementpeer_agreed, transportwebrtc.
 - Both peers agreed to same-room rematch and entered another battle. Controlled exit recordedaborted without an extra win. Data quality violations0.
 - API domains remain unchanged; production profile/roster/runtime bindings and CORS unchanged. Main-domain static downloads were slow in the test network; no frontend deployment was changed by this migration.
-- Both databases/Redis/configuration and current binaries are covered by the verified Mac offsite backupbackup-20261111T124133Z.cms. Daily03:00server and03:20Mac;15min monitoring.
+- Both databases/Redis/configuration and current binaries are covered by the verified Mac offsite backupbackup-20261111T125300Z.cms. Daily03:00server and03:20Mac;15min monitoring.
 
 ![Actual natural result and controlled rematch abort](evidence/migration-20261111-history.jpg)
