@@ -2,8 +2,11 @@ package duel
 
 import (
 	"context"
+	"errors"
+	"fmt"
 	"os"
 	"strings"
+	"sync"
 	"testing"
 	"time"
 
@@ -38,6 +41,52 @@ func TestMySQLIntegration(t *testing.T) {
 		}
 		return store
 	}
+	t.Run("concurrent-rate-buckets", func(t *testing.T) {
+		service := NewService(factory(t))
+		now := time.Now()
+		service.Now = func() time.Time { return now }
+		ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+		defer cancel()
+		failures := make(chan error, 120)
+		var workers sync.WaitGroup
+		for worker := 0; worker < 20; worker++ {
+			workers.Add(1)
+			go func() {
+				defer workers.Done()
+				for i := 0; i < 6; i++ {
+					failures <- service.Limit(ctx, "198.51.100.9", "requests", 180, 1200)
+				}
+			}()
+		}
+		workers.Wait()
+		close(failures)
+		for err := range failures {
+			if err != nil {
+				t.Fatalf("valid concurrent request failed: %v", err)
+			}
+		}
+		for i := 0; i < 60; i++ {
+			if err := service.Limit(ctx, "198.51.100.9", "requests", 180, 1200); err != nil {
+				t.Fatal(err)
+			}
+		}
+		var fault *Fault
+		if err := service.Limit(ctx, "198.51.100.9", "requests", 180, 1200); !errors.As(err, &fault) || fault.Status != 429 {
+			t.Fatalf("limit not enforced: %v", err)
+		}
+		if err := store.Run(ctx, func(tx Tx) error {
+			var c counter
+			if err := tx.Get("rate", fmt.Sprintf("requests:%d:global", millis(now)/60000), &c); err != nil {
+				return err
+			}
+			if c.Count != 180 {
+				return fmt.Errorf("counter got %d, want180; refused request must roll back", c.Count)
+			}
+			return nil
+		}); err != nil {
+			t.Fatal(err)
+		}
+	})
 	runSuite(t, factory)
 	runLocalSuite(t, factory)
 	runReconciliationSuite(t, factory)

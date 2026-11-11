@@ -96,13 +96,27 @@ func (t *sqlTx) write(k, id string, v any, expires int64, insert bool) error {
 		return e
 	}
 	q := "INSERT INTO " + table(k) + " (id,payload,expires_at) VALUES (?,?,?)"
-	if !insert {
+	if insert {
+		// Duplicate-key INSERT takes a shared lock before Get upgrades it. Hot
+		// rate buckets can then deadlock even for reads of public endpoints.
+		// A no-op upsert takes the exclusive lock without changing old data.
+		q += " ON DUPLICATE KEY UPDATE id=id"
+	} else {
 		q += " ON DUPLICATE KEY UPDATE payload=VALUES(payload),expires_at=VALUES(expires_at)"
 	}
-	_, e = t.tx.ExecContext(t.ctx, q, id, b, expires)
+	result, e := t.tx.ExecContext(t.ctx, q, id, b, expires)
 	var me *mysql.MySQLError
 	if errors.As(e, &me) && me.Number == 1062 {
 		return ErrExists
+	}
+	if e == nil && insert {
+		n, err := result.RowsAffected()
+		if err != nil {
+			return err
+		}
+		if n == 0 {
+			return ErrExists
+		}
 	}
 	return e
 }
@@ -129,6 +143,7 @@ func OpenMySQL(dsn string) (*SQLStore, error) {
 	c.ReadTimeout = 5 * time.Second
 	c.WriteTimeout = 5 * time.Second
 	c.MultiStatements = false
+	c.ClientFoundRows = false // no-op Insert upserts must report zero affected rows
 	db, e := sql.Open("mysql", c.FormatDSN())
 	if e != nil {
 		return nil, errors.New("cannot open MySQL")
